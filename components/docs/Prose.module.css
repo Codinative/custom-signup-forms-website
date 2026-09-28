@@ -1,0 +1,71 @@
+/* Docs article typography. Designed values (ApiDocs.dc.html / MobileApiDocs.dc.html): section gap 16,
+   heading block gap 8, h2 .disp 26/700 (22 on phone), .body paragraphs, inline code = .mono only
+   (no chip). Links use the global a rules (#2563eb, hover #1d4ed8).
+   Everything sits in :where() (zero specificity), so a class a page passes always wins. */
+
+:where(.section) {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scroll-margin-top: 24px;
+}
+
+:where(.headingBlock) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+:where(.h2) {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* A bare <p> directly in a section or heading block is .body */
+:where(.section > p, .headingBlock > p) {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+/* <code> renders like the design's inline .mono span: same size as the text around it */
+:where(.section code, .note code) {
+  font-family: var(--font-mono);
+  font-size: inherit;
+}
+
+/* Derived, not designed: the kept guides (installation, user guide) need h3, lists and notes,
+   which the API template has none of. Built from the same tokens. */
+:where(.h3, .section > h3, .headingBlock > h3) {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+:where(.list, .section > ul, .section > ol) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding-left: 20px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-body);
+}
+
+:where(.note) {
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+@media (max-width: 767px) {
+  :where(.h2) {
+    font-size: 22px;
+  }
+}

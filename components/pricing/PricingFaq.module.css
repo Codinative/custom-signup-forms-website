@@ -1,0 +1,50 @@
+/* Pricing.dc.html "Billing questions"; phone values from MobilePricing.dc.html */
+.section {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 96px 96px 0;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 72px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.phoneTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding: 96px var(--pad-x-tablet) 0;
+  }
+}
+
+/* Below 1024 the 360px column leaves too little room for the answers: stack them */
+@media (max-width: 1023px) {
+  .section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 20px 40px;
+  }
+}

@@ -1,0 +1,80 @@
+/* "How it works": Main.dc.html section 4 */
+.section {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.inner {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 100px 120px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.intro {
+  max-width: 420px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.step {
+  font-size: 13px;
+  color: var(--blue-600);
+  font-weight: 600;
+}
+
+.cardTitle {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+@media (max-width: 1279px) {
+  .inner {
+    padding: 100px var(--pad-x-tablet);
+  }
+
+  .head {
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

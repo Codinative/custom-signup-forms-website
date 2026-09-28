@@ -10,16 +10,17 @@ import { launch, openDesign, openBuild } from "./browser.mjs";
 const STYLE_KEYS = ["font", "size", "weight", "lh", "ls", "color", "tt", "fstyle"];
 const MAX_ROWS = 120;
 
-function collect() {
+function collect(rootSelector) {
   const norm = (s) => s.replace(/\s+/g, " ").trim();
   const family = (f) =>
     f.split(",")[0].replace(/["']/g, "").trim().replace(/^__(.+?)_(Fallback_)?[0-9a-f]{4,}$/, "$1");
   const texts = [];
   const images = [];
-  for (const el of document.body.querySelectorAll("*")) {
+  const root = (rootSelector && document.querySelector(rootSelector)) || document.body;
+  for (const el of root.querySelectorAll("*")) {
     if (["SCRIPT", "STYLE", "NOSCRIPT", "TEMPLATE", "HELMET"].includes(el.tagName)) continue;
     const r = el.getBoundingClientRect();
-    if (r.width <= 1 || r.height <= 1) continue;
+    if (r.width <= 1 || r.height <= 1 || r.bottom + scrollY < 0) continue;
     if (!el.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true })) continue;
     const box = { x: Math.round(r.left + scrollX), y: Math.round(r.top + scrollY), w: Math.round(r.width), h: Math.round(r.height) };
     if (el.tagName === "IMG") {
@@ -127,8 +128,8 @@ async function run() {
       if (!artboard) continue;
       const d = await openDesign(browser, artboard, width);
       const b = await openBuild(browser, def.route, width, { openMenu: def.openMenu });
-      const design = await d.evaluate(collect);
-      const build = await b.evaluate(collect);
+      const design = await d.evaluate(collect, null);
+      const build = await b.evaluate(collect, def.openMenu ? '[role="dialog"]' : null);
       await d.close();
       await b.close();
 

@@ -1,0 +1,73 @@
+/* Docs.dc.html card groups */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 120px 96px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The card fills its grid cell, so cards in a row share one height */
+.item {
+  display: flex;
+}
+
+.card {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding: 0 var(--pad-x-tablet) 96px;
+  }
+}
+
+/* Three cards no longer fit their title and tag on one line */
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* MobileDocs.dc.html: one column, cards 12px apart */
+@media (max-width: 767px) {
+  .section {
+    gap: 32px;
+    padding: 0 20px 48px;
+  }
+
+  .group {
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+}

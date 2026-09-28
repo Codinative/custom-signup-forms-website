@@ -1,0 +1,103 @@
+/* ReleaseNotes.dc.html article; phone values from MobileReleaseNotes.dc.html */
+.entry {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 48px;
+  padding: 56px 0;
+  border-top: 1px solid var(--line);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.version {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--blue-700);
+}
+
+.date {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.latestTag {
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.titleLatest {
+  font-size: 34px;
+}
+
+.shot {
+  margin: 6px 0 10px;
+}
+
+/* Below 1024 the meta column becomes one row above the release (as on the phone) */
+@media (max-width: 1023px) {
+  .entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .latestTag {
+    align-self: auto;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .entry {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 32px 0;
+  }
+
+  .version {
+    font-size: 14px;
+  }
+
+  .date {
+    font-size: 13px;
+  }
+
+  .content {
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .titleLatest {
+    font-size: 26px;
+  }
+
+  .shot {
+    margin: 0;
+  }
+}

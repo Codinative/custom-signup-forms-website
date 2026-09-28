@@ -1,0 +1,102 @@
+/* Footer from Main.dc.html (desktop) and MobileHome.dc.html (phone); identical on every page */
+.footer {
+  background: var(--navy);
+}
+
+.desktop {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 64px 64px 40px;
+  color: var(--line-strong);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+  gap: 48px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logo {
+  align-self: flex-start;
+}
+
+.blurb {
+  max-width: 300px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--faint);
+}
+
+.partner {
+  align-self: flex-start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.column .heading {
+  color: var(--blue-300);
+}
+
+.link {
+  color: var(--line-strong);
+  font-size: 14px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 36px 20px;
+}
+
+.phoneLinks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.phoneCopy {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Tablet: brand on its own row, then the four link columns */
+@media (max-width: 1279px) {
+  .desktop {
+    padding: 64px var(--pad-x-tablet) 40px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

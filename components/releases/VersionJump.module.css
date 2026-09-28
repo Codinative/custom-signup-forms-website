@@ -1,0 +1,42 @@
+/* MobileReleaseNotes.dc.html "Jump to version" box; rendered below 768px only */
+.jump {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line-strong);
+  margin-top: 6px;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.value {
+  font-size: 13px;
+  color: var(--blue-700);
+}
+
+/* Native select covering the whole box: the platform picker opens on tap.
+   16px keeps iOS from zooming in on focus; the select itself is invisible. */
+.select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* The select is transparent, so the box shows its keyboard focus ring */
+.jump:has(.select:focus-visible) {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}

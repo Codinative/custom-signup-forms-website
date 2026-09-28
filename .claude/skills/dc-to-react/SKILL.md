@@ -17,7 +17,7 @@ description: Recipe for turning a Custom Signup Forms `.dc.html` design artboard
 | `.btn .btn-sm .btn-primary .btn-white .btn-ghost .btn-outline .btn-violet` | `<Button variant size>` (heights other than 40/48/54 go in a page class via `className`) |
 | `.tag` + inline bg/colour | `<Tag tone>` |
 | `.ph` | `<PlaceholderBox>` |
-| `.frame` `.frame-bar` `.dot` | `<BrowserFrame url? bar? radius?>` |
+| `.frame` `.frame-bar` `.dot` | `<BrowserFrame url? barOnPhone?>` (see ARCHITECTURE §4) |
 | `.check` + svg | `<Icon name="check" className={…}>` |
 | inline `<svg>` | `<Icon name>` from the registry (exact paths, `strokeWidth` as in the design) |
 

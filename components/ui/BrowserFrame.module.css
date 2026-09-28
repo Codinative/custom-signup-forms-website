@@ -1,0 +1,52 @@
+/* .frame / .frame-bar / .dot / .frame img from the design's shared stylesheet.
+   Base rules use :where() (zero specificity) so a page className always overrides them,
+   whatever order the stylesheets load in. */
+:where(.frame) {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-frame);
+}
+
+:where(.bar) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  background: var(--row);
+  border-bottom: 1px solid var(--line);
+}
+
+:where(.dot) {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--line-strong);
+}
+
+/* The last four lines only matter in the 768–1279 range, where a narrow frame
+   would otherwise wrap the URL inside the 36px bar */
+:where(.url) {
+  margin-left: 12px;
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+:where(.img) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Phone artboards: frames have radius 14 */
+@media (max-width: 767px) {
+  :where(.frame) {
+    border-radius: 14px;
+  }
+}

@@ -1,0 +1,75 @@
+/* FAQ accordion. home = Main.dc.html FAQ; compact = MobilePricing.dc.html "Billing questions"
+   (its open state is not designed: the answer uses .body with padding-bottom 18).
+   Base rules use :where() (zero specificity) so a page className always overrides them. */
+:where(.home) {
+  border-top: 1px solid var(--line);
+}
+
+:where(.home .item) {
+  border-bottom: 1px solid var(--line);
+}
+
+:where(.compact .item) {
+  border-top: 1px solid var(--line);
+}
+
+/* The h3 only carries semantics: drop the UA heading size and weight */
+:where(.heading) {
+  font: inherit;
+}
+
+/* Button reset so the row keeps the design's exact type and colour */
+:where(.trigger) {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+:where(.home .trigger) {
+  align-items: center;
+  gap: 24px;
+  padding: 22px 0;
+}
+
+/* The design row has no align-items (stretch); set it explicitly because UA button styles can change it */
+:where(.compact .trigger) {
+  align-items: stretch;
+  gap: 16px;
+  padding: 18px 0;
+}
+
+:where(.home .question) {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+:where(.compact .question) {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+:where(.home .icon) {
+  color: var(--blue-600);
+}
+
+:where(.compact .iconWrap) {
+  color: var(--blue-600);
+  flex: none;
+}
+
+:where(.home .answer) {
+  padding: 0 0 22px;
+  max-width: 720px;
+}
+
+:where(.compact .answer) {
+  padding: 0 0 18px;
+}

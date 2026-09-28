@@ -1,0 +1,172 @@
+/* Hero: Main.dc.html (desktop) and MobileHome.dc.html (phone). The header is the shared
+   SiteHeader (absolute, over this section), so the top padding adds var(--header-h). */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--blue-800) 0%, var(--blue-900) 58%, var(--blue-950) 100%);
+  color: #ffffff;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image: var(--grid-overlay);
+  background-size: 56px 56px;
+}
+
+.inner {
+  position: relative;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  padding: calc(var(--header-h) + 72px) 64px 0;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding: 0 6px 0 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.pillEnd {
+  width: 6px;
+}
+
+.title {
+  font-size: 68px;
+  line-height: 1.06;
+  font-weight: 700;
+  max-width: 980px;
+}
+
+.sub {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--blue-100);
+  max-width: 760px;
+  text-wrap: pretty;
+}
+
+.subPhone {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--blue-100);
+}
+
+.ctas {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.checks {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--blue-200);
+}
+
+.check {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.checksPhone {
+  font-size: 13px;
+  color: var(--blue-200);
+}
+
+.shot {
+  padding: 64px 120px 0;
+}
+
+/* The frame runs into the next section: square bottom corners, bottom border hidden */
+.frame {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: -1px;
+}
+
+@media (max-width: 1279px) {
+  .content {
+    padding-left: var(--pad-x-tablet);
+    padding-right: var(--pad-x-tablet);
+  }
+
+  .shot {
+    padding: 64px var(--pad-x-tablet) 0;
+  }
+}
+
+/* MobileHome: 60% gradient stop, no grid, no clipping or positioning (the frame shadow
+   paints under the trust strip as in the artboard) */
+@media (max-width: 767px) {
+  .hero {
+    position: static;
+    overflow: visible;
+    background: linear-gradient(180deg, var(--blue-800) 0%, var(--blue-900) 60%, var(--blue-950) 100%);
+  }
+
+  .grid {
+    display: none;
+  }
+
+  .inner {
+    position: static;
+  }
+
+  .content {
+    align-items: stretch;
+    text-align: left;
+    gap: 18px;
+    padding: calc(var(--header-h) + 36px) 20px 0;
+  }
+
+  .pill {
+    gap: 8px;
+    align-self: flex-start;
+    height: 32px;
+    padding: 0 12px 0 4px;
+    font-size: 13px;
+  }
+
+  .pill .pillTag {
+    height: 22px;
+  }
+
+  .title {
+    font-size: 38px;
+    line-height: 1.1;
+  }
+
+  .ctas {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0;
+  }
+
+  .ctas .cta {
+    height: 52px;
+    padding: 0 22px;
+    font-size: 15px;
+  }
+
+  .shot {
+    padding: 32px 20px 0;
+  }
+}

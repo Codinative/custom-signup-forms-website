@@ -1,0 +1,148 @@
+/* ApiDocs.dc.html: docs nav 260 · article · "On this page" 220 */
+.grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 220px;
+  gap: 48px;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 40px 64px 96px;
+}
+
+/* Sticky side columns (behaviour only); align-self keeps them content-height so sticky can apply */
+.sidebar,
+.toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+
+.toc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+}
+
+.toc .tocLabel {
+  padding: 0 12px 8px;
+  color: var(--muted);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.crumbs {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.crumb {
+  display: flex;
+  gap: 8px;
+}
+
+.crumbLink {
+  color: inherit;
+}
+
+.crumbLink:hover {
+  color: var(--blue-700);
+}
+
+.current {
+  color: var(--ink);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.titleTag {
+  display: flex;
+  flex: none;
+}
+
+/* Tablet: no "On this page" column below 1280 */
+@media (max-width: 1279px) {
+  .grid {
+    grid-template-columns: 260px minmax(0, 1fr);
+    padding: 40px var(--pad-x-tablet) 96px;
+  }
+
+  .toc {
+    display: none;
+  }
+}
+
+/* Below 1024 the docs nav goes too; DocsPhoneBar takes over */
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+/* MobileApiDocs.dc.html */
+@media (max-width: 767px) {
+  .grid {
+    padding: 28px 20px 48px;
+  }
+
+  .main {
+    gap: 28px;
+  }
+
+  .head {
+    gap: 12px;
+  }
+
+  .crumbNav {
+    display: none;
+  }
+
+  /* The tag moves above the h1 */
+  .titleRow {
+    display: contents;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 1.12;
+  }
+
+  .titleTag {
+    order: -1;
+    align-self: flex-start;
+  }
+
+  /* No phoneLede: the lede takes the phone intro size (.body, 15px) */
+  .head .lede {
+    font-size: 15px;
+  }
+}

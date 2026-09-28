@@ -1,0 +1,80 @@
+/* MobilePricing.dc.html plan switcher + one value column (phone only) */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tabs {
+  position: sticky;
+  top: 0;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--row);
+  margin-top: 6px;
+}
+
+/* Button reset, then the design's option span */
+.tab {
+  margin: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.tab[aria-selected="true"] {
+  background: #ffffff;
+  color: var(--blue-700);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+}
+
+.groupTitle {
+  padding: 22px 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue-900);
+}
+
+.groupIcon {
+  color: var(--blue-600);
+}
+
+.rows {
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--row);
+}
+
+.label {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.value {
+  flex: none;
+  margin: 0;
+}

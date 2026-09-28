@@ -6,19 +6,22 @@
   "author": "Codinative",
   "description": "Marketing site for Custom Signup Forms - a BigCommerce custom signup form builder, request approval & email automation app by Codinative.",
   "scripts": {
+    "predev": "node scripts/images/optimize.mjs",
     "dev": "next dev --turbopack",
+    "prebuild": "node scripts/images/optimize.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "serve": "node scripts/serve-out.mjs",
+    "og": "node scripts/og/generate.mjs",
     "test:visual": "node scripts/visual/compare.mjs",
     "test:dom": "node scripts/visual/dom-diff.mjs",
     "test:overflow": "node scripts/visual/overflow.mjs",
     "test:audit": "node scripts/audit/site-audit.mjs"
   },
   "dependencies": {
-    "next": "^15.5.19",
+    "next": "^15.5.26",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
@@ -28,13 +31,15 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "^15.5.19",
+    "eslint-config-next": "^15.5.26",
     "pixelmatch": "^7.2.0",
     "playwright": "^1.63.0",
     "pngjs": "^7.0.0",
+    "sharp": "^0.35.5",
     "typescript": "^5"
   },
   "overrides": {
-    "postcss": "^8.5.15"
+    "postcss": "^8.5.15",
+    "sharp": "^0.35.5"
   }
 }

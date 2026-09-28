@@ -1,0 +1,93 @@
+/* Pricing.dc.html comparison table (desktop and 768–1279; the phone uses PlanSwitcher) */
+.table {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  /* the design's closing 18px spacer row */
+  padding-bottom: 18px;
+}
+
+.headRow,
+.groupRow,
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) repeat(4, minmax(0, 1fr));
+  align-items: center;
+}
+
+.headRow {
+  padding: 20px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.planHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.planName {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.featured {
+  color: var(--blue-700);
+}
+
+/* Compound selector: beats Button's own sm height and size whatever the stylesheet order */
+.planHead .planCta {
+  height: 34px;
+  font-size: 13px;
+}
+
+.groupRow {
+  padding: 28px 24px 10px;
+}
+
+.groupTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue-900);
+}
+
+.groupIcon {
+  color: var(--blue-600);
+}
+
+.row {
+  padding: 14px 24px;
+  border-top: 1px solid var(--row);
+}
+
+.label {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* 768–1279: keep the five columns readable and scroll inside this container */
+@media (max-width: 1279px) {
+  .scroller {
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 800px;
+  }
+}

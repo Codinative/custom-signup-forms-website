@@ -1,0 +1,121 @@
+/* Docs.dc.html "Where does your signup happen?" band */
+.band {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 120px 64px;
+}
+
+.panel {
+  padding: 32px;
+  border-radius: 20px;
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+  color: var(--blue-300);
+}
+
+.cardTitle {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--line-strong);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue-300);
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: auto;
+}
+
+/* MobileDocs.dc.html: the band is the dark card itself */
+.phonePanel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 18px;
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.phoneCard {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.phoneIcon {
+  color: var(--blue-300);
+  flex: none;
+}
+
+.phoneText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.phoneTitle {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.phoneLink {
+  font-size: 13px;
+  color: var(--blue-300);
+  font-weight: 600;
+}
+
+@media (max-width: 1279px) {
+  .band {
+    padding: 0 var(--pad-x-tablet) 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .band {
+    padding: 0 20px 32px;
+  }
+}

@@ -1,0 +1,65 @@
+/* Apps.dc.html hero (phone: MobileApps.dc.html) */
+.hero {
+  background: linear-gradient(180deg, var(--blue-50) 0%, #ffffff 100%);
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 80px 120px 56px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.title {
+  font-size: 56px;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+/* Navy partner tag: 34px tall, 0 14px; never shrinks (its text would wrap) */
+.inner .partner {
+  flex: none;
+  height: 34px;
+  padding: 0 14px;
+}
+
+@media (max-width: 1279px) {
+  .inner {
+    padding: 80px var(--pad-x-tablet) 56px;
+  }
+}
+
+/* Below 1024 the tag moves under the copy */
+@media (max-width: 1023px) {
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    align-items: stretch;
+    gap: 14px;
+    padding: 36px 20px 24px;
+  }
+
+  .copy {
+    gap: 14px;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 1.12;
+  }
+}

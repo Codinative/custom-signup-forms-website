@@ -1,6 +1,6 @@
 # Architecture: Custom Signup Forms website rebuild
 
-Status: **plan, awaiting user go-ahead.** Decisions marked ⏳ wait on a user answer; the rest are defaults.
+Status: **approved 2026-09-28 (defaults + Firebase Hosting).** Items marked ⏳ use the default (placeholder or fallback) until the owner supplies them.
 
 ## 1. Routes
 | Route | Desktop / phone artboard | Header | Owner (dev batch D2) |
@@ -36,36 +36,40 @@ scripts/                 images/optimize.mjs, og/generate.mjs, serve-out.mjs, vi
 Base = the design helmet exactly (body Inter, `#0f172a`, antialiased; `*{box-sizing}`; `a{#2563eb; no underline}`; `p,h1–h4{margin:0}`) plus utilities `.disp .mono .eyebrow .lede .body .onlyDesktop .onlyPhone .srOnly` and a global `:focus-visible` ring (2px `#2563eb`, offset 2px).
 Breakpoints: desktop ≥1280 (exact), tablet 768–1279 (fluid), phone <768 (exact at 390). Header switches to the menu button below **1024** (the desktop header needs ~950px).
 
-## 4. Shared component contracts
+## 4. Shared component contracts (as built in D1b; read the source before using)
+Base styles in `components/ui` use `:where()` (zero specificity), so a page `className` always wins. Exception: Button variant colours keep class specificity (they must beat the global `a { color }`).
 ```ts
-Icon({ name: IconName, size = 24, strokeWidth = 2, className?, title? })   // 30 icons, exact design paths, aria-hidden unless title
-Button({ href, children, variant: "primary"|"white"|"ghost"|"outline"|"violet", size?: "sm"|"md"|"lg" /*40|48|54*/, icon?, iconSize?, className? })
-  // internal → next/link; http/mailto → <a> (http: target _blank rel noopener). Other heights (34/46/50/52) via className.
-Tag({ tone: "new"|"improved"|"fixed"|"security"|"blue"|"latest"|"white"|"glass"|"glassSubtle"|"code"|"navy", icon?, iconSize?, className?, children })
-Eyebrow({ tone?: "blue"|"light"|"muted", as?: "p"|"span"|"div", className?, children })
-SectionHeading({ eyebrow?, title, body?, as?: "h1"|"h2", align?: "left"|"center", className?, titleClassName?, bodyClassName? })
-PlaceholderBox({ as?: "span"|"div", className?, children })             // 1.5px dashed #d97706, #fffbeb, #92400e, r10
-BrowserFrame({ src, width, height, alt, sizes, url?, barOnPhone?: boolean, priority?, className? })
-CodeBlock({ header?: ReactNode, lines: CodeToken[][], className? })     // CodeToken = { t: string, k?: "key"|"str"|"tag"|"attr"|"comment"|"placeholder" }
-FaqAccordion({ items: Faq[], defaultOpen?: number, classNames?, iconSize? })   // client; button[aria-expanded] + region
-FaqStatic({ items: Faq[], classNames? })
+Icon({ name, size = 24, strokeWidth = 2, className?, title? })   // alertTriangle shieldCheck file check truck cart search store arrowRight globe smartphone book creditCard code api mail sparkles clock building lock minus plus menu close chevronRight users bell gauge layout checkCircle
+Button({ href, children, variant: "primary"|"white"|"ghost"|"outline"|"violet", size?: "sm"|"md"|"lg" /*40|48|54*/, icon?, iconSize = 18, iconStrokeWidth = 2, className? })   // http → new tab; other heights via className
+Tag({ tone: "new"|"improved"|"fixed"|"security"|"blue"|"latest"|"white"|"glass"|"glassSubtle"|"code"|"navy", children, icon?, iconSize = 14, iconStrokeWidth = 2, as?, className? })
+PlaceholderBox({ children, as?: "span"|"div", className? })   // padding/size per use from the design
+Eyebrow({ children, tone?: "blue"|"light"|"muted", as?: "p"|"span"|"div" /*span*/, className? })
+SectionHeading({ eyebrow?, title, body?, as?: "h1"|"h2", align?: "left"|"center", className?, titleClassName?, bodyClassName? })   // title gets .disp; split layouts render body themselves
+BrowserFrame({ src, width, height, alt, sizes, url?, barOnPhone = false, priority?, className?, imgClassName? })   // bar at ≥768 when url; radius 14 <768
+CodeBlock({ header?, lines: CodeToken[][], className?, preClassName?, label? })   // default look = API docs panel
+  CodeToken = { t: string; k?: "key"|"str"|"tag"|"attr"|"comment"|"muted"|"placeholder" }   // a placeholder is its own token
+  CodeHeader({ title, lang, className? }) · CodeFileHeader({ filename, tag, className? })
+FaqAccordion({ items: FaqItem[], variant: "home"|"compact", defaultOpen?, className? })   // client
+FaqStatic({ items: FaqItem[], className? })   // FaqItem = { q: string; a: ReactNode }; a === null → <PlaceholderBox as="span">
 JsonLd({ data })
-SiteHeader({ variant: "dark"|"light", active?: NavKey })                // dark = absolute over the page hero (hero reserves 80/68px)
-MobileMenu({ variant })                                                 // client; full-screen navy sheet, focus trap, Esc, scroll lock
-Footer()                                                                // desktop 5-col / phone 2-col blocks
-HashRedirect({ map: { "#pricing": "/pricing/" } })                      // client, home only
-DocsArticleLayout({ active: DocSlug, breadcrumb: Crumb[], title, titleTag?, lede, phoneLede?, toc: TocItem[], children })
+SiteHeader({ variant: "dark"|"light", active?: NavKey })   // render FIRST, outside <main>; renders MobileMenu itself
+Footer() · Logo({ tone: "light"|"dark", height, className?, eager? }) · HashRedirect({ map })
+DocsArticleLayout({ active: DocSlug, breadcrumb: Crumb[], title, titleTag?, lede, phoneLede?, phoneCrumb?, toc: TocItem[], children })   // renders <main id="main">
+ProseSection({ id?, title?, intro?, className?, children? }) · Callout({ tone?: "warning"|"note", className?, children })
+DefinitionRows({ rows: { key, value, phoneValue? }[], keyWidth?, className? }) · StepCards({ steps, hideOnPhone = true, className? })
 ```
+- Page shell: `<SiteHeader …/>` then `<main id="main">…</main>` (docs articles: DocsArticleLayout provides main) then `<Footer />`.
+- Dark hero (home, multi-storefront): starts at the top of the page and draws its own gradient; top padding = `calc(var(--header-h) + <design top padding>)`; add `className="onDark"` to dark sections.
 
 ## 5. Data modules (`lib/content/`, typed, no JSX)
-- `plans.ts`: `Plan { id, name, price, priceLabel, teaserPriceLabel, period, phoneTeaserPeriod, tagline, teaserBlurb, phoneTeaserBlurb, badge?, featured, cta { label, teaserLabel, compareLabel, href, variant }, note, lead, bullets[], fitLine }`. It feeds the home teaser, the /pricing cards and the phone switcher, plus SoftwareApplication offers.
-- `featureMatrix.ts`: 7 groups, 36 rows, `values: Record<PlanId, true|false|string>`.
-- `faqs.ts`: `homeFaqs` (6), `pricingFaqs` (5).
-- `releases.ts`: 6 releases, newest first.
-- `docsIndex.ts`: groups, entries (slug, href, title, description, icon, tag?, sidebar), integration band, `apiToc`.
-- `apps.ts`: 3 apps (current flag, previews, site and marketplace URLs).
-- `navigation.ts`: header (5), menu (7), footer columns (4), phone footer (9).
-- `routes.ts`: every route for the sitemap.
+- `plans.ts`: `PlanId`, `PlanCta`, `Plan`, `PLANS`, `PLAN_FIT`, `PLAN_OFFERS` (JSON-LD offers). Feeds the home teaser, /pricing, the phone switcher and SoftwareApplication.
+- `featureMatrix.ts`: `FeatureValue`, `FeatureRow`, `FeatureGroup`, `FEATURE_GROUPS` (7 groups, 36 rows), `COMPARE_COPY`, `COMPARE_PHONE_DEFAULT_PLAN`.
+- `faqs.ts`: `Faq { q, a: string | null }`, `homeFaqs` (6), `pricingFaqs` (5), `answeredFaqs()` for FAQPage JSON-LD.
+- `releases.ts`: `RELEASES` (6, newest first), `CHANGE_LABELS`, `RELEASE_COPY`, `releaseAnchor()`, `formatReleaseDate()`.
+- `apps.ts`: `APPS`, `APP_CARD_COPY`, `SIGNUP_SCREENSHOT`, `CHECKOUT_PREVIEW`, `STICKY_BAR_PREVIEW`.
+- `navigation.ts`: `headerLinks`, `headerCtas`, `menuLinks`, `menuCtas`, `footerColumns`, `phoneFooterLinks`, `footerCopy`.
+- `docsIndex.ts`: `docsGroups`, `docsEntries`, `docsSidebar`, `getDoc()`, `docBreadcrumb()`, `integrationBand`, `apiToc`.
+- `routes.ts`: `ROUTES` (sitemap).
 
 ## 6. Link map (every design `href="#"`)
 Logo → `/` · Features → `/#features` · Multi-storefront, Explore multi-storefront → `/multi-storefront/` · Pricing, See pricing → `/pricing/` · Compare every feature → `/pricing/#compare` · Docs, Read the docs → `/docs/` · Release notes → `/release-notes/` · hero "New" pill → `/release-notes/#v2-0-0` · More apps, All apps, See all apps → `/apps/` · Contact, Contact us, Contact support, Talk to Codinative → `/contact/` · Codinative → `https://codinative.com/` · Open the app → `https://signup.codinative.com/` · Install free / Install / Start 7-day (free) trial / Try free / Start a 7-day Pro trial / Get it on BigCommerce (this app) → marketplace listing · footer "Headless and API" → `/docs/headless/` ⏳ · Privacy, terms and data → `/privacy-policy/` · Custom Shipping Rules / Sticky Add to Cart → their sites; their "Get it on BigCommerce" → marketplace URLs ⏳ · docs cards → their routes · email → `mailto:info@codinative.com`.

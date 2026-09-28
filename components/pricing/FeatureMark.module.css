@@ -1,0 +1,16 @@
+/* Comparison values: Pricing.dc.html table cells and MobilePricing.dc.html rows (same styles) */
+.text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.check {
+  color: var(--success);
+  display: inline-flex;
+}
+
+.dash {
+  color: var(--line-strong);
+  font-size: 18px;
+}

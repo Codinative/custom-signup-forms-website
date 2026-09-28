@@ -1,0 +1,29 @@
+/* Not designed. Body column of the kept pages; section gap 40 (28 on phone) as in the ApiDocs article. */
+.body {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 32px 120px 96px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 760px;
+}
+
+@media (max-width: 1279px) {
+  .body {
+    padding: 32px var(--pad-x-tablet) 96px;
+  }
+}
+
+@media (max-width: 767px) {
+  .body {
+    padding: 24px 20px 48px;
+  }
+
+  .column {
+    gap: 28px;
+  }
+}

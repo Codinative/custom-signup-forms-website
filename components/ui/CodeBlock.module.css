@@ -1,0 +1,80 @@
+/* Code panels (ApiDocs look by default). Base rules use :where() (zero specificity) so the
+   className / preClassName a page passes always override them. */
+:where(.root) {
+  margin: 0;
+  border-radius: 14px;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+:where(.header) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:where(.title) {
+  font-size: 12px;
+  color: var(--faint);
+}
+
+:where(.lang) {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+:where(.fileHeader) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+:where(.fileName) {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+:where(.pre) {
+  margin: 0;
+  padding: 16px;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--line);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Keep the pre's font (the UA monospace rule on <code> would shrink it) */
+:where(.code) {
+  font: inherit;
+}
+
+.key,
+.attr {
+  color: var(--blue-300);
+}
+
+.str {
+  color: #86efac;
+}
+
+.tag {
+  color: #f472b6;
+}
+
+.comment {
+  color: var(--faint);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Open placeholders inside code: the dashed amber box, tightened to sit in a line of code */
+.pre .placeholder {
+  padding: 0 3px;
+  border-radius: 4px;
+}

@@ -1,0 +1,9 @@
+/* Colour tones for the global .eyebrow utility. Compound with it so the tone wins
+   whatever order the stylesheets load in. */
+.light:global(.eyebrow) {
+  color: var(--blue-300);
+}
+
+.muted:global(.eyebrow) {
+  color: var(--muted);
+}

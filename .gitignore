@@ -32,3 +32,6 @@ next-env.d.ts
 
 # visual / audit test output
 /test-results/
+
+# generated image variants (scripts/images/optimize.mjs)
+/public/images/_v/

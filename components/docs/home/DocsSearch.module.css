@@ -1,0 +1,114 @@
+/* Docs.dc.html / MobileDocs.dc.html search box, rendered as a real search input */
+.root {
+  position: relative;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 54px;
+  padding: 0 18px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line-strong);
+  width: 100%;
+  box-shadow: 0 8px 24px -16px rgba(15, 23, 42, 0.3);
+}
+
+/* The ring goes on the whole box rather than the bare input inside it */
+.box:focus-within {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.icon {
+  color: var(--muted);
+}
+
+/* The design's "Search the docs" text: 16px, #94a3b8, left-aligned, fills the row */
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  text-align: left;
+  appearance: none;
+}
+
+.input:focus-visible {
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--faint);
+  opacity: 1;
+}
+
+.input::-webkit-search-decoration,
+.input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.key {
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 6px;
+}
+
+/* Results dropdown (not designed): white panel, the box's border radius and shadow */
+.list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px -16px rgba(15, 23, 42, 0.3);
+  text-align: left;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.active {
+  background: var(--blue-50);
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.empty {
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}

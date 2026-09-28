@@ -1,0 +1,4 @@
+/* Inline dashed box at the surrounding date's font size */
+.placeholder {
+  padding: 0 6px;
+}
