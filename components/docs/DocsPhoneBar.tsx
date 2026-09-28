@@ -8,7 +8,7 @@ export type DocsPhoneBarProps = {
   toc: TocItem[];
 };
 
-/** MobileApiDocs.dc.html bar under the header. Shown below 1024px, where both side columns are hidden. */
+/** MobileApiDocs.dc.html bar under the header. Shown below 1280px, where the TOC rail is hidden; the crumb only below 1024px. */
 export function DocsPhoneBar({ crumb, toc }: DocsPhoneBarProps) {
   return (
     <div className={styles.bar}>

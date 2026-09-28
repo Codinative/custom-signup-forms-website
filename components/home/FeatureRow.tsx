@@ -1,9 +1,10 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon } from "@/components/ui/Icon";
 import { Tag } from "@/components/ui/Tag";
-import { APP_URL_BAR, type Feature, type ResponsiveCopy } from "./content";
+import { APP_URL_BAR, type Feature, type ResponsiveCopy, type Screenshot } from "./content";
 import styles from "./FeatureRow.module.css";
 
 // Screenshot column: 658px at 1440 (1200 content - 470 text - 72 gap); full width once stacked.
@@ -32,6 +33,11 @@ function BodyCopy({ copy }: { copy: ResponsiveCopy }) {
       <p className={`body ${styles.desc} onlyPhone`}>{copy.phone}</p>
     </>
   );
+}
+
+// The screenshot keeps the design image's ratio, whichever WebP variant (rounded height) loads.
+function shotRatio({ width, height }: Screenshot) {
+  return { "--shot-ratio": `${width} / ${height}` } as CSSProperties;
 }
 
 /** One "What you get" row: text beside the screenshot (≥1024), text over it below that. */
@@ -71,7 +77,7 @@ export function FeatureRow({ feature }: FeatureRowProps) {
           </Link>
         ) : null}
       </div>
-      <div className={styles.media}>
+      <div className={styles.media} style={shotRatio(image)}>
         <BrowserFrame
           src={image.src}
           width={image.width}
@@ -79,6 +85,7 @@ export function FeatureRow({ feature }: FeatureRowProps) {
           alt={image.alt}
           sizes={SHOT_SIZES}
           url={APP_URL_BAR}
+          imgClassName={styles.shot}
         />
       </div>
     </div>

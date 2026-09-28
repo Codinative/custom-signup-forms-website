@@ -28,6 +28,7 @@ export function Logo({ tone, height, className, eager = false }: LogoProps) {
       height={height}
       loading={eager ? "eager" : "lazy"}
       className={[styles.logo, className].filter(Boolean).join(" ")}
+      style={{ aspectRatio: `${logo.width} / ${logo.height}` }}
     />
   );
 }

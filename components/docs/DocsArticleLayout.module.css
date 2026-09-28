@@ -97,13 +97,17 @@
   }
 }
 
-/* Below 1024 the docs nav goes too; DocsPhoneBar takes over */
+/* Below 1024 the docs nav goes too; DocsPhoneBar takes over (its crumb replaces the breadcrumb) */
 @media (max-width: 1023px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .sidebar {
+    display: none;
+  }
+
+  .crumbNav {
     display: none;
   }
 }
@@ -120,10 +124,6 @@
 
   .head {
     gap: 12px;
-  }
-
-  .crumbNav {
-    display: none;
   }
 
   /* The tag moves above the h1 */

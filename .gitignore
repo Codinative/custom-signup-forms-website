@@ -35,3 +35,6 @@ next-env.d.ts
 
 # generated image variants (scripts/images/optimize.mjs)
 /public/images/_v/
+
+# firebase deploy cache
+/.firebase/

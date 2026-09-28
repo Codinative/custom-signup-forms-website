@@ -42,6 +42,8 @@
   display: block;
   width: 100%;
   height: auto;
+  /* Design ratio from the width/height props: resized WebP variants round to whole pixels */
+  aspect-ratio: var(--img-ratio, auto);
 }
 
 /* Phone artboards: frames have radius 14 */

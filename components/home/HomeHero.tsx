@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { Button } from "@/components/ui/Button";
@@ -8,6 +9,9 @@ import { APP_URL_BAR, HERO_SCREENSHOT } from "./content";
 import styles from "./HomeHero.module.css";
 
 const CHECKS = ["Free plan, no card", "7-day trial on paid plans", "No setup fee"];
+
+// The screenshot keeps the design image's ratio, whichever WebP variant (rounded height) loads.
+const SHOT_RATIO = { "--shot-ratio": `${HERO_SCREENSHOT.width} / ${HERO_SCREENSHOT.height}` } as CSSProperties;
 
 const SHOT_SIZES =
   "(max-width: 767px) calc(100vw - 40px), (max-width: 1279px) calc(100vw - 80px), (max-width: 1439px) calc(100vw - 240px), 1200px";
@@ -55,7 +59,7 @@ export function HomeHero() {
           </div>
           <span className={`${styles.checksPhone} onlyPhone`}>{CHECKS.join(" · ")}</span>
         </div>
-        <div className={styles.shot}>
+        <div className={styles.shot} style={SHOT_RATIO}>
           <BrowserFrame
             src={HERO_SCREENSHOT.src}
             width={HERO_SCREENSHOT.width}
@@ -65,6 +69,7 @@ export function HomeHero() {
             url={APP_URL_BAR}
             priority
             className={styles.frame}
+            imgClassName={styles.shotImg}
           />
         </div>
       </div>

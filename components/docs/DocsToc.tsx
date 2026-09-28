@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import type { TocItem } from "@/lib/content/docsIndex";
 import styles from "./DocsToc.module.css";
 
@@ -12,12 +12,39 @@ export type DocsTocProps = {
 
 /** A section is current once its top passes 30% of the viewport height. */
 const LINE = 0.3;
-/** Line observer (top 30% of the viewport) plus a whole-viewport observer for fast jumps (Home/End). */
-const ROOT_MARGINS = ["0px 0px -70% 0px", "0px"];
 
 /** "On this page" links; highlights the section in view, starting on the first item. */
 export function DocsToc({ items, variant = "rail" }: DocsTocProps) {
   const [activeId, setActiveId] = useState(items[0]?.id);
+  const navRef = useRef<HTMLElement>(null);
+
+  // Phone "On this page ▾" panel (<details>): Escape closes it and returns focus to the summary;
+  // it also closes when focus or a click leaves it.
+  useEffect(() => {
+    if (variant !== "menu") return;
+    const details = navRef.current?.closest("details");
+    if (!details) return;
+    const summary = details.querySelector("summary");
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || !details.open) return;
+      details.open = false;
+      summary?.focus();
+    };
+    const onFocusOut = (event: FocusEvent) => {
+      if (details.open && !details.contains(event.relatedTarget as Node | null)) details.open = false;
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      if (details.open && !details.contains(event.target as Node)) details.open = false;
+    };
+    details.addEventListener("keydown", onKeyDown);
+    details.addEventListener("focusout", onFocusOut);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      details.removeEventListener("keydown", onKeyDown);
+      details.removeEventListener("focusout", onFocusOut);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [variant]);
 
   useEffect(() => {
     const targets = items
@@ -26,17 +53,34 @@ export function DocsToc({ items, variant = "rail" }: DocsTocProps) {
     if (targets.length === 0) return;
 
     const update = () => {
+      // Sections hidden at this width (e.g. desktop-only on phone) have no boxes; skip them.
+      const shown = targets.filter((el) => el.getClientRects().length > 0);
+      if (shown.length === 0) return;
+      const scrolledToEnd =
+        window.scrollY > 0 && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
       const line = window.innerHeight * LINE;
-      let current = items[0].id;
-      for (const el of targets) {
-        if (el.getBoundingClientRect().top <= line) current = el.id;
-      }
+      let current = shown[0].id;
+      if (scrolledToEnd) current = shown[shown.length - 1].id;
+      else for (const el of shown) if (el.getBoundingClientRect().top <= line) current = el.id;
       setActiveId(current);
     };
 
-    const observers = ROOT_MARGINS.map((rootMargin) => new IntersectionObserver(update, { rootMargin }));
-    observers.forEach((observer) => targets.forEach((el) => observer.observe(el)));
-    return () => observers.forEach((observer) => observer.disconnect());
+    let frame = 0;
+    const schedule = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        update();
+      });
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.cancelAnimationFrame(frame);
+    };
   }, [items]);
 
   const onNavigate = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
@@ -48,7 +92,7 @@ export function DocsToc({ items, variant = "rail" }: DocsTocProps) {
   };
 
   return (
-    <nav aria-label="On this page">
+    <nav ref={navRef} aria-label="On this page">
       <ul className={styles.list}>
         {items.map((item) => {
           const current = item.id === activeId;

@@ -4,8 +4,8 @@ The marketing + documentation site for **Custom Signup Forms**, a BigCommerce ap
 [Codinative](https://codinative.com) that replaces the default account-signup form with a
 branded, custom form - with request approval, customer-group assignment, and automated emails.
 
-Built with **Next.js 15** (App Router) + **React 19** + TypeScript. No database, no API -
-a static, fast marketing SPA intended for `custom-signup-forms.codinative.com`.
+Built with **Next.js 15** (App Router) + **React 19** + TypeScript, exported as a fully static
+site (`output: 'export'`) and hosted on **Firebase Hosting** (GCP). No database, no API, no server.
 
 ## Live site & links
 
@@ -14,49 +14,67 @@ a static, fast marketing SPA intended for `custom-signup-forms.codinative.com`.
 | Page | Link |
 |------|------|
 | Home (marketing) | https://custom-signup-forms.codinative.com/ |
-| Documentation home | https://custom-signup-forms.codinative.com/docs |
-| Installation guide | https://custom-signup-forms.codinative.com/docs/installation |
-| User guide | https://custom-signup-forms.codinative.com/docs/user-guide |
+| Pricing | https://custom-signup-forms.codinative.com/pricing/ |
+| Multi-storefront | https://custom-signup-forms.codinative.com/multi-storefront/ |
+| Documentation home | https://custom-signup-forms.codinative.com/docs/ |
+| API integration | https://custom-signup-forms.codinative.com/docs/api/ |
+| Release notes | https://custom-signup-forms.codinative.com/release-notes/ |
+| More apps | https://custom-signup-forms.codinative.com/apps/ |
 | The app (embedded) | https://signup.codinative.com/ |
 | Codinative | https://codinative.com/ |
 
 ## Structure
 
 ```
-app/
-  page.tsx                 Landing (hero, features, how-it-works, requests, use cases, pricing, docs, FAQ, CTA)
-  docs/page.tsx            Docs home
-  docs/installation/       Installation guide
-  docs/user-guide/         User guide
-  privacy-policy/          Privacy policy (also re-exported under /docs)
-  terms-of-service/        Terms of service (also re-exported under /docs)
-  contact/                 Contact page
-  layout.tsx               Metadata + Inter font
-  globals.css              Brand design system (blue accent, light/dark)
-components/                Nav, Footer, Icon, BrandMark, BigCommerceMark, PartnerBadge, SignupPreview
-lib/site.ts                Single source of truth for copy + links
+app/                       One folder per route; layout.tsx (fonts, metadata), globals.css (design tokens),
+                           sitemap.ts, robots.ts, icon.png, not-found.tsx
+components/ui/             Button, Tag, Icon, BrowserFrame, CodeBlock, FAQ, PlaceholderBox, JsonLd …
+components/layout/         SiteHeader (dark/light), MobileMenu, Footer, Logo, HashRedirect
+components/docs/           Docs article template (sidebar, "On this page", phone bar) + docs pages
+components/<page>/         Page sections (home, pricing, multi-storefront, apps, releases, legal)
+lib/content/               Typed content: plans, featureMatrix, faqs, releases, docsIndex, apps, navigation, routes
+lib/site.ts · lib/seo.ts   Links and constants · metadata + JSON-LD helpers
+scripts/                   Image variants, OG images, static server, visual/audit test tooling
+docs/                      ARCHITECTURE.md (component contracts) · TIME-LOG.md (build timings)
 ```
 
 ## Develop
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # production build
-npm run lint
+npm run dev -- -p 3100   # http://localhost:3100 (also generates WebP image variants)
+npm run lint && npm run typecheck
+npm run build            # static export → out/
+npm run serve            # serve out/ like Firebase on http://localhost:4173
+npm run og               # regenerate the per-page Open Graph images (public/og/)
 ```
 
-## Deploy
+Testing tools (after `build` + `serve`): `npm run test:visual` (design vs build screenshots),
+`npm run test:dom` (copy/style diff against the design files), `npm run test:overflow`
+(320–1920px), `npm run test:audit` (SEO, accessibility, links).
 
-Deploy to Vercel as a separate project and point `custom-signup-forms.codinative.com`
-at it. No environment variables are required.
+## Deploy (Firebase Hosting)
+
+Configured in [`firebase.json`](firebase.json) (static `out/`, clean URLs with trailing slashes,
+301s for the old `/docs/privacy-policy` and `/docs/terms-of-service` URLs, caching and security
+headers) and [`.firebaserc`](.firebaserc) (project `bc-signup-customisation-app`).
+
+```bash
+npx firebase-tools login   # once
+npm run deploy:preview     # build + deploy to a 7-day preview channel URL
+npm run deploy:live        # build + deploy to the live site
+```
+
+Custom domain: Firebase console → Hosting → Add custom domain → `custom-signup-forms.codinative.com`,
+then create the DNS records it shows. Submit `/sitemap.xml` in Google Search Console after going live.
 
 ## Editing copy & links
 
 Update product links (marketplace listing, app URL, support email) in
-[`lib/site.ts`](lib/site.ts). The marketplace URL and the embedded app URL
-(`signup.codinative.com`) are placeholders until the app is published and its
-production domain is final.
+[`lib/site.ts`](lib/site.ts). Plans, prices, the feature matrix, FAQs, release notes, docs index and
+apps live in [`lib/content/`](lib/content/). One plans module feeds the homepage teaser, `/pricing`
+and the phone plan switcher. Open facts (marketplace rating, store count, v2.0.0 date, app domain)
+render as dashed amber placeholders until they are filled in.
 
 ---
 

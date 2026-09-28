@@ -13,6 +13,7 @@ export type ResponsiveCopy = {
 
 export type Screenshot = {
   src: string;
+  /** Size of the design's image (design/shot-*.jpg); the frame renders at exactly this ratio. */
   width: number;
   height: number;
   alt: string;
@@ -51,8 +52,8 @@ export const APP_URL_BAR = "store.mybigcommerce.com/manage/app/custom-signup-for
 
 export const HERO_SCREENSHOT: Screenshot = {
   src: "/images/dashboard.png",
-  width: 1440,
-  height: 900,
+  width: 1100,
+  height: 687,
   alt: "Custom Signup Forms dashboard with total signups, pending review, approved and rejected counts, and quick actions for the form builder, requests, email templates and form preview",
 };
 
@@ -78,8 +79,8 @@ export const FEATURES: Feature[] = [
     ],
     image: {
       src: "/images/builder.png",
-      width: 1440,
-      height: 900,
+      width: 1100,
+      height: 687,
       alt: "Form builder with the field types to add on the left and a live desktop preview of the Create your account form",
     },
     reverse: false,
@@ -122,8 +123,8 @@ export const FEATURES: Feature[] = [
     ],
     image: {
       src: "/images/emails.png",
-      width: 1440,
-      height: 900,
+      width: 1100,
+      height: 687,
       alt: "Email templates screen listing the signup confirmation, resubmission, approval, rejection and resubmission request emails, with a preview of the confirmation email",
     },
     reverse: false,

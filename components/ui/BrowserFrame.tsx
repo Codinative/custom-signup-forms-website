@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import styles from "./BrowserFrame.module.css";
 
 export type BrowserFrameProps = {
@@ -52,7 +53,9 @@ export function BrowserFrame({
         alt={alt}
         sizes={sizes}
         priority={priority}
+        fetchPriority={priority ? "high" : undefined}
         className={[styles.img, imgClassName].filter(Boolean).join(" ")}
+        style={{ "--img-ratio": `${width} / ${height}` } as CSSProperties}
       />
     </div>
   );

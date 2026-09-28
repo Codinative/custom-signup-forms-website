@@ -17,6 +17,7 @@ function Preview({ preview }: { preview: AppEntry["preview"] }) {
   return (
     <BrowserFrame
       {...SIGNUP_SCREENSHOT}
+      priority
       sizes="(max-width: 767px) calc(100vw - 88px), (max-width: 1279px) calc(50vw - 110px), (max-width: 1439px) calc(33.3vw - 156px), 324px"
       className={styles.shot}
     />

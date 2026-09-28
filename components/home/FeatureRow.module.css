@@ -71,6 +71,11 @@
   min-width: 0;
 }
 
+/* --shot-ratio: the design image's size (set inline from the feature data) */
+.shot {
+  aspect-ratio: var(--shot-ratio);
+}
+
 /* Rows 2 and 4 put the screenshot on the left; the DOM keeps text first for the stacked layouts */
 .reverse .media {
   order: -1;

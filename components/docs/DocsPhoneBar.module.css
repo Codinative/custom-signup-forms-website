@@ -56,7 +56,8 @@
   box-shadow: 0 8px 24px -16px rgba(15, 23, 42, 0.3);
 }
 
-@media (max-width: 1023px) {
+/* 1024–1279: the TOC rail is hidden, so the bar keeps "On this page" (the breadcrumb and sidebar are still shown) */
+@media (max-width: 1279px) {
   .bar {
     display: flex;
     padding: 0 var(--pad-x-tablet);
@@ -64,6 +65,16 @@
 
   .panel {
     right: var(--pad-x-tablet);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .crumb {
+    display: none;
+  }
+
+  .menu {
+    margin-left: auto;
   }
 }
 

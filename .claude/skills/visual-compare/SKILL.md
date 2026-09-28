@@ -9,7 +9,7 @@ All scripts use Playwright Chromium at deviceScaleFactor 1 and render the design
 
 ## Serve the build
 - Final checks: `npm run build && npm run serve`, which serves `out/` on `http://localhost:4173` (default `BASE_URL`).
-- Fix loops with several agents: the orchestrator runs `npm run dev` and agents pass `BASE_URL=http://localhost:3000`.
+- Fix loops with several agents: the orchestrator runs `npm run dev` and agents pass `BASE_URL=http://localhost:3100`.
 
 ## Commands
 | Command | Output (under `test-results/`) |

@@ -12,10 +12,12 @@
   color: #ffffff;
 }
 
+/* The design's heading column is a flex item of a space-between row, so it is only as wide as its text */
 .heading {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: fit-content;
   margin-bottom: 24px;
 }
 

@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { Tag } from "@/components/ui/Tag";
 import { RELEASE_COPY, releaseAnchor, type Release } from "@/lib/content/releases";
@@ -8,6 +9,11 @@ import styles from "./ReleaseEntry.module.css";
 /** Rendered screenshot width: phone gutter 20px; tablet ≤1023 rail 200 + gap 40; ≤1279 and desktop rail 240 + 64, meta 200 + 48. */
 const SHOT_SIZES =
   "(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) calc(94vw - 256px), (max-width: 1279px) calc(94vw - 568px), (max-width: 1439px) calc(100vw - 792px), 648px";
+
+// The screenshot keeps the design image's ratio, whichever WebP variant (rounded height) loads.
+function shotRatio({ width, height }: { width: number; height: number }) {
+  return { "--shot-ratio": `${width} / ${height}` } as CSSProperties;
+}
 
 export type ReleaseEntryProps = {
   release: Release;
@@ -31,7 +37,7 @@ export function ReleaseEntry({ release, latest }: ReleaseEntryProps) {
           </Tag>
         ) : null}
       </div>
-      <div className={styles.content}>
+      <div className={styles.content} style={shot ? shotRatio(shot) : undefined}>
         <h2 id={titleId} className={`disp ${styles.title}${latest ? ` ${styles.titleLatest}` : ""}`}>
           {release.title}
         </h2>
@@ -45,6 +51,7 @@ export function ReleaseEntry({ release, latest }: ReleaseEntryProps) {
             url={shot.frameUrl}
             priority={latest}
             className={styles.shot}
+            imgClassName={styles.shotImg}
           />
         ) : null}
         <div>

@@ -9,9 +9,9 @@ Times are PKT (UTC+5), taken from `date`. **Wall-clock** is elapsed time. **Agen
 | 0 Discovery & setup | – (no prior estimate) | 16:52 | 17:20 | 0:28 | – | 6 parallel read-only agents did the design/fact inventory in 14 min wall-clock |
 | ⏸ Plan review by user | – | 17:20 | 17:26 | 0:06 | – | Approved: defaults + Firebase Hosting; setup committed before Phase 1 |
 | 1 Development | 2:30–3:15 | 17:26 | 18:21 | 0:55 | −1:35 to −2:20 | 11 parallel agents in two batches (4 + 7); contracts written up front meant no merge conflicts |
-| 2 Testing | 2:30–3:30 | | | | | |
-| 3 Deployment | 0:30–0:45 | | | | | Excludes your DNS/console steps |
-| **Total active** | **6:15–8:30** | | | | | |
+| 2 Testing | 2:30–3:30 | 18:20 | 22:46 | 0:39 active (4:26 elapsed) | −1:51 to −2:51 | 3:47 idle while the session was paused, plus a failed agent launch; active work 18:20–18:31 and 22:18–22:46 |
+| 3 Deployment (preview) | 0:30–0:45 | 22:46 | 22:53 | 0:07 | −0:23 to −0:38 | Preview channel live and verified; production release waits for your go-ahead (app v2 not shipped yet) |
+| **Total active** | **6:15–8:30** | 16:52 | 22:53 | **2:08 active** (6:01 elapsed) | **−4:07 to −6:22** | Elapsed includes 3:47 idle (session paused) and 0:06 plan review |
 
 ## Phase 0: Discovery & setup (2026-09-28)
 
@@ -39,16 +39,28 @@ Times are PKT (UTC+5), taken from `date`. **Wall-clock** is elapsed time. **Agen
 |---|---|---|---|---|---|---|---|---|
 | 2.1 | Gates: lint, typecheck, build | 0:05 | 18:20 | 18:21 | 0:01 | – | main | Passed inside the 1.4 production build (next build runs lint + types) |
 | 2.2a | Baseline: DOM diff + pixel compare, 8 pages × 1440/390 | – | 18:21 | 18:25 | 0:04 | – | main | Pricing 0.02–0.03% · menu 0.06% · docs 0.06–0.11% · apps desktop 0.07% · releases 0.21–0.24% · multi-storefront 0.5–0.6% · home 1–1.75%. Big deltas = approved deviations only (API corrected errors + Limits section; phone /apps 40px CTAs = +132px). Tool fixes: ignore off-screen skip link, scope menu diff to the dialog |
-| ⏸ | Commit Phase 1 + baseline (user request) | – | 18:25 | | | – | main | Unused requests.png / uncropped storefronts.png dropped from public/ before commit |
-| 2.2 | Visual fidelity 1440/390 + fixes (targeted visual-qa agents) | 1:30 | | | | | QA agents | |
-| 2.3 | Responsive: overflow 320–1920, 768/1024 review | 0:25 | | | | | main | |
-| 2.4 | SEO / a11y / links / facts audit + fixes | 0:25 | | | | | site-auditor | |
-| 2.5 | Browser QA: keyboard, menu, accordions, switcher, jump, search | 0:20 | | | | | main | |
-| 2.6 | Final gates + side-by-side pass on every page | 0:25 | | | | | main | |
+| ⏸ | Commit + push Phase 1 and baseline (user request) | – | 18:25 | 18:29 | 0:04 | – | main | 43767e8 pushed to origin/feat/website-redesign. Unused requests.png / uncropped storefronts.png dropped from public/ before the commit. Dev server moved to :3100 (another local app holds :3000) |
+| 2.2x | First targeted QA launch (3 visual-qa agents) — failed | – | 18:29 | 18:31 | 0:02 | – | QA agents | Session interrupted right after launch; dev server stopped with the interrupt; all 3 agents later stalled (stream watchdog, 600s no progress) with no file changes. Wasted ≈2 min active + relaunch cost |
+| ⏸ | Idle: session paused / interrupted | – | 18:31 | 22:18 | 3:47 | – | – | No work possible while the session was paused; excluded from active time |
+| 2.2 | Visual fidelity 1440/390 + fixes (4 visual-qa agents, relaunch) | 1:30 | 22:20 | 22:37 | 0:17 | 55.5 | QA-1…QA-4 | Speed-up 3.3×. QA-1 home+menu 14.0 · QA-2 ms+apps 13.4 · QA-3 docs+API 17.2 · QA-4 releases 10.9. Root cause found: WebP variants round to whole px, so `height:auto` images drifted 0.2–0.55px each (home +2px total) |
+| 2.3 | Responsive: overflow 320–1920, 768/1024 review | 0:25 | 22:20 | 22:25 | 0:05 | – | main | 16 routes × 15 widths = 240 loads, 0 overflow. Tablet review of undesigned pages: one fix (docs breadcrumb duplicated by the bar crumb at 768–1023) |
+| 2.4 | SEO / a11y / links / facts audit + fixes | 0:25 | 22:20 | 22:39 | 0:19 | 17.4 | site-auditor + main | No blockers. Fixed: fetchpriority on LCP frames, /apps LCP priority, phone TOC dropdown Escape/outside-close, rule text. API error-table deviation = approved |
+| 2.4b | Shared-code fixes from QA reports | – | 22:29 | 22:39 | 0:10 | – | main | Aspect-ratio pins in BrowserFrame + Logo (root-cause fix), CodeBlock placeholder nowrap, TOC scrollspy (hidden sections + page bottom), "On this page" at 1024–1279, dom-diff menu viewport |
+| 2.5 | Browser QA in the built-in browser (static build): menu, redirect, switcher, jump, search, FAQ, TOC disclosure, 404 | 0:20 | 22:25 | 22:29 | 0:04 | – | main | All pass. Hardened HashRedirect for same-page hash changes. Screenshot tool sometimes captures before repaint (not a site bug) |
+| 2.6 | Final gates + side-by-side pass on every page | 0:25 | 22:39 | 22:46 | 0:07 | – | main | Lint/types/build ✅. Production build: home 0.13/0.53% · menu 0.06% · pricing 0.01/0.03% · ms 0.22/0.51% · docs 0.02/0.06% · releases 0.05/0.15% · apps 0.05% (phone: approved CTA offset) · API: approved content only. Δh 0 everywhere else. Overflow 0 (all routes, 320–1920). Audit 16/16 clean |
 
 ## Phase 3: Deployment
 | # | Sub-phase | Estimate | Start | End | Wall | Who | Notes |
 |---|---|---|---|---|---|---|---|
-| 3.1 | firebase.json, .firebaserc, headers, redirects | 0:10 | | | | main | |
-| 3.2 | Preview channel deploy + audit on preview URL | 0:15 | | | | main | Needs your `firebase login` |
-| 3.3 | Production deploy + live checks | 0:10 | | | | main | Needs your approval |
+| 3.1 | firebase.json, .firebaserc, deploy scripts, live-deploy "ask" guard, README | 0:10 | 22:46 | 22:49 | 0:03 | main | Target found by listing projects/sites: bc-signup-customisation-app (its live channel serves the old site) |
+| 3.2 | Preview channel deploy + verification | 0:15 | 22:49 | 22:53 | 0:04 | main | Live channel untouched. 301s, 404, trailing slash, headers, cache, sitemap verified on Firebase; audit 16/16; pixel check home/pricing/API matches local; browser check |
+| 3.2b | Commit + push testing and deployment changes (user request) | – | 22:57 | 22:58 | 0:01 | main | Commit timestamp in `git log` is the exact end |
+| 3.3 | Production deploy + live checks | 0:10 | | | | main | Waiting for your approval (default: after the app's v2 release) |
+
+## Analysis: what took longer and why
+
+- **Where time went (active 2:08):** discovery + setup 0:28 · development 0:55 · testing 0:39 · deployment 0:07. The 3:47 gap was the session being paused, not work.
+- **Parallel agents paid off:** 22 agent runs; batches ran 3.1–5.3× faster than sequential (dev pages: 121 agent-minutes in 23 wall-minutes).
+- **Why estimates were far too high:** component contracts and data shapes were fixed before the page agents started (no merge conflicts), and the test tooling (DOM diff + pixel compare) was built during setup, so QA was mechanical. The first baseline was already 0.02–1.75% from the designs.
+- **Avoidable costs:** (1) an interrupt right after launching QA agents stopped the dev server and stalled all 3 agents (relaunch needed); (2) deleting two routes without regenerating Next's route types broke typecheck for other agents for ~5 min; (3) the image aspect-ratio root cause (WebP variants round to whole pixels) was found only in QA, and fixing it in BrowserFrame/Logo from the start would have saved each QA agent a pass.
+- **Next time:** avoid interrupting while background agents run (or pause them first); pin image aspect ratios in shared image components from day one; when the baseline is this close, 2 QA agents would do instead of 4.

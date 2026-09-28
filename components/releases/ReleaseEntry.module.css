@@ -49,6 +49,11 @@
   margin: 6px 0 10px;
 }
 
+/* --shot-ratio: the design image's size (set inline from the release data) */
+.shotImg {
+  aspect-ratio: var(--shot-ratio);
+}
+
 /* Below 1024 the meta column becomes one row above the release (as on the phone) */
 @media (max-width: 1023px) {
   .entry {

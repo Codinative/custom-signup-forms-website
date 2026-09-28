@@ -128,6 +128,11 @@ async function run() {
       if (!artboard) continue;
       const d = await openDesign(browser, artboard, width);
       const b = await openBuild(browser, def.route, width, { openMenu: def.openMenu });
+      if (def.openMenu) {
+        // Same viewport as compare.mjs: the menu artboard is 844px tall.
+        await d.setViewportSize({ width, height: 844 });
+        await b.setViewportSize({ width, height: 844 });
+      }
       const design = await d.evaluate(collect, null);
       const build = await b.evaluate(collect, def.openMenu ? '[role="dialog"]' : null);
       await d.close();

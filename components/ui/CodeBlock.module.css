@@ -77,4 +77,7 @@
 .pre .placeholder {
   padding: 0 3px;
   border-radius: 4px;
+  /* Keep a box on one line: break-all would split "[store-id]" mid-word */
+  white-space: nowrap;
+  word-break: normal;
 }

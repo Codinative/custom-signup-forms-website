@@ -18,7 +18,9 @@
     "test:visual": "node scripts/visual/compare.mjs",
     "test:dom": "node scripts/visual/dom-diff.mjs",
     "test:overflow": "node scripts/visual/overflow.mjs",
-    "test:audit": "node scripts/audit/site-audit.mjs"
+    "test:audit": "node scripts/audit/site-audit.mjs",
+    "deploy:preview": "npm run build && npx --yes firebase-tools@15.31.0 hosting:channel:deploy preview --expires 7d",
+    "deploy:live": "npm run build && npx --yes firebase-tools@15.31.0 deploy --only hosting"
   },
   "dependencies": {
     "next": "^15.5.26",

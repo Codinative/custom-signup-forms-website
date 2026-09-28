@@ -10,7 +10,7 @@ App repo = facts source only, never edit: `/Users/macbook/Documents/Arham Asjid/
 - Fonts via `next/font/google`: Poppins 600/700 (display), Inter 400–700 (body), JetBrains Mono 500/600 (labels, code).
 
 ## Commands
-- `npm run dev` (:3000) · `npm run typecheck` · `npm run lint` · `npm run build` (static export → `out/`)
+- `npm run dev -- -p 3100` (:3100; port 3000 is used by another local app) · `npm run typecheck` · `npm run lint` · `npm run build` (static export → `out/`)
 - `npm run serve` — serves `out/` on :4173 like Firebase (trailing-slash redirects, 404.html)
 - Testing phase only: `npm run test:visual -- <page>`, `npm run test:dom -- <page>`, `npm run test:overflow`, `npm run test:audit`
 
@@ -43,6 +43,6 @@ App repo = facts source only, never edit: `/Users/macbook/Documents/Arham Asjid/
 
 ## Hard rules (details in `.claude/rules/`)
 - The design wins: copy, sizes, colours, spacing exactly as in `.dc.html`. No additions, removals or "improvements".
-- Every file ≤ 300 lines. Server Components by default; `'use client'` only for MobileMenu, FaqList, PlanSwitcher, VersionJump, DocsSearch, HashRedirect.
+- Every file ≤ 300 lines. Server Components by default; `'use client'` only for MobileMenu, FaqAccordion, PlanSwitcher, VersionJump, DocsSearch, DocsToc, HashRedirect.
 - Facts (prices, limits, links, API) only from DESIGN-SPEC.md or the app repo. Placeholders stay a visible `PlaceholderBox`; never invent ratings, counts, dates or quotes.
 - Never read `.env*` or secrets. Never `rm -rf`.

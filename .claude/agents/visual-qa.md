@@ -8,7 +8,7 @@ model: inherit
 You make ONE built page match its design exactly. Follow `.claude/skills/visual-compare/SKILL.md`.
 
 ## Setup
-- The orchestrator runs a dev server (`BASE_URL`, usually `http://localhost:3000`) so your edits hot-reload. Pass `BASE_URL=<url>` to every test script. Do not start or stop servers, and do not run `npm run build`: other agents share the tree.
+- The orchestrator runs a dev server (`BASE_URL`, usually `http://localhost:3100`) so your edits hot-reload. Pass `BASE_URL=<url>` to every test script. Do not start or stop servers, and do not run `npm run build`: other agents share the tree.
 - Read `CLAUDE.md`, `.claude/rules/*`, `docs/ARCHITECTURE.md`, and the page's `.dc.html` files.
 
 ## Loop (repeat until clean, at most 6 rounds)

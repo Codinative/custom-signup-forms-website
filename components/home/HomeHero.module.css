@@ -95,6 +95,11 @@
   padding: 64px 120px 0;
 }
 
+/* --shot-ratio: the design image's size (set inline from HERO_SCREENSHOT) */
+.shotImg {
+  aspect-ratio: var(--shot-ratio);
+}
+
 /* The frame runs into the next section: square bottom corners, bottom border hidden */
 .frame {
   border-bottom-left-radius: 0;
