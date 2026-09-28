@@ -9,7 +9,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "serve": "node scripts/serve-out.mjs",
+    "test:visual": "node scripts/visual/compare.mjs",
+    "test:dom": "node scripts/visual/dom-diff.mjs",
+    "test:overflow": "node scripts/visual/overflow.mjs",
+    "test:audit": "node scripts/audit/site-audit.mjs"
   },
   "dependencies": {
     "next": "^15.5.19",
@@ -23,6 +29,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^15.5.19",
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.63.0",
+    "pngjs": "^7.0.0",
     "typescript": "^5"
   },
   "overrides": {
