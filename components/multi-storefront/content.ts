@@ -12,20 +12,20 @@ export type Screenshot = { src: string; width: number; height: number; alt: stri
 /** URL in the browser-frame bar (desktop only). */
 export const FRAME_URL = "store.mybigcommerce.com/manage/app/custom-signup-forms";
 
-// Source: design shot-storefronts.jpg = assets/storefronts.png cropped to 860×580.
+// Source: design v2 shot-storefronts-v2.jpg (1400×748) = public/images/storefronts-list-v2.png at 2×.
 export const HERO_SHOT: Screenshot = {
-  src: "/images/storefronts-crop.png",
-  width: 860,
-  height: 580,
-  alt: "Your storefronts screen listing each BigCommerce storefront, including a headless Catalyst storefront, with its serving or off status and assigned form",
+  src: "/images/storefronts-list-v2.png",
+  width: 1400,
+  height: 748,
+  alt: "Your storefronts screen listing each BigCommerce storefront, including a headless Catalyst storefront, with its serving status and assigned form",
 };
 
-// Source: design shot-approve.jpg ("One queue", desktop only).
+// Source: design v2 shot-approve-v2.jpg ("One queue", desktop only) = public/images/approve-v2.png at 2×.
 export const QUEUE_SHOT: Screenshot = {
-  src: "/images/approve.png",
-  width: 1440,
-  height: 900,
-  alt: "Pending signup request from storefront-2 open for review, with the applicant's fields and Approve, Reject and Request Resubmission buttons",
+  src: "/images/approve-v2.png",
+  width: 1800,
+  height: 1285,
+  alt: "Pending signup request from the UK storefront open for review, with the applicant's fields, a trade licence upload and Approve, Reject and Request Resubmission buttons",
 };
 
 export type StorefrontSetting = { icon: IconName; title: string; body: string };

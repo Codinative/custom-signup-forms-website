@@ -52,12 +52,6 @@
   margin-top: 6px;
 }
 
-/* Keep the design image's 860×580 ratio: the resized WebP variants round their height
-   (e.g. 640×432), which would make the frame a fraction of a pixel taller */
-.shotImg {
-  aspect-ratio: 860 / 580;
-}
-
 @media (max-width: 1279px) {
   .inner {
     padding: calc(var(--header-h) + 80px) var(--pad-x-tablet) 96px;

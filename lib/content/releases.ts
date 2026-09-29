@@ -43,17 +43,17 @@ export const RELEASE_COPY = {
   datePlaceholder: "[Release date]",
 } as const;
 
-// Source: design/ReleaseNotes.dc.html, MobileReleaseNotes.dc.html; screenshot = design/shot-storefronts.jpg.
+// Source: design/ReleaseNotes.dc.html, MobileReleaseNotes.dc.html; screenshot = design v2 shot-storefronts-v2.jpg.
 export const RELEASES: Release[] = [
   {
     version: "2.0.0",
     date: null,
     title: "Multi-storefront, four plans and a Free plan",
     screenshot: {
-      src: "/images/storefronts-crop.png",
-      width: 860,
-      height: 580,
-      alt: "Storefronts screen listing each BigCommerce storefront with its serving or off status and assigned form, plus prelaunch storefronts not yet set up",
+      src: "/images/storefronts-list-v2.png",
+      width: 1400,
+      height: 748,
+      alt: "Storefronts screen listing each BigCommerce storefront, including a headless Catalyst storefront, with its serving status and assigned form",
       frameUrl: "store.mybigcommerce.com/manage/app/custom-signup-forms",
     },
     changes: [

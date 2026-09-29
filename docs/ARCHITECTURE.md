@@ -78,7 +78,7 @@ Logo → `/` · Features → `/#features` · Multi-storefront, Explore multi-sto
 ## 7. Decisions (defaults)
 1. Plain CSS kept: tokens and utilities in `globals.css`, component CSS Modules. The old 575-line `globals.css` is replaced.
 2. Server Components are pre-rendered to static HTML at build (best for SEO). Client components: MobileMenu, FaqAccordion, PlanSwitcher, VersionJump, DocsSearch, DocsToc, HashRedirect.
-3. Images: `next/image` with a custom loader and build-time WebP variants (`scripts/images/optimize.mjs`, sharp), so `sizes`/srcset work in static export. The storefronts crop is pre-cut to 860×580.
+3. Images: `next/image` with a custom loader and build-time WebP variants (`scripts/images/optimize.mjs`, sharp), so `sizes`/srcset work in static export. App screenshots are the v2 masters captured at 2× (`*-v2.png`, 2880 px wide; the storefronts list 1768 px), served up to 2400 px wide at WebP quality 90 with smartSubsample; `width`/`height` props are the v2 design image sizes. The v1 files stay in `public/images` unused.
 4. Placeholders follow the spec, not the design's plain text: `[Release date]` and the `[app-domain] [store-id] [channel] [signature]` tokens in code render as inline dashed amber boxes. The API "Pro and Enterprise" badge stays a placeholder until confirmed ⏳.
 5. Hover: text links → `#1d4ed8`; primary button background → `#1d4ed8`; other buttons unchanged. The design's global `a:hover` recolours button text, which is a prototype bug and is not copied. Focus ring everywhere.
 6. Design quirks are copied exactly (pricing-teaser CTA offset, `line-height: normal`, icon baseline offsets). Exception: the phone /apps CTAs that collapse to ~18px become 40px ⏳.

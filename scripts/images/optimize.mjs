@@ -18,13 +18,14 @@ for (const file of readdirSync(SRC)) {
   const srcTime = statSync(input).mtimeMs;
   const { name } = parse(file);
   const meta = await sharp(input).metadata();
-  const quality = meta.hasAlpha ? 90 : 82;
+  // 90 + smartSubsample keeps small coloured UI text in the app screenshots crisp (82 blurred it)
+  const quality = 90;
   for (const width of widths) {
     const output = join(OUT, `${name}-${width}.webp`);
     if (existsSync(output) && statSync(output).mtimeMs >= srcTime) continue;
     await sharp(input)
       .resize({ width: Math.min(width, meta.width), withoutEnlargement: true })
-      .webp({ quality, alphaQuality: 100, effort: 5 })
+      .webp({ quality, alphaQuality: 100, smartSubsample: true, effort: 5 })
       .toFile(output);
     written++;
   }

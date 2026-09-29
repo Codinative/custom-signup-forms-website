@@ -51,9 +51,9 @@ export type Audience = {
 export const APP_URL_BAR = "store.mybigcommerce.com/manage/app/custom-signup-forms";
 
 export const HERO_SCREENSHOT: Screenshot = {
-  src: "/images/dashboard.png",
-  width: 1100,
-  height: 687,
+  src: "/images/dashboard-v2.png",
+  width: 1800,
+  height: 1094,
   alt: "Custom Signup Forms dashboard with total signups, pending review, approved and rejected counts, and quick actions for the form builder, requests, email templates and form preview",
 };
 
@@ -78,10 +78,10 @@ export const FEATURES: Feature[] = [
       'An "Other" option with its own text box',
     ],
     image: {
-      src: "/images/builder.png",
-      width: 1100,
-      height: 687,
-      alt: "Form builder with the field types to add on the left and a live desktop preview of the Create your account form",
+      src: "/images/builder-v2.png",
+      width: 1800,
+      height: 1385,
+      alt: "Form builder with a live desktop preview of the Apply for a trade account form: name, business email, password, company, business type, VAT or tax ID and a trade licence upload",
     },
     reverse: false,
   },
@@ -122,9 +122,9 @@ export const FEATURES: Feature[] = [
       "Sent through your own SMTP",
     ],
     image: {
-      src: "/images/emails.png",
-      width: 1100,
-      height: 687,
+      src: "/images/emails-v2.png",
+      width: 1800,
+      height: 1496,
       alt: "Email templates screen listing the signup confirmation, resubmission, approval, rejection and resubmission request emails, with a preview of the confirmation email",
     },
     reverse: false,
@@ -150,9 +150,9 @@ export const FEATURES: Feature[] = [
     ],
     link: { label: "Explore multi-storefront", href: "/multi-storefront/" },
     image: {
-      src: "/images/storefronts-crop.png",
-      width: 860,
-      height: 580,
+      src: "/images/storefronts-list-v2.png",
+      width: 1400,
+      height: 748,
       alt: "Storefronts list showing the signup form each BigCommerce storefront serves, including a headless Catalyst storefront",
     },
     reverse: true,

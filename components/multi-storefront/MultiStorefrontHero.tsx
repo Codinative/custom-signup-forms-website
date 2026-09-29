@@ -38,7 +38,6 @@ export function MultiStorefrontHero() {
           sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 72px), (max-width: 1279px) calc(53.5vw - 80px), (max-width: 1439px) calc(53.5vw - 137px), 632px"
           priority
           className={styles.shot}
-          imgClassName={styles.shotImg}
         />
       </div>
     </section>

@@ -103,11 +103,11 @@ export const APPS: AppEntry[] = [
   },
 ];
 
-// Source: design/Apps.dc.html (shot-approve.jpg; site original public/images/approve.png).
+// Source: design v2 AppsV2.dc.html (shot-approve-v2.jpg, 1800×1285) = public/images/approve-v2.png at 2×.
 export const SIGNUP_SCREENSHOT: AppScreenshot = {
-  src: "/images/approve.png",
-  width: 1440,
-  height: 900,
+  src: "/images/approve-v2.png",
+  width: 1800,
+  height: 1285,
   alt: "Signup request review dialog showing the applicant's submitted fields with Approve, Reject and Request Resubmission buttons",
 };
 

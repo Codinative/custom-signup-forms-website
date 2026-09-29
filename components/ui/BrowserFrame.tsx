@@ -5,7 +5,7 @@ import styles from "./BrowserFrame.module.css";
 export type BrowserFrameProps = {
   /** `/images/<file>.png`; the custom loader serves the WebP variants. */
   src: string;
-  /** Intrinsic size: 1440×900 for the screenshots, 860×580 for storefronts-crop.png. */
+  /** The design image's size (e.g. 1800×1094 for the v2 dashboard); also pins the frame's aspect ratio. */
   width: number;
   height: number;
   alt: string;
