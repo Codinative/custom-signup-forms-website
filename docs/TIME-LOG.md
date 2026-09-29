@@ -64,3 +64,17 @@ Times are PKT (UTC+5), taken from `date`. **Wall-clock** is elapsed time. **Agen
 - **Why estimates were far too high:** component contracts and data shapes were fixed before the page agents started (no merge conflicts), and the test tooling (DOM diff + pixel compare) was built during setup, so QA was mechanical. The first baseline was already 0.02–1.75% from the designs.
 - **Avoidable costs:** (1) an interrupt right after launching QA agents stopped the dev server and stalled all 3 agents (relaunch needed); (2) deleting two routes without regenerating Next's route types broke typecheck for other agents for ~5 min; (3) the image aspect-ratio root cause (WebP variants round to whole pixels) was found only in QA, and fixing it in BrowserFrame/Logo from the start would have saved each QA agent a pass.
 - **Next time:** avoid interrupting while background agents run (or pause them first); pin image aspect ratios in shared image components from day one; when the baseline is this close, 2 QA agents would do instead of 4.
+
+## Change requests (2026-09-29)
+
+| # | Item | Start | End | Wall | Agent-min | Who | Notes |
+|---|---|---|---|---|---|---|---|
+| CR-0 | Design canvas: homepage Reviews section (placeholders → sample reviews → premium navy band, gold stars), versions 3–5 | not captured | 10:57 | – | – | main | Start time not recorded (no `date` call before the first edit). ~5 min lost to a DNS outage for the artifact host (3 refused saves, recovered after the resolver cache expired) |
+| CR-1 | Website: Reviews section (dev) + preview-only sample gating | 10:58 | 11:12 | 0:14 | 11.4 | page-builder + main | Samples render only in `build:preview` (NEXT_PUBLIC_SAMPLE_REVIEWS=1); live build shows real reviews or nothing. Main: real-rating option in softwareApplicationLd (home + pricing) |
+| CR-1t | Test CR-1: preview build vs updated design | 11:11 | 11:15 | 0:04 | – | main | Home 0.12% / 0.18%, Δh 0, 0 missing/extra copy. One failed build: stale Turbopack cache in .next (moved aside, not deleted) |
+| CR-1b | Show sample reviews on the dev server too (you couldn't see them on localhost) | 11:52 | 11:53 | 0:01 | – | main | Gate is now `NODE_ENV === "development"` or `build:preview`; the live build is unchanged |
+| CR-2a | Screenshot v2: sandbox feasibility (read-only analysis) | 10:58 | 11:16 | 0:18 | 22.4 | research agent | Feasible: 4 screens as-is from the emulator; storefronts need a local BigCommerce API mock (preload redirect). No .env, no writes to the app repo |
+| ⏸ | Demo-content confirmation from user | 11:16 | 11:24 | 0:08 | – | – | Chosen: Harbor & Pine Supply; 5 serving storefronts on Enterprise |
+| CR-2b | Capture v2 app screenshots at 2× (private sandbox, emulator, BC mock, demo seed) | 11:24 | 12:01 | 0:37 | 36.0 | capture agent | ~25 min was one-time sandbox setup (copy, env, emulator, BigCommerce mock, Harbor & Pine seed); capture itself ~10 min after a "deliver now" nudge at 11:56. 8 PNG masters at 2880 px wide; sandbox reusable for re-captures |
+| CR-2c | Design canvas: v2 page (8 artboard copies, new images, note) + save | 12:02 | 12:05 | 0:03 | – | main | Originals untouched on page "v1 — current"; images 73–197 KB at 1800 px, 4:4:4 chroma; canvas 4.6 MB (Version 6). One rebuild misfired (zsh does not split \$ARGS) and was redone |
+| CR-1c | Commit the reviews work on feat/website-redesign (local, not pushed; your request) | 12:17 | 12:19 | 0:02 | – | main | Typecheck + lint re-run first; commit timestamp in `git log` is the exact end |

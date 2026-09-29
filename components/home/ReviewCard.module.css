@@ -1,0 +1,118 @@
+/* Review card: Main.dc.html Reviews grid; phone values from MobileHome.dc.html */
+.card {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+/* .ph pill from the design (PlaceholderBox supplies the dashed amber look) */
+.tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.quote {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #ffffff;
+  text-wrap: pretty;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--blue-600);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex: none;
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.store {
+  font-size: 13px;
+  color: var(--faint);
+}
+
+@media (max-width: 767px) {
+  .card {
+    gap: 16px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  /* Exact at 390; below ~340 the tag drops under the stars instead of squeezing */
+  .top {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag {
+    font-size: 10px;
+  }
+
+  .quote {
+    font-size: 16px;
+  }
+
+  .author {
+    gap: 10px;
+    padding-top: 16px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+
+  .store {
+    font-size: 12px;
+  }
+}

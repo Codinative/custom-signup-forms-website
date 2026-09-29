@@ -9,6 +9,7 @@ import { PricingHero } from "@/components/pricing/PricingHero";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { answeredFaqs, pricingFaqs } from "@/lib/content/faqs";
 import { PLAN_OFFERS } from "@/lib/content/plans";
+import { MARKETPLACE_RATING } from "@/lib/content/reviews";
 import { buildMetadata, faqLd, softwareApplicationLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -34,7 +35,7 @@ export default function PricingPage() {
         <EnterpriseBand />
       </main>
       <Footer />
-      <JsonLd data={[softwareApplicationLd(PLAN_OFFERS, APP_DESCRIPTION), faqLd(answeredFaqs(pricingFaqs))]} />
+      <JsonLd data={[softwareApplicationLd(PLAN_OFFERS, APP_DESCRIPTION, MARKETPLACE_RATING), faqLd(answeredFaqs(pricingFaqs))]} />
     </>
   );
 }

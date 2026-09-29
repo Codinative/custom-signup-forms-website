@@ -69,6 +69,7 @@ DefinitionRows({ rows: { key, value, phoneValue? }[], keyWidth?, className? }) Â
 - `apps.ts`: `APPS`, `APP_CARD_COPY`, `SIGNUP_SCREENSHOT`, `CHECKOUT_PREVIEW`, `STICKY_BAR_PREVIEW`.
 - `navigation.ts`: `headerLinks`, `headerCtas`, `menuLinks`, `menuCtas`, `footerColumns`, `phoneFooterLinks`, `footerCopy`.
 - `docsIndex.ts`: `docsGroups`, `docsEntries`, `docsSidebar`, `getDoc()`, `docBreadcrumb()`, `integrationBand`, `apiToc`.
+- `reviews.ts`: `REVIEWS` / `MARKETPLACE_RATING` (real Marketplace data, empty until filled), `SAMPLE_REVIEWS` / `SAMPLE_RATING` (shown only by `npm run dev` and `build:preview`), `getReviewsContent()`.
 - `routes.ts`: `ROUTES` (sitemap).
 
 ## 6. Link map (every design `href="#"`)

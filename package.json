@@ -10,6 +10,7 @@
     "dev": "next dev --turbopack",
     "prebuild": "node scripts/images/optimize.mjs",
     "build": "next build",
+    "build:preview": "NEXT_PUBLIC_SAMPLE_REVIEWS=1 npm run build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
@@ -19,7 +20,7 @@
     "test:dom": "node scripts/visual/dom-diff.mjs",
     "test:overflow": "node scripts/visual/overflow.mjs",
     "test:audit": "node scripts/audit/site-audit.mjs",
-    "deploy:preview": "npm run build && npx --yes firebase-tools@15.31.0 hosting:channel:deploy preview --expires 7d",
+    "deploy:preview": "npm run build:preview && npx --yes firebase-tools@15.31.0 hosting:channel:deploy preview --expires 7d",
     "deploy:live": "npm run build && npx --yes firebase-tools@15.31.0 deploy --only hosting"
   },
   "dependencies": {

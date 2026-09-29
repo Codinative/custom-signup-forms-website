@@ -52,8 +52,10 @@ export const websiteLd = {
 
 export type OfferInput = { name: string; price: number; description: string };
 
-/** Offers come from the plans module; no aggregateRating until a real rating exists. */
-export function softwareApplicationLd(offers: OfferInput[], description: string) {
+export type RatingInput = { average: number; count: number };
+
+/** Offers come from the plans module. aggregateRating only from a REAL Marketplace rating (never sample data). */
+export function softwareApplicationLd(offers: OfferInput[], description: string, rating?: RatingInput | null) {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -72,6 +74,16 @@ export function softwareApplicationLd(offers: OfferInput[], description: string)
       description: o.description,
       url: `${SITE_URL}/pricing/`,
     })),
+    ...(rating
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: rating.average,
+            reviewCount: rating.count,
+            bestRating: 5,
+          },
+        }
+      : {}),
   };
 }
 

@@ -6,6 +6,7 @@ import { HowItWorks } from "@/components/home/HowItWorks";
 import { MadeFor } from "@/components/home/MadeFor";
 import { MoreApps } from "@/components/home/MoreApps";
 import { PricingTeaser } from "@/components/home/PricingTeaser";
+import { Reviews } from "@/components/home/Reviews";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { Footer } from "@/components/layout/Footer";
 import { HashRedirect } from "@/components/layout/HashRedirect";
@@ -13,6 +14,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { answeredFaqs, homeFaqs } from "@/lib/content/faqs";
 import { PLAN_OFFERS } from "@/lib/content/plans";
+import { MARKETPLACE_RATING } from "@/lib/content/reviews";
 import { buildMetadata, faqLd, organizationLd, softwareApplicationLd, websiteLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -27,6 +29,9 @@ export const metadata = buildMetadata({
 const APP_DESCRIPTION =
   "Replace the default BigCommerce account form with one you design, and review every applicant before they can buy.";
 
+// aggregateRating only from the REAL Marketplace rating; the design's sample rating never reaches JSON-LD.
+const SOFTWARE_APPLICATION_LD = softwareApplicationLd(PLAN_OFFERS, APP_DESCRIPTION, MARKETPLACE_RATING);
+
 // Old in-page anchors that now have their own route.
 const HASH_REDIRECTS = { "#pricing": "/pricing/" };
 
@@ -40,6 +45,7 @@ export default function HomePage() {
         <Features />
         <HowItWorks />
         <MadeFor />
+        <Reviews />
         <PricingTeaser />
         <HomeFaq />
         <MoreApps />
@@ -50,7 +56,7 @@ export default function HomePage() {
         data={[
           websiteLd,
           organizationLd,
-          softwareApplicationLd(PLAN_OFFERS, APP_DESCRIPTION),
+          SOFTWARE_APPLICATION_LD,
           faqLd(answeredFaqs(homeFaqs)),
         ]}
       />
