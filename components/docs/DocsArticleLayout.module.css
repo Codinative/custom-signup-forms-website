@@ -12,7 +12,7 @@
 .sidebar,
 .toc {
   position: sticky;
-  top: 24px;
+  top: calc(var(--header-h) + 24px);
   align-self: start;
 }
 

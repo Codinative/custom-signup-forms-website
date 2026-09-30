@@ -100,3 +100,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Hover states (owner request, 2026-09-30) */
+.link:hover {
+  color: #ffffff;
+}

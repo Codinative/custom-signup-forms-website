@@ -148,3 +148,16 @@
     margin-top: 6px;
   }
 }
+
+/* Hover states (owner request, 2026-09-30) */
+.link:hover {
+  color: #ffffff;
+}
+
+.link svg {
+  transition: transform 0.15s ease;
+}
+
+.link:hover svg {
+  transform: translateX(3px);
+}

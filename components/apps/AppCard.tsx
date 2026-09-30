@@ -58,10 +58,17 @@ export function AppCard({ app }: AppCardProps) {
             {APP_CARD_COPY.siteLabel}
             <span className="srOnly">: {app.name}</span>
           </Button>
-          <Button href={app.marketplaceUrl} variant="primary" size="sm" className={styles.cta}>
-            {APP_CARD_COPY.marketplaceLabel}
-            <span className="srOnly">: {app.name}</span>
-          </Button>
+          {app.marketplaceUrl ? (
+            <Button href={app.marketplaceUrl} variant="primary" size="sm" className={styles.cta}>
+              {APP_CARD_COPY.marketplaceLabel}
+              <span className="srOnly">: {app.name}</span>
+            </Button>
+          ) : (
+            <span className={`${styles.cta} ${styles.soon}`}>
+              {APP_CARD_COPY.comingSoonLabel}
+              <span className="srOnly"> to the BigCommerce marketplace: {app.name}</span>
+            </span>
+          )}
         </div>
       </div>
     </li>

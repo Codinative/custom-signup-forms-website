@@ -9,12 +9,12 @@ export const SITE_URL = "https://custom-signup-forms.codinative.com";
 export const LINKS = {
   // BigCommerce marketplace listing (live).
   marketplace: "https://www.bigcommerce.com/apps/custom-signup-forms-by-codinative/",
-  // The live embedded app.
-  app: "https://signup.codinative.com/",
+  // No "Open the app" link: merchants open the app from their BigCommerce control panel.
   vendor: "https://codinative.com/",
   support: "mailto:info@codinative.com?subject=Custom%20Signup%20Forms",
   email: "info@codinative.com",
-  // Sister Codinative apps (their marketplace listings are not known yet, so CTAs use these sites).
+  // Sister Codinative apps. Sticky Add to Cart has no marketplace listing yet ("Coming soon").
   shippingRules: "https://custom-shipping-rules.codinative.com/",
+  shippingRulesListing: "https://www.bigcommerce.com/apps/custom-shipping-rules-by-codinative/",
   stickyCart: "https://sticky-add-to-cart.codinative.com/",
 };

@@ -31,14 +31,19 @@
   --font-mono: var(--font-jetbrains), ui-monospace, Menlo, monospace;
   --pad-x-tablet: clamp(32px, calc(32px + (100vw - 768px) * 0.0313), 48px);
   --focus-ring: var(--blue-600);
-  /* Site header height: dark heroes sit under the absolutely positioned header */
-  --header-h: 80px;
+  /* Site header height (owner-approved: 80 → 88, phone 68 → 72). Dark heroes sit under the fixed
+     header; the header is sticky everywhere, so in-page anchors scroll below it. */
+  --header-h: 88px;
 }
 
 @media (max-width: 767px) {
   :root {
-    --header-h: 68px;
+    --header-h: 72px;
   }
+}
+
+html {
+  scroll-padding-top: var(--header-h);
 }
 
 body {
@@ -60,6 +65,23 @@ a {
 
 a:not([class]):hover {
   color: var(--blue-700);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Hover states site-wide (owner request, 2026-09-30): every link and control eases between states.
+   Zero specificity, so component rules can still set their own transition. */
+:where(a, button, summary, select) {
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease,
+    opacity 0.15s ease, transform 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 p {

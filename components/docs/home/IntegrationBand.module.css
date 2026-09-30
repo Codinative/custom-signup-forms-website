@@ -121,3 +121,12 @@
     padding: 0 20px 32px;
   }
 }
+
+/* Hover states (owner request, 2026-09-30) */
+.link:hover {
+  color: #ffffff;
+}
+
+.phoneCard:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

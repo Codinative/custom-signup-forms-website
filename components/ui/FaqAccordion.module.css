@@ -73,3 +73,10 @@
 :where(.compact .answer) {
   padding: 0 0 18px;
 }
+
+/* Hover states (owner request, 2026-09-30) */
+.trigger:hover .question,
+.trigger:hover .icon,
+.trigger:hover .iconWrap {
+  color: var(--blue-700);
+}

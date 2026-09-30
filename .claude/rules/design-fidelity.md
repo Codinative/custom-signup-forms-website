@@ -10,5 +10,5 @@
 - 768–1279: desktop structure; 4-col → 2-col, 3-col → 2 or 3 by fit, feature rows side by side down to 1024 then stack text over screenshot; side padding 32–48px.
 - No horizontal scroll from 320 to 1920. Wide tables and code blocks scroll inside their own container.
 - `href="#"` in designs → real targets from the link map in `docs/ARCHITECTURE.md`.
-- Hover states only where the design/spec defines them (links → `#1d4ed8`, primary button → `#1d4ed8`). Always add a visible `:focus-visible` ring (required for accessibility, not a design change).
+- Hover states on every link and control (owner-approved 2026-09-30): Button variants darken or tint and lift 1px; text links turn `#1d4ed8` with an underline; header links grow an underline; link cards lift and tint their border; dark-band links turn white. Transitions 0.15s, off under `prefers-reduced-motion`. Always add a visible `:focus-visible` ring (required for accessibility, not a design change).
 - No new sections, copy, icons, animations or effects. If the design is genuinely ambiguous, stop and ask the orchestrator; never guess silently.

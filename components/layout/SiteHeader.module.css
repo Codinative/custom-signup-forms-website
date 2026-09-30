@@ -1,21 +1,41 @@
-/* Header from Main/MultiStorefront (dark) and Pricing/Apps (light); phone from MobileHome/MobilePricing */
+/* Header from Main/MultiStorefront (dark) and Pricing/Apps (light); phone from MobileHome/MobilePricing.
+   Owner-approved changes (2026-09-30): taller bar and logo, sticky on scroll, hover states. */
 .header {
+  z-index: 30;
   height: var(--header-h);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-/* Transparent over the page's dark hero; the hero draws the gradient and grid */
+/* Transparent over the page's dark hero (the hero draws the gradient and grid); fixed so it stays on scroll */
 .dark {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 20;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+/* After scrolling: solid navy with a soft blur, so the white links read over any section */
+.dark[data-scrolled] {
+  background: rgba(20, 26, 68, 0.96);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -12px rgba(2, 6, 23, 0.55);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  backdrop-filter: saturate(140%) blur(12px);
+}
+
 .light {
+  position: sticky;
+  top: 0;
   border-bottom: 1px solid var(--line);
   background: #ffffff;
+}
+
+.light[data-scrolled] {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 30px -18px rgba(15, 23, 42, 0.35);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
 }
 
 .inner {
@@ -28,28 +48,66 @@
   padding: 0 64px;
 }
 
+.logoLink {
+  display: inline-flex;
+  border-radius: 8px;
+}
+
+.logoLink:hover {
+  opacity: 0.85;
+}
+
 .nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 36px;
 }
 
 .link {
-  font-size: 15px;
+  position: relative;
+  padding: 6px 0;
+  font-size: 16px;
   font-weight: 500;
+}
+
+/* Hover: an underline grows from the left; the current page keeps its design colour and weight */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s ease;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
 }
 
 .dark .link {
   color: rgba(255, 255, 255, 0.82);
 }
 
+.dark .link:hover,
+.dark .link[aria-current="page"] {
+  color: #ffffff;
+}
+
 .dark .link[aria-current="page"] {
   font-weight: 600;
-  color: #ffffff;
 }
 
 .light .link {
   color: var(--text-2);
+}
+
+.light .link:hover {
+  color: var(--blue-700);
 }
 
 .light .link[aria-current="page"] {
@@ -63,13 +121,22 @@
   gap: 12px;
 }
 
+/* md button (15px, 12px radius), 44px tall to sit in the 88px bar */
+.cta {
+  height: 44px;
+}
+
 @media (max-width: 1279px) {
   .inner {
     padding: 0 var(--pad-x-tablet);
   }
+
+  .nav {
+    gap: 28px;
+  }
 }
 
-/* The desktop nav and buttons need ~950px; below 1024 the menu button takes over */
+/* Below 1024 the menu button takes over */
 @media (max-width: 1023px) {
   .nav,
   .ctas {
@@ -83,6 +150,13 @@
   }
 
   .logo {
-    height: 36px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .link::after {
+    transition: none;
   }
 }

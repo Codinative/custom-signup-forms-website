@@ -94,6 +94,23 @@
   flex: 1;
 }
 
+/* Not on the BigCommerce marketplace yet: a quiet, non-interactive stand-in the size of the sm button */
+.soon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: default;
+}
+
 /* 768–1279: two columns; an odd last card spans both, preview beside the text */
 @media (min-width: 768px) and (max-width: 1279px) {
   .card:nth-child(odd):last-child {

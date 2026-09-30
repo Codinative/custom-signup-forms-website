@@ -78,9 +78,6 @@ export function InstallationArticle() {
       <ProseSection id={SECTIONS.steps.id} title={SECTIONS.steps.label} intro="Six steps from install to a live form.">
         <StepCards steps={STEPS} hideOnPhone={false} />
         <div className={styles.actions}>
-          <Button href={LINKS.app} variant="primary" size="sm" icon="store" iconSize={16}>
-            Open the app
-          </Button>
           <Button href={userGuide.href} variant="outline" size="sm" icon={userGuide.icon} iconSize={16}>
             Read the User guide
           </Button>

@@ -19,9 +19,8 @@ export const headerLinks: HeaderLink[] = [
   { key: "release-notes", label: "Release notes", href: "/release-notes/" },
 ];
 
-/** Desktop header buttons. */
-export const headerCtas: { app: NavLink; install: NavLink } = {
-  app: { label: "Open the app", href: LINKS.app },
+/** Desktop header button (no "Open the app": the app opens from the BigCommerce control panel). */
+export const headerCtas: { install: NavLink } = {
   install: { label: "Install free", href: LINKS.marketplace },
 };
 
@@ -36,10 +35,9 @@ export const menuLinks: NavLink[] = [
   { label: "Contact", href: "/contact/" },
 ];
 
-/** Phone menu sheet buttons, in design order. */
-export const menuCtas: { install: NavLink; app: NavLink } = {
+/** Phone menu sheet button. */
+export const menuCtas: { install: NavLink } = {
   install: { label: "Install free on BigCommerce", href: LINKS.marketplace },
-  app: { label: "Open the app", href: LINKS.app },
 };
 
 /** Desktop footer link columns (4). */
@@ -51,7 +49,6 @@ export const footerColumns: FooterColumn[] = [
       { label: "Multi-storefront", href: "/multi-storefront/" },
       { label: "Pricing", href: "/pricing/" },
       { label: "Release notes", href: "/release-notes/" },
-      { label: "Open the app", href: LINKS.app },
     ],
   },
   {

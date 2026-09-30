@@ -6,14 +6,12 @@ import { LINKS, VENDOR } from "@/lib/site";
 import styles from "./ContactCard.module.css";
 
 const host = LINKS.vendor.replace(/^https?:\/\//, "").replace(/\/$/, "");
-const appHost = LINKS.app.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
 type ContactRow = { title: string; value: string; icon: IconName; href: string };
 
 const ROWS: ContactRow[] = [
   { title: "Support email", value: LINKS.email, icon: "mail", href: LINKS.support },
   { title: "Main website", value: host, icon: "globe", href: LINKS.vendor },
-  { title: "Open the app", value: appHost, icon: "store", href: LINKS.app },
 ];
 
 const installation = getDoc("installation");

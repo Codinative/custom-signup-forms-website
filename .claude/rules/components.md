@@ -7,7 +7,7 @@ paths:
 # Components & styling
 
 - Max 300 lines per file (`.tsx` and `.module.css`). Split into sub-components before hitting the limit.
-- Server Components by default. `'use client'` only for real interactivity: MobileMenu, FaqAccordion, PlanSwitcher, VersionJump, DocsSearch, DocsToc, HashRedirect. Keep client components small; pass data in as props.
+- Server Components by default. `'use client'` only for real interactivity: MobileMenu, FaqAccordion, PlanSwitcher, VersionJump, DocsSearch, DocsToc, HashRedirect, StickyHeader. Keep client components small; pass data in as props.
 - Named exports for components with an exported `XProps` type; `export default` only in route files (`page.tsx`, `layout.tsx`, metadata routes).
 - Styles in a co-located `Name.module.css` (camelCase class names) using tokens from `app/globals.css` (`var(--…)`). Desktop-first: artboard values are the base, then overrides in `@media (max-width: 1279px)` (tablet) and `@media (max-width: 767px)` (phone).
 - Images: `next/image` only, real `alt`, `sizes` matching the rendered width at each breakpoint; `priority` only on the above-the-fold hero image.
