@@ -1,0 +1,150 @@
+/* Reviews band: Main.dc.html section after "Made for" (inset 0 64, navy, radius 28) and
+   MobileHome.dc.html section after the feature rows (inset 0 20, radius 22, one column) */
+.section {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 64px 110px;
+}
+
+.band {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--navy);
+  color: #ffffff;
+  padding: 80px 56px 64px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-image: var(--grid-overlay);
+  background-size: 56px 56px;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.intro {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--line-strong);
+  max-width: 540px;
+}
+
+.introPhone {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--line-strong);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+}
+
+/* Light link on navy: no hover recolour (#1d4ed8 would be unreadable here); onDark focus ring */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--blue-300);
+}
+
+/* Band inset follows the tablet gutter. Three cards while each is at least 320 wide (from ~1170),
+   otherwise two plus one: narrower cards squeeze the "Sample review" tag beside the stars. */
+@media (max-width: 1279px) {
+  .section {
+    padding: 0 var(--pad-x-tablet) 110px;
+  }
+
+  .band {
+    padding: 64px 40px 56px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+/* Header stacks (rating card under the heading, left-aligned); one card per row */
+@media (max-width: 1023px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* MobileHome.dc.html: every block in one column with gap 16 */
+@media (max-width: 767px) {
+  .section {
+    padding: 0 20px 56px;
+  }
+
+  .band {
+    border-radius: 22px;
+    padding: 36px 22px;
+  }
+
+  .inner {
+    gap: 16px;
+  }
+
+  .head {
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .heading {
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .cards {
+    gap: 16px;
+  }
+
+  .link {
+    margin-top: 6px;
+  }
+}

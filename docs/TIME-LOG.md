@@ -1,0 +1,84 @@
+# Time log: Custom Signup Forms website rebuild
+
+Times are PKT (UTC+5), taken from `date`. **Wall-clock** is elapsed time. **Agent-min** is the sum of the parallel agents' own run times, so agent-min ÷ wall-min is the parallel speed-up. Rows marked ⏸ are time spent waiting for the user; they are not counted as active time.
+
+## Summary
+
+| Phase | Estimate | Start | End | Wall-clock | Variance | Notes |
+|---|---|---|---|---|---|---|
+| 0 Discovery & setup | – (no prior estimate) | 16:52 | 17:20 | 0:28 | – | 6 parallel read-only agents did the design/fact inventory in 14 min wall-clock |
+| ⏸ Plan review by user | – | 17:20 | 17:26 | 0:06 | – | Approved: defaults + Firebase Hosting; setup committed before Phase 1 |
+| 1 Development | 2:30–3:15 | 17:26 | 18:21 | 0:55 | −1:35 to −2:20 | 11 parallel agents in two batches (4 + 7); contracts written up front meant no merge conflicts |
+| 2 Testing | 2:30–3:30 | 18:20 | 22:46 | 0:39 active (4:26 elapsed) | −1:51 to −2:51 | 3:47 idle while the session was paused, plus a failed agent launch; active work 18:20–18:31 and 22:18–22:46 |
+| 3 Deployment (preview) | 0:30–0:45 | 22:46 | 22:53 | 0:07 | −0:23 to −0:38 | Preview channel live and verified; production release waits for your go-ahead (app v2 not shipped yet) |
+| **Total active** | **6:15–8:30** | 16:52 | 22:53 | **2:08 active** (6:01 elapsed) | **−4:07 to −6:22** | Elapsed includes 3:47 idle (session paused) and 0:06 plan review |
+
+## Phase 0: Discovery & setup (2026-09-28)
+
+| # | Sub-phase | Start | End | Wall | Agent-min | Who | Notes |
+|---|---|---|---|---|---|---|---|
+| 0.1 | Read repo (framework, config, routes), spec, prompt, canvas manifest | 16:52 | 16:57 | 0:05 | – | main | Next 15.5 static export, plain CSS; all 17 designs share one style block |
+| 0.2 | Design and fact inventories (6 parallel agents, read-only) | 16:57 | 17:11 | 0:14 | 71.6 | 6 agents | Speed-up ≈5.1×. Per agent: home 12.1 · pricing 10.5 · ms+apps 10.3 · docs+API 12.4 · releases+audit 12.6 · kept pages+guide facts 13.6 |
+| 0.3 | Tooling: branch, `npm ci`, Playwright, pixelmatch, test scripts, smoke test | 16:58 | 17:05 | 0:07 | – | main | In parallel with 0.2. Design renders match reference PNG heights exactly |
+| 0.4 | Claude Code workspace: CLAUDE.md, settings, 4 rules, 3 agents, 4 skills | 17:05 | 17:13 | 0:08 | – | main | |
+| 0.5 | Icon extraction (30), ARCHITECTURE.md, TIME-LOG.md, plan and questions | 17:13 | 17:20 | 0:07 | – | main | |
+
+## Phase 1: Development
+| # | Sub-phase | Estimate | Start | End | Wall | Agent-min | Who | Notes |
+|---|---|---|---|---|---|---|---|---|
+| 1.0 | Commit setup (user request) | – | 17:26 | 17:28 | 0:02 | – | main | Setup committed as 3185847 before development |
+| 1.1 | D1a Foundation (tokens, fonts, config, images, seo, core UI) | 0:25 | 17:28 | 17:36 | 0:08 | – | main | next 15.5.26 + sharp 0.35.5 override → npm audit 0 vulns; 120 WebP variants; Icon (30), Button, Tag, PlaceholderBox, JsonLd, HashRedirect |
+| 1.1b | OG image generator + 16 OG PNGs (done while 1.2 runs) | – | 17:37 | 17:42 | 0:05 | – | main | One bug (logo stretched in flex column) fixed on first look |
+| 1.2 | D1b Shared components + data (4 parallel agents) | 0:35 | 17:36 | 17:54 | 0:18 | 56.1 | F1–F4 | Speed-up 3.1×. F1 ui-kit 15.0 · F2 layout 13.7 · F3 data 10.8 · F4 docs template 16.6. Zero shared-code conflicts; repo typecheck+lint clean at merge |
+| 1.2b | Contracts sync: ARCHITECTURE §4–5 updated to as-built APIs | – | 17:54 | 17:56 | 0:02 | – | main | Requested by F1 so page agents build against real props |
+| 1.3 | D2 Pages (7 parallel page-builder agents; guides split out of kept pages) | 1:15 | 17:56 | 18:19 | 0:23 | 121.0 | A1–A7 | Speed-up 5.3×. A1 home 18.6 · A2 pricing 17.5 · A3 ms+apps 19.5 · A4 docs+API 20.9 · A5 releases 11.3 · A6 kept pages 12.3 · A7 guides 20.9. Main thread meanwhile: removed /docs legal duplicates, fixed stale .next types (my removal broke typecheck for ~5 min), lowered Tag/Button/Placeholder specificity, phone-TOC fix, dead-code removal |
+| 1.4 | D3 Integration (shared requests, gates, build) | 0:30 | 18:19 | 18:21 | 0:02 | – | main | Most D3 items were done during 1.3. Static build: 23 pages, 115–117 kB first-load JS; sitemap/canonicals/OG verified in out/ |
+
+## Phase 2: Testing
+| # | Sub-phase | Estimate | Start | End | Wall | Agent-min | Who | Notes |
+|---|---|---|---|---|---|---|---|---|
+| 2.1 | Gates: lint, typecheck, build | 0:05 | 18:20 | 18:21 | 0:01 | – | main | Passed inside the 1.4 production build (next build runs lint + types) |
+| 2.2a | Baseline: DOM diff + pixel compare, 8 pages × 1440/390 | – | 18:21 | 18:25 | 0:04 | – | main | Pricing 0.02–0.03% · menu 0.06% · docs 0.06–0.11% · apps desktop 0.07% · releases 0.21–0.24% · multi-storefront 0.5–0.6% · home 1–1.75%. Big deltas = approved deviations only (API corrected errors + Limits section; phone /apps 40px CTAs = +132px). Tool fixes: ignore off-screen skip link, scope menu diff to the dialog |
+| ⏸ | Commit + push Phase 1 and baseline (user request) | – | 18:25 | 18:29 | 0:04 | – | main | 43767e8 pushed to origin/feat/website-redesign. Unused requests.png / uncropped storefronts.png dropped from public/ before the commit. Dev server moved to :3100 (another local app holds :3000) |
+| 2.2x | First targeted QA launch (3 visual-qa agents) — failed | – | 18:29 | 18:31 | 0:02 | – | QA agents | Session interrupted right after launch; dev server stopped with the interrupt; all 3 agents later stalled (stream watchdog, 600s no progress) with no file changes. Wasted ≈2 min active + relaunch cost |
+| ⏸ | Idle: session paused / interrupted | – | 18:31 | 22:18 | 3:47 | – | – | No work possible while the session was paused; excluded from active time |
+| 2.2 | Visual fidelity 1440/390 + fixes (4 visual-qa agents, relaunch) | 1:30 | 22:20 | 22:37 | 0:17 | 55.5 | QA-1…QA-4 | Speed-up 3.3×. QA-1 home+menu 14.0 · QA-2 ms+apps 13.4 · QA-3 docs+API 17.2 · QA-4 releases 10.9. Root cause found: WebP variants round to whole px, so `height:auto` images drifted 0.2–0.55px each (home +2px total) |
+| 2.3 | Responsive: overflow 320–1920, 768/1024 review | 0:25 | 22:20 | 22:25 | 0:05 | – | main | 16 routes × 15 widths = 240 loads, 0 overflow. Tablet review of undesigned pages: one fix (docs breadcrumb duplicated by the bar crumb at 768–1023) |
+| 2.4 | SEO / a11y / links / facts audit + fixes | 0:25 | 22:20 | 22:39 | 0:19 | 17.4 | site-auditor + main | No blockers. Fixed: fetchpriority on LCP frames, /apps LCP priority, phone TOC dropdown Escape/outside-close, rule text. API error-table deviation = approved |
+| 2.4b | Shared-code fixes from QA reports | – | 22:29 | 22:39 | 0:10 | – | main | Aspect-ratio pins in BrowserFrame + Logo (root-cause fix), CodeBlock placeholder nowrap, TOC scrollspy (hidden sections + page bottom), "On this page" at 1024–1279, dom-diff menu viewport |
+| 2.5 | Browser QA in the built-in browser (static build): menu, redirect, switcher, jump, search, FAQ, TOC disclosure, 404 | 0:20 | 22:25 | 22:29 | 0:04 | – | main | All pass. Hardened HashRedirect for same-page hash changes. Screenshot tool sometimes captures before repaint (not a site bug) |
+| 2.6 | Final gates + side-by-side pass on every page | 0:25 | 22:39 | 22:46 | 0:07 | – | main | Lint/types/build ✅. Production build: home 0.13/0.53% · menu 0.06% · pricing 0.01/0.03% · ms 0.22/0.51% · docs 0.02/0.06% · releases 0.05/0.15% · apps 0.05% (phone: approved CTA offset) · API: approved content only. Δh 0 everywhere else. Overflow 0 (all routes, 320–1920). Audit 16/16 clean |
+
+## Phase 3: Deployment
+| # | Sub-phase | Estimate | Start | End | Wall | Who | Notes |
+|---|---|---|---|---|---|---|---|
+| 3.1 | firebase.json, .firebaserc, deploy scripts, live-deploy "ask" guard, README | 0:10 | 22:46 | 22:49 | 0:03 | main | Target found by listing projects/sites: bc-signup-customisation-app (its live channel serves the old site) |
+| 3.2 | Preview channel deploy + verification | 0:15 | 22:49 | 22:53 | 0:04 | main | Live channel untouched. 301s, 404, trailing slash, headers, cache, sitemap verified on Firebase; audit 16/16; pixel check home/pricing/API matches local; browser check |
+| 3.2b | Commit + push testing and deployment changes (user request) | – | 22:57 | 22:58 | 0:01 | main | Commit timestamp in `git log` is the exact end |
+| 3.3 | Production deploy + live checks | 0:10 | | | | main | Waiting for your approval (default: after the app's v2 release) |
+
+## Analysis: what took longer and why
+
+- **Where time went (active 2:08):** discovery + setup 0:28 · development 0:55 · testing 0:39 · deployment 0:07. The 3:47 gap was the session being paused, not work.
+- **Parallel agents paid off:** 22 agent runs; batches ran 3.1–5.3× faster than sequential (dev pages: 121 agent-minutes in 23 wall-minutes).
+- **Why estimates were far too high:** component contracts and data shapes were fixed before the page agents started (no merge conflicts), and the test tooling (DOM diff + pixel compare) was built during setup, so QA was mechanical. The first baseline was already 0.02–1.75% from the designs.
+- **Avoidable costs:** (1) an interrupt right after launching QA agents stopped the dev server and stalled all 3 agents (relaunch needed); (2) deleting two routes without regenerating Next's route types broke typecheck for other agents for ~5 min; (3) the image aspect-ratio root cause (WebP variants round to whole pixels) was found only in QA, and fixing it in BrowserFrame/Logo from the start would have saved each QA agent a pass.
+- **Next time:** avoid interrupting while background agents run (or pause them first); pin image aspect ratios in shared image components from day one; when the baseline is this close, 2 QA agents would do instead of 4.
+
+## Change requests (2026-09-29)
+
+| # | Item | Start | End | Wall | Agent-min | Who | Notes |
+|---|---|---|---|---|---|---|---|
+| CR-0 | Design canvas: homepage Reviews section (placeholders → sample reviews → premium navy band, gold stars), versions 3–5 | not captured | 10:57 | – | – | main | Start time not recorded (no `date` call before the first edit). ~5 min lost to a DNS outage for the artifact host (3 refused saves, recovered after the resolver cache expired) |
+| CR-1 | Website: Reviews section (dev) + preview-only sample gating | 10:58 | 11:12 | 0:14 | 11.4 | page-builder + main | Samples render only in `build:preview` (NEXT_PUBLIC_SAMPLE_REVIEWS=1); live build shows real reviews or nothing. Main: real-rating option in softwareApplicationLd (home + pricing) |
+| CR-1t | Test CR-1: preview build vs updated design | 11:11 | 11:15 | 0:04 | – | main | Home 0.12% / 0.18%, Δh 0, 0 missing/extra copy. One failed build: stale Turbopack cache in .next (moved aside, not deleted) |
+| CR-1b | Show sample reviews on the dev server too (you couldn't see them on localhost) | 11:52 | 11:53 | 0:01 | – | main | Gate is now `NODE_ENV === "development"` or `build:preview`; the live build is unchanged |
+| CR-2a | Screenshot v2: sandbox feasibility (read-only analysis) | 10:58 | 11:16 | 0:18 | 22.4 | research agent | Feasible: 4 screens as-is from the emulator; storefronts need a local BigCommerce API mock (preload redirect). No .env, no writes to the app repo |
+| ⏸ | Demo-content confirmation from user | 11:16 | 11:24 | 0:08 | – | – | Chosen: Harbor & Pine Supply; 5 serving storefronts on Enterprise |
+| CR-2b | Capture v2 app screenshots at 2× (private sandbox, emulator, BC mock, demo seed) | 11:24 | 12:01 | 0:37 | 36.0 | capture agent | ~25 min was one-time sandbox setup (copy, env, emulator, BigCommerce mock, Harbor & Pine seed); capture itself ~10 min after a "deliver now" nudge at 11:56. 8 PNG masters at 2880 px wide; sandbox reusable for re-captures |
+| CR-2c | Design canvas: v2 page (8 artboard copies, new images, note) + save | 12:02 | 12:05 | 0:03 | – | main | Originals untouched on page "v1 — current"; images 73–197 KB at 1800 px, 4:4:4 chroma; canvas 4.6 MB (Version 6). One rebuild misfired (zsh does not split \$ARGS) and was redone |
+| CR-1c | Commit the reviews work on feat/website-redesign (local, not pushed; your request) | 12:17 | 12:19 | 0:02 | – | main | Typecheck + lint re-run first; commit timestamp in `git log` is the exact end |
+| CR-3 | Website: switch to the v2 screenshots on branch feat/website-screenshots-v2 | 12:18 | 12:24 | 0:06 | – | main | 5 masters at 2× added beside the v1 files (v1 untouched, now unused); home, multi-storefront, release-notes and apps data point to them with the V2 design sizes and updated alt text; 2400 w variant added for retina heroes; WebP 82 → 90 + smartSubsample after an A/B crop test (small coloured UI text was soft at 82; hero 2400 w = 131 KB). Removed a hard-coded 860/580 ratio in MultiStorefrontHero (BrowserFrame already pins it) |
+| CR-3t | Test CR-3: preview build vs the V2 artboards, overflow, audit, 1×/2×/3× variant check | 12:25 | 12:35 | 0:10 | – | main | Δh 0 on 7 of 8 artboards; mismatch home 0.17/0.17% · multi-storefront 0.21/0.51% · release notes 0.07/0.14% · apps 0.04% (phone +132 px = approved 40 px CTAs). Copy diff clean except the approved placeholder tokens. 0 overflow, audit 16/16. Retina loads the 2400 w hero and 1440 w features; 3× phones load 1080 w |
+| ⏸ | Waiting for your go-ahead to commit | 12:36 | 15:17 | – | – | – | Idle, not counted |
+| CR-3c | Commit v2 screenshots on feat/website-screenshots-v2; push it and feat/website-redesign (reviews commit) — your request | 15:17 | 15:18 | 0:01 | – | main | Commit timestamp in `git log` is the exact end |

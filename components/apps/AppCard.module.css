@@ -1,0 +1,125 @@
+/* Apps.dc.html app card (phone: MobileApps.dc.html) */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  border-radius: 22px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+/* Everything under the preview; grows so the CTA row (margin-top: auto) sits at the card bottom */
+.body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 18px;
+}
+
+/* Screenshot frame: radius 16 on both artboards, no shadow */
+.shot {
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.appIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--navy);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.here {
+  align-self: flex-start;
+}
+
+.features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.check {
+  color: var(--success);
+  flex: none;
+}
+
+/* Wraps only when a card is too narrow for both buttons (below the 1440 artboard) */
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.ctas .cta {
+  flex: 1;
+}
+
+/* 768–1279: two columns; an odd last card spans both, preview beside the text */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .card:nth-child(odd):last-child {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .card:nth-child(odd):last-child > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 22px;
+  }
+
+  .ctas {
+    flex-direction: column;
+  }
+
+  /* Approved deviation: the design's flex: 1 collapses these to ~18px in a column; keep btn-sm 40px */
+  .ctas .cta {
+    flex: none;
+  }
+}

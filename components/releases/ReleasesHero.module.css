@@ -1,0 +1,66 @@
+/* ReleaseNotes.dc.html hero; phone values from MobileReleaseNotes.dc.html */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 80px 120px 24px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.title {
+  font-size: 56px;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.legend {
+  display: flex;
+  gap: 8px;
+}
+
+/* Legend tags are 28px tall; compound selector so it beats the Tag base whatever the load order */
+.legend .legendTag {
+  height: 28px;
+  padding: 0 12px;
+}
+
+@media (max-width: 1279px) {
+  .hero {
+    padding: 80px var(--pad-x-tablet) 24px;
+  }
+}
+
+/* Below 1024 the legend moves under the text */
+@media (max-width: 1023px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    align-items: stretch;
+    padding: 36px 20px 8px;
+  }
+
+  .text {
+    gap: 14px;
+    max-width: none;
+  }
+
+  .title {
+    font-size: 34px;
+    line-height: 1.12;
+  }
+}

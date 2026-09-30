@@ -1,372 +1,66 @@
-import Link from "next/link";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import Icon from "@/components/Icon";
-import SignupPreview from "@/components/SignupPreview";
-import { APP_NAME, VENDOR, SITE_URL, LINKS } from "@/lib/site";
+import { CtaBand } from "@/components/home/CtaBand";
+import { Features } from "@/components/home/Features";
+import { HomeFaq } from "@/components/home/HomeFaq";
+import { HomeHero } from "@/components/home/HomeHero";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { MadeFor } from "@/components/home/MadeFor";
+import { MoreApps } from "@/components/home/MoreApps";
+import { PricingTeaser } from "@/components/home/PricingTeaser";
+import { Reviews } from "@/components/home/Reviews";
+import { TrustStrip } from "@/components/home/TrustStrip";
+import { Footer } from "@/components/layout/Footer";
+import { HashRedirect } from "@/components/layout/HashRedirect";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { JsonLd } from "@/components/ui/JsonLd";
+import { answeredFaqs, homeFaqs } from "@/lib/content/faqs";
+import { PLAN_OFFERS } from "@/lib/content/plans";
+import { MARKETPLACE_RATING } from "@/lib/content/reviews";
+import { buildMetadata, faqLd, organizationLd, softwareApplicationLd, websiteLd } from "@/lib/seo";
 
-export const metadata = {
-  alternates: { canonical: "/" },
-};
+export const metadata = buildMetadata({
+  title: "Custom Signup Forms - B2B Registration for BigCommerce",
+  absoluteTitle: true,
+  description:
+    "Replace the default BigCommerce account form with one you design, review every applicant before they can buy, and place them in the right customer group.",
+  path: "/",
+});
 
-const FEATURES = [
-  { ic: "builder", t: "Visual form builder", d: "Drag-and-drop builder with live preview. Add, reorder and group fields into rows, and style colours, fonts, borders and spacing - no code, no theme edits." },
-  { ic: "fields", t: "Every field type", d: "Text, email, phone, number, textarea, select, radio, checkbox, date, URL, country/state pickers, and file uploads for documents like trade licences." },
-  { ic: "userCheck", t: "Approve every request", d: "New signups land in a review queue, not straight into your customer list. Approve to create the BigCommerce account, reject, or ask for more information." },
-  { ic: "mail", t: "Automated emails", d: "Branded HTML templates for submission, approval, rejection and resubmission - with your logo, colours and dynamic placeholders. Send a test before going live." },
-  { ic: "group", t: "Auto customer groups", d: "Approved applicants are created in BigCommerce and assigned to the customer group you choose - instant wholesale or members-only pricing and access." },
-  { ic: "palette", t: "On-brand & responsive", d: "Center or split-screen layouts with your own imagery. Forms match your store and work beautifully on desktop and mobile." },
-];
+// Short factual description for SoftwareApplication (MobileHome hero copy).
+const APP_DESCRIPTION =
+  "Replace the default BigCommerce account form with one you design, and review every applicant before they can buy.";
 
-const FLOW_ADMIN = [
-  { n: "01", t: "Install the app", d: "The store owner installs Custom Signup Forms from the BigCommerce marketplace." },
-  { n: "02", t: "Build the form", d: "Design the custom signup fields in the visual builder - exactly what you need to collect." },
-  { n: "03", t: "Activate & embed", d: "Enable the form and embed it on the store's account signup page." },
-  { n: "04", t: "SMTP settings", d: "Add your own email credentials so signup notifications send from your address." },
-];
+// aggregateRating only from the REAL Marketplace rating; the design's sample rating never reaches JSON-LD.
+const SOFTWARE_APPLICATION_LD = softwareApplicationLd(PLAN_OFFERS, APP_DESCRIPTION, MARKETPLACE_RATING);
 
-const FLOW_CUSTOMER = [
-  { n: "05", t: "Visit the store", d: "A shopper lands on the signup page with your embedded custom form." },
-  { n: "06", t: "Fill the form", d: "They complete all of your custom fields, including any file uploads." },
-  { n: "07", t: "Click apply", d: "They submit the application - an email goes to both the store owner and the applicant." },
-];
+// Old in-page anchors that now have their own route.
+const HASH_REDIRECTS = { "#pricing": "/pricing/" };
 
-const FLOW_OUTCOMES = [
-  { ic: "check", tone: "live", t: "Approve", d: "The customer account is created and added to a customer group you choose." },
-  { ic: "x", tone: "danger", t: "Reject", d: "The application is declined and the applicant is notified." },
-  { ic: "refresh", tone: "warn", t: "Request resubmission", d: "Ask the applicant for more information; they update and resubmit." },
-];
-
-const USECASES = [
-  { ic: "group", t: "B2B & wholesale", d: "Vet resellers before they get trade pricing. Collect a trade licence and company details, approve, and drop them into your wholesale group." },
-  { ic: "shield", t: "Members-only stores", d: "Gate registration behind your approval so only vetted customers can create an account and shop." },
-  { ic: "form", t: "Custom applications", d: "Loyalty programmes, dealer networks, event access - any flow where you need more than name and email up front." },
-];
-
-const FAQS = [
-  { q: "How does it replace the default BigCommerce signup form?", a: "The app generates a lightweight script you add in Storefront → Script Manager. On the create-account page it swaps the default form for your custom one - no theme files to edit, and you can remove it any time by deleting the script." },
-  { q: "Do customers get an account immediately?", a: "Only if you want them to. By default every submission becomes a request you review. When you approve it, the app creates the customer in BigCommerce and assigns your chosen customer group. You can also reject or ask for more information." },
-  { q: "Can I collect file uploads, like a trade licence?", a: "Yes. The file-upload field lets applicants attach documents, which are stored securely and shown with the request so you can verify before approving." },
-  { q: "Which emails can I customise?", a: "Submission confirmation, approval, rejection and resubmission requests. Each is a branded HTML template with your logo, colours, banner and CTA, and supports dynamic placeholders like the customer's name. Send yourself a test first." },
-  { q: "What permissions does the app need?", a: "Customer management (to create approved accounts), customer groups (to assign them), and storefront scripts (to install the form). It does not touch your orders or payments." },
-  { q: "Does it block login or hide catalog prices for pending customers?", a: "It gates account creation - not the storefront itself. A pending applicant has no BigCommerce account yet, so there is simply nothing to log into until you approve them. On approval the app creates their account with a secure password reset so they can sign in. It does not hide catalog or pricing on its own: what visitors see is governed by your BigCommerce settings - your “require login to see prices” option and your customer-group price lists. The app supports that model by making sure only approved customers get an account, and land in the customer group whose pricing you've configured." },
-  { q: "Will it conflict with an ERP/connector (e.g. Acumatica) that manages customer groups?", a: "No. The app assigns a customer group only once - at the moment it creates the approved customer - and only if you pick a group on approval (it's optional). It never runs an ongoing sync or re-assigns groups afterwards, so it won't fight a connector that pushes group membership. If you want your ERP to be the single source of truth for groups, just leave the group unset on approval and let the connector handle it." },
-  { q: "What does it cost?", a: "Every install starts with a 7-day free trial. After that it's a flat USD 100/month, plus a one-time USD 100 setup fee - unlimited forms and requests, no per-signup charges." },
-];
-
-export default function Home() {
-  // Tells Google the preferred site name (otherwise it falls back to the bare domain).
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: APP_NAME,
-    url: `${SITE_URL}/`,
-    publisher: { "@type": "Organization", name: VENDOR, url: LINKS.vendor },
-  };
-
+export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <Nav />
-
-      {/* ---------- Hero ---------- */}
-      <section className="hero">
-        <div className="wrap hero-grid">
-          <div>
-            <span className="eyebrow on-ink"><span className="dot" /> BigCommerce Signup App</span>
-            <h1>Custom signup forms, <span className="hl">with approval built in</span>.</h1>
-            <p className="lead">
-              Replace the default BigCommerce account form with a branded form you design - then review
-              and approve every request, assign customer groups, and automate the emails. Built for
-              B2B, wholesale and members-only stores.
-            </p>
-            <div className="hero-cta">
-              <a href={LINKS.marketplace} target="_blank" rel="noopener" className="btn btn-primary btn-lg">
-                <Icon name="store" size={18} /> Get it on BigCommerce
-              </a>
-              <Link href="/docs" className="btn btn-ink btn-lg">
-                <Icon name="book" size={18} /> Read the docs
-              </Link>
-            </div>
-            <div className="trust">
-              <span className="trust-item"><Icon name="check" /> No code required</span>
-              <span className="trust-sep" />
-              <span className="trust-item"><Icon name="check" /> Approve before they buy</span>
-              <span className="trust-sep" />
-              <span className="trust-item"><Icon name="check" /> 7-day free trial</span>
-            </div>
-          </div>
-          <SignupPreview />
-        </div>
-      </section>
-
-      {/* ---------- Features ---------- */}
-      <section id="features" className="sec">
-        <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow"><span className="dot" /> Why merchants use it</span>
-            <h2 className="h-sec" style={{ marginTop: 12 }}>A signup experience that&apos;s actually yours.</h2>
-            <p className="lead">Stop settling for the default form and the open-door registration that comes with it. Capture exactly what you need, and let no one in without your say-so.</p>
-          </div>
-          <div className="fgrid">
-            {FEATURES.map((f) => (
-              <div key={f.t} className="fcard">
-                <div className="fic"><Icon name={f.ic} size={22} /></div>
-                <h3>{f.t}</h3>
-                <p>{f.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- How it works (complete end-to-end flow) ---------- */}
-      <section id="how" className="sec alt">
-        <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow"><span className="dot" /> The complete flow</span>
-            <h2 className="h-sec" style={{ marginTop: 12 }}>How it works, end to end.</h2>
-            <p className="lead">From installing the app to approving customers into the right group - every step, for both the store owner and the shopper.</p>
-          </div>
-
-          <div className="flowmap">
-            {/* Phase 1 - store owner sets up */}
-            <div className="fm-phase">
-              <div className="fm-phase-h"><span className="fm-tag">Store owner</span> Set up the app</div>
-              <div className="fm-grid fm-grid-4 fm-seq">
-                {FLOW_ADMIN.map((s) => (
-                  <div key={s.n} className="fm-step">
-                    <span className="fm-n">{s.n}</span>
-                    <h4>{s.t}</h4>
-                    <p>{s.d}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="fm-note">
-                <Icon name="mail" size={16} />
-                Once SMTP is configured, both the store owner and the applicant get an email on every new signup request.
-              </p>
-            </div>
-
-            {/* Phase 2 - customer applies */}
-            <div className="fm-band"><span>Customer applies</span></div>
-            <div className="fm-phase">
-              <div className="fm-phase-h"><span className="fm-tag warn">Shopper</span> Apply through your form</div>
-              <div className="fm-grid fm-grid-3 fm-seq">
-                {FLOW_CUSTOMER.map((s) => (
-                  <div key={s.n} className="fm-step warn">
-                    <span className="fm-n">{s.n}</span>
-                    <h4>{s.t}</h4>
-                    <p>{s.d}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Phase 3 - admin reviews the request */}
-            <div className="fm-band"><span>You review the request</span></div>
-            <div className="fm-phase">
-              <div className="fm-wide">
-                <span className="fm-n">08</span>
-                <div>
-                  <h4>The request appears in your dashboard</h4>
-                  <p>Open it to see the submitted form and all applicant details, then choose what happens next:</p>
-                </div>
-              </div>
-              <div className="fm-grid fm-grid-3 fm-outs">
-                {FLOW_OUTCOMES.map((o) => (
-                  <div key={o.t} className={`fm-out ${o.tone}`}>
-                    <span className="fm-out-ic"><Icon name={o.ic} size={18} /></span>
-                    <h4>{o.t}</h4>
-                    <p>{o.d}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Phase 4 - on approval */}
-            <div className="fm-band"><span>On approval</span></div>
-            <div className="fm-phase">
-              <div className="fm-wide live">
-                <span className="fm-n">09</span>
-                <div>
-                  <h4>Assign them to a customer group</h4>
-                  <p>Pick the customer group on approval - pricing, catalog access and permissions then update automatically for that customer, exactly as your BigCommerce customer groups are configured.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <p className="fm-foot">
-            Custom Signup Forms manages the signup and approval - who becomes a customer and which group they join.
-            Login, and catalog &amp; price visibility, stay your BigCommerce settings, so it sits happily alongside an ERP/Acumatica connector.
-          </p>
-        </div>
-      </section>
-
-      {/* ---------- Request management ---------- */}
-      <section className="sec">
-        <div className="wrap split">
-          <div>
-            <span className="eyebrow"><span className="dot" /> Request management</span>
-            <h2 className="h-sec" style={{ marginTop: 12 }}>Review every applicant in one queue.</h2>
-            <p className="lead" style={{ marginTop: 14 }}>
-              Each submission lands in your dashboard with the full form data and any uploaded files.
-              Approve to create the account, reject, or request more information - one at a time or in bulk.
-            </p>
-            <ul className="checks">
-              <li><span className="ck"><Icon name="check" /></span><div><b>See everything before you decide.</b><br /><span>Full submission details and documents on every request.</span></div></li>
-              <li><span className="ck"><Icon name="check" /></span><div><b>Approve in bulk.</b><br /><span>Clear a backlog of trusted applicants in a couple of clicks.</span></div></li>
-              <li><span className="ck"><Icon name="check" /></span><div><b>Cooldowns stop duplicates.</b><br /><span>Configurable limits prevent repeat submissions from the same applicant.</span></div></li>
-            </ul>
-          </div>
-          <div className="req-list">
-            <div className="req">
-              <span className="req-av">AK</span>
-              <div className="req-body"><b>Aisha Khan</b><span>Bright Retail · Wholesale</span></div>
-              <span className="req-stat pending">Pending</span>
-            </div>
-            <div className="req">
-              <span className="req-av">MR</span>
-              <div className="req-body"><b>Marco Rossi</b><span>Rossi Trading · Reseller</span></div>
-              <span className="req-stat approved">Approved</span>
-            </div>
-            <div className="req">
-              <span className="req-av">LN</span>
-              <div className="req-body"><b>Lena Novak</b><span>Members club application</span></div>
-              <span className="req-stat approved">Approved</span>
-            </div>
-            <div className="req">
-              <span className="req-av">JD</span>
-              <div className="req-body"><b>Jonah Dane</b><span>Incomplete documents</span></div>
-              <span className="req-stat rejected">Rejected</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Use cases ---------- */}
-      <section className="sec alt">
-        <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow"><span className="dot" /> Made for</span>
-            <h2 className="h-sec" style={{ marginTop: 12 }}>Whenever &ldquo;just sign up&rdquo; isn&apos;t enough.</h2>
-            <p className="lead">If you need to vet customers or collect more than an email, this is your form.</p>
-          </div>
-          <div className="fgrid">
-            {USECASES.map((u) => (
-              <div key={u.t} className="fcard">
-                <div className="fic"><Icon name={u.ic} size={22} /></div>
-                <h3>{u.t}</h3>
-                <p>{u.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Pricing ---------- */}
-      <section id="pricing" className="sec">
-        <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow"><span className="dot" /> Pricing</span>
-            <h2 className="h-sec" style={{ marginTop: 12 }}>One simple plan.</h2>
-            <p className="lead">Start with a free trial. No per-signup fees, no field limits - everything included.</p>
-          </div>
-          <div className="plan-wrap">
-            <div className="plan">
-              <div className="plan-head">
-                <span className="plan-name">Pro <span className="chip">7-day free trial</span></span>
-                <div className="plan-price">
-                  <b>$100</b><span>/ month</span>
-                </div>
-                <p className="plan-sub">Plus a one-time $100 setup fee. Try every feature free for 7 days - cancel any time by uninstalling.</p>
-              </div>
-              <div className="plan-body">
-                <ul className="checks">
-                  <li><span className="ck"><Icon name="check" /></span><div><b>Unlimited forms &amp; fields</b><br /><span>Build and publish as many form versions as you need.</span></div></li>
-                  <li><span className="ck"><Icon name="check" /></span><div><b>Unlimited signup requests</b><br /><span>No caps and no per-approval charges.</span></div></li>
-                  <li><span className="ck"><Icon name="check" /></span><div><b>All email templates &amp; file uploads</b><br /><span>Full branding, approvals, customer groups and document collection.</span></div></li>
-                </ul>
-                <div className="plan-foot">
-                  <a href={LINKS.marketplace} target="_blank" rel="noopener" className="btn btn-primary btn-lg" style={{ width: "100%" }}>
-                    <Icon name="store" size={18} /> Start free on BigCommerce
-                  </a>
-                  <span className="plan-note">Billed in USD. See the BigCommerce listing for current pricing.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Docs ---------- */}
-      <section className="sec alt">
-        <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow"><span className="dot" /> Documentation</span>
-            <h2 className="h-sec" style={{ marginTop: 12 }}>Guides for every step.</h2>
-            <p className="lead">Everything you need to install the app and run your signup flow - reviewable before you install.</p>
-          </div>
-          <div className="dgrid">
-            <Link href="/docs/installation" className="dcard">
-              <div className="fic"><Icon name="box" size={22} /></div>
-              <h3>Installation guide</h3>
-              <p>Requirements, permissions, and a step-by-step setup from install to a live custom form on your storefront.</p>
-              <span className="more">Read the guide <Icon name="arrowR" /></span>
-            </Link>
-            <Link href="/docs/user-guide" className="dcard">
-              <div className="fic"><Icon name="book" size={22} /></div>
-              <h3>User guide</h3>
-              <p>Day-to-day usage: the form builder, request approvals, email templates, customer groups and settings.</p>
-              <span className="more">Read the guide <Icon name="arrowR" /></span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- FAQ ---------- */}
-      <section id="faq" className="sec">
-        <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow"><span className="dot" /> FAQ</span>
-            <h2 className="h-sec" style={{ marginTop: 12 }}>Questions, answered.</h2>
-          </div>
-          <div className="faq">
-            {FAQS.map((f) => (
-              <details key={f.q}>
-                <summary>{f.q} <span className="ic"><Icon name="plus" size={18} /></span></summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- CTA ---------- */}
-      <section className="sec" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="cta">
-            <div className="cta-in">
-              <h2>Ready to own your signup flow?</h2>
-              <p>Install Custom Signup Forms, design your form, and start approving the right customers - live in minutes, free for 7 days.</p>
-              <div className="cta-btns">
-                <a href={LINKS.marketplace} target="_blank" rel="noopener" className="btn btn-primary btn-lg">
-                  <Icon name="store" size={18} /> Get it on BigCommerce
-                </a>
-                <Link href="/docs/installation" className="btn btn-ink btn-lg">
-                  <Icon name="box" size={18} /> Installation guide
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <SiteHeader variant="dark" />
+      <main id="main">
+        <HomeHero />
+        <TrustStrip />
+        <Features />
+        <HowItWorks />
+        <MadeFor />
+        <Reviews />
+        <PricingTeaser />
+        <HomeFaq />
+        <MoreApps />
+        <CtaBand />
+      </main>
       <Footer />
+      <JsonLd
+        data={[
+          websiteLd,
+          organizationLd,
+          SOFTWARE_APPLICATION_LD,
+          faqLd(answeredFaqs(homeFaqs)),
+        ]}
+      />
+      <HashRedirect map={HASH_REDIRECTS} />
     </>
   );
 }

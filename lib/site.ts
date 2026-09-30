@@ -14,4 +14,7 @@ export const LINKS = {
   vendor: "https://codinative.com/",
   support: "mailto:info@codinative.com?subject=Custom%20Signup%20Forms",
   email: "info@codinative.com",
+  // Sister Codinative apps (their marketplace listings are not known yet, so CTAs use these sites).
+  shippingRules: "https://custom-shipping-rules.codinative.com/",
+  stickyCart: "https://sticky-add-to-cart.codinative.com/",
 };

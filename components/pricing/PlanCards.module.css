@@ -1,0 +1,34 @@
+/* Pricing.dc.html plan grid; phone values from MobilePricing.dc.html */
+.section {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 96px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding: 0 var(--pad-x-tablet);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 0 20px 40px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}

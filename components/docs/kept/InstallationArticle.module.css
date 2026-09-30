@@ -1,0 +1,43 @@
+/* Not designed: the guide's in-content buttons, gap 10 as on the previous site. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Requirements are not ordered, so they keep the previous site's check list (check style from the design's feature lists). */
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.checklist li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.check {
+  color: var(--success);
+  flex: none;
+  margin-top: 1px;
+}
+
+.checklist strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.checkText {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-body);
+}

@@ -1,0 +1,30 @@
+/* ReleaseNotes.dc.html body section; phone values from MobileReleaseNotes.dc.html */
+.section {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 64px;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 24px 120px 96px;
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding: 24px var(--pad-x-tablet) 96px;
+  }
+}
+
+/* Narrower rail below 1024, where each article's meta sits above it */
+@media (max-width: 1023px) {
+  .section {
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    display: block;
+    padding: 8px 20px 40px;
+  }
+}

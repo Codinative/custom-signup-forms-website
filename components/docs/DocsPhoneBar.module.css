@@ -1,0 +1,89 @@
+/* MobileApiDocs.dc.html: 48px bar under the header ("Docs / API integration" · "On this page ▾") */
+.bar {
+  position: relative;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 48px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+/* Ellipsis only matters on the narrowest phones with long guide titles */
+.crumb {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 13px;
+  color: var(--text-body);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.menu {
+  flex: none;
+}
+
+/* Vertical padding gives a 44px tap target inside the 48px bar; the text stays centred */
+.summary {
+  display: block;
+  padding: 14px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-700);
+  white-space: nowrap;
+  list-style: none;
+  cursor: pointer;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Not designed: minimal open panel (docs search-box shadow, right-rail link style) */
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 20px;
+  z-index: 20;
+  min-width: 220px;
+  max-width: calc(100vw - 40px);
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px -16px rgba(15, 23, 42, 0.3);
+}
+
+/* 1024–1279: the TOC rail is hidden, so the bar keeps "On this page" (the breadcrumb and sidebar are still shown) */
+@media (max-width: 1279px) {
+  .bar {
+    display: flex;
+    padding: 0 var(--pad-x-tablet);
+  }
+
+  .panel {
+    right: var(--pad-x-tablet);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .crumb {
+    display: none;
+  }
+
+  .menu {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .bar {
+    padding: 0 20px;
+  }
+
+  .panel {
+    right: 20px;
+  }
+}

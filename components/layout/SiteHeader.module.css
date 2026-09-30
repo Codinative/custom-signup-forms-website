@@ -1,0 +1,88 @@
+/* Header from Main/MultiStorefront (dark) and Pricing/Apps (light); phone from MobileHome/MobilePricing */
+.header {
+  height: var(--header-h);
+}
+
+/* Transparent over the page's dark hero; the hero draws the gradient and grid */
+.dark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.light {
+  border-bottom: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 64px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.link {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.dark .link {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.dark .link[aria-current="page"] {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.light .link {
+  color: var(--text-2);
+}
+
+.light .link[aria-current="page"] {
+  font-weight: 600;
+  color: var(--blue-900);
+}
+
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (max-width: 1279px) {
+  .inner {
+    padding: 0 var(--pad-x-tablet);
+  }
+}
+
+/* The desktop nav and buttons need ~950px; below 1024 the menu button takes over */
+@media (max-width: 1023px) {
+  .nav,
+  .ctas {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding: 0 20px;
+  }
+
+  .logo {
+    height: 36px;
+  }
+}

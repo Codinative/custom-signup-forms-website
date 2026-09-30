@@ -1,0 +1,204 @@
+/* Pricing teaser: Main.dc.html section 6 (4-column cards) and MobileHome.dc.html section 4
+   (stacked phone cards, gap 14 from the section column) */
+.section {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.inner {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 110px 120px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  margin-bottom: 44px;
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.intro {
+  max-width: 380px;
+}
+
+.head .introPhone {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.featured {
+  border: 2px solid var(--blue-600);
+}
+
+.badgeSpace {
+  height: 24px;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.price {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.period {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.card .blurb {
+  font-size: 14px;
+  min-height: 46px;
+}
+
+.card .cta {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.phoneCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.phoneFeatured {
+  border: 2px solid var(--blue-600);
+}
+
+.phoneTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.phoneName {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.phonePrice {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.phonePeriod {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.phoneCard .phoneBlurb {
+  font-size: 14px;
+}
+
+.phoneCard .phoneCta {
+  width: 100%;
+  height: 46px;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.compare {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.compare:hover {
+  color: var(--blue-700);
+}
+
+@media (max-width: 1279px) {
+  .inner {
+    padding: 110px var(--pad-x-tablet);
+  }
+
+  .head {
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* MobileHome: one column with gap 14 (eyebrow, h2, intro, cards, link) */
+@media (max-width: 767px) {
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 56px 20px;
+  }
+
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 1.15;
+  }
+
+  .more {
+    margin-top: 6px;
+  }
+}

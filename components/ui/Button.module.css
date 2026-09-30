@@ -1,0 +1,66 @@
+/* .btn / .btn-sm / .btn-* from the design's shared stylesheet.
+   Size/shape rules use :where() so page className overrides (heights 34/46/50/52, widths) win;
+   variant colours keep class specificity so they beat the global a { color } rule. */
+:where(.btn) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+:where(.sm) {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+/* Hero buttons in the designs: height 54, padding 0 26, 16px */
+:where(.lg) {
+  height: 54px;
+  padding: 0 26px;
+  font-size: 16px;
+}
+
+.primary {
+  background: var(--blue-600);
+  color: #ffffff;
+  box-shadow: var(--shadow-primary);
+}
+
+.primary:hover {
+  background: var(--blue-700);
+  color: #ffffff;
+}
+
+.white {
+  background: #ffffff;
+  color: var(--blue-900);
+}
+
+.ghost {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.outline {
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  background: #ffffff;
+}
+
+.violet {
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+.white:focus-visible,
+.ghost:focus-visible {
+  outline-color: var(--blue-300);
+}

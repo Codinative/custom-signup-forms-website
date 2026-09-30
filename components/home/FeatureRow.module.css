@@ -1,0 +1,122 @@
+/* Feature row: Main.dc.html (text 470 max + screenshot, gap 72) and MobileHome.dc.html
+   (eyebrow, h3, body and frame stacked with gap 14) */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 72px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 470px;
+}
+
+.labels {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  font-size: 36px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.text .desc {
+  font-size: 16px;
+}
+
+.checks {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.checkIcon {
+  color: var(--success);
+  flex: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.link:hover {
+  color: var(--blue-700);
+}
+
+.media {
+  flex: 1;
+  min-width: 0;
+}
+
+/* --shot-ratio: the design image's size (set inline from the feature data) */
+.shot {
+  aspect-ratio: var(--shot-ratio);
+}
+
+/* Rows 2 and 4 put the screenshot on the left; the DOM keeps text first for the stacked layouts */
+.reverse .media {
+  order: -1;
+}
+
+@media (max-width: 1023px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .reverse .media {
+    order: 0;
+  }
+
+  .media {
+    flex: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .row {
+    gap: 14px;
+  }
+
+  .text {
+    gap: 14px;
+    max-width: none;
+  }
+
+  .labels {
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 1.18;
+  }
+
+  .text .desc {
+    font-size: 15px;
+  }
+}

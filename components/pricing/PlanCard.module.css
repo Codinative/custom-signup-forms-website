@@ -1,0 +1,181 @@
+/* Pricing.dc.html plan card; phone values from MobilePricing.dc.html.
+   Compound selectors (.card .x) where a rule must beat the global .body or Button's own
+   height, whatever order the stylesheets load in. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 28px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.featured {
+  border: 2px solid var(--blue-600);
+  box-shadow: 0 24px 48px -24px rgba(37, 99, 235, 0.45);
+}
+
+/* Empty 24px slot that lines the cards up with the Pro badge */
+.spacer {
+  height: 24px;
+}
+
+.badge {
+  align-self: flex-start;
+}
+
+/* Desktop sequence: badge, name, tagline, then the price row and the rest */
+.badge,
+.spacer,
+.name,
+.tagline {
+  order: -1;
+}
+
+.head {
+  display: contents;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.card .tagline {
+  font-size: 14px;
+  min-height: 46px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 54px;
+}
+
+.price {
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.period {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.card .cta {
+  width: 100%;
+}
+
+.note {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.divider {
+  height: 1px;
+  background: var(--line);
+  margin: 6px 0;
+}
+
+.lead {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.item {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.check {
+  color: var(--success);
+  flex: none;
+}
+
+@media (max-width: 767px) {
+  .card {
+    gap: 12px;
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .featured {
+    box-shadow: none;
+  }
+
+  .spacer,
+  .note,
+  .divider {
+    display: none;
+  }
+
+  .badge,
+  .name,
+  .tagline {
+    order: 0;
+  }
+
+  /* Name left, price right, on one baseline */
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .name {
+    font-size: 22px;
+  }
+
+  .card .tagline {
+    min-height: auto;
+  }
+
+  /* Inline price + period; the period's leading space shows here */
+  .priceRow {
+    display: block;
+    min-height: auto;
+  }
+
+  .price {
+    font-size: 28px;
+    line-height: normal;
+  }
+
+  .period {
+    font-size: 13px;
+  }
+
+  .card .cta {
+    height: 50px;
+  }
+
+  .list {
+    gap: 9px;
+  }
+
+  .item {
+    gap: 8px;
+  }
+
+  .check {
+    width: 16px;
+    height: 16px;
+  }
+}
