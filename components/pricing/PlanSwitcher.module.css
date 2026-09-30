@@ -7,7 +7,7 @@
 
 .tabs {
   position: sticky;
-  top: 0;
+  top: var(--header-h);
   display: flex;
   gap: 4px;
   padding: 4px;
@@ -77,4 +77,10 @@
 .value {
   flex: none;
   margin: 0;
+}
+
+/* Hover states (owner request, 2026-09-30) */
+.tab:not([aria-selected="true"]):hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
 }

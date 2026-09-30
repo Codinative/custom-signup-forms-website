@@ -20,7 +20,6 @@ site (`output: 'export'`) and hosted on **Firebase Hosting** (GCP). No database,
 | API integration | https://custom-signup-forms.codinative.com/docs/api/ |
 | Release notes | https://custom-signup-forms.codinative.com/release-notes/ |
 | More apps | https://custom-signup-forms.codinative.com/apps/ |
-| The app (embedded) | https://signup.codinative.com/ |
 | Codinative | https://codinative.com/ |
 
 ## Structure
@@ -29,7 +28,7 @@ site (`output: 'export'`) and hosted on **Firebase Hosting** (GCP). No database,
 app/                       One folder per route; layout.tsx (fonts, metadata), globals.css (design tokens),
                            sitemap.ts, robots.ts, icon.png, not-found.tsx
 components/ui/             Button, Tag, Icon, BrowserFrame, CodeBlock, FAQ, PlaceholderBox, JsonLd …
-components/layout/         SiteHeader (dark/light), MobileMenu, Footer, Logo, HashRedirect
+components/layout/         SiteHeader (dark/light, sticky), StickyHeader, MobileMenu, Footer, Logo, HashRedirect
 components/docs/           Docs article template (sidebar, "On this page", phone bar) + docs pages
 components/<page>/         Page sections (home, pricing, multi-storefront, apps, releases, legal)
 lib/content/               Typed content: plans, featureMatrix, faqs, releases, docsIndex, apps, navigation, routes

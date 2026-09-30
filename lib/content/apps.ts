@@ -21,7 +21,8 @@ export type AppEntry = {
   icon: IconName;
   features: string[];
   siteUrl: string;
-  marketplaceUrl: string;
+  /** null = not on the BigCommerce marketplace yet; the card shows APP_CARD_COPY.comingSoonLabel. */
+  marketplaceUrl: string | null;
   current: boolean;
   preview: AppPreview;
 };
@@ -56,6 +57,7 @@ export const APP_CARD_COPY = {
   currentTag: "You are here",
   siteLabel: "Visit site",
   marketplaceLabel: "Get it on BigCommerce",
+  comingSoonLabel: "Coming soon",
 } as const;
 
 // Source: design/Apps.dc.html, MobileApps.dc.html; home cards: Main.dc.html, MobileHome.dc.html.
@@ -82,8 +84,7 @@ export const APPS: AppEntry[] = [
     icon: "truck",
     features: ["Native BigCommerce shipping provider", "Two UPS delivery tiers", "Markup, fuel surcharge and VAT"],
     siteUrl: LINKS.shippingRules,
-    // TODO(owner): marketplace URL
-    marketplaceUrl: LINKS.shippingRules,
+    marketplaceUrl: LINKS.shippingRulesListing,
     current: false,
     preview: "checkout",
   },
@@ -96,8 +97,8 @@ export const APPS: AppEntry[] = [
     icon: "cart",
     features: ["Smart show triggers", "Drag-to-arrange layout", "Built for mobile"],
     siteUrl: LINKS.stickyCart,
-    // TODO(owner): marketplace URL
-    marketplaceUrl: LINKS.stickyCart,
+    // Not on the BigCommerce marketplace yet: the card shows "Coming soon" instead of the button.
+    marketplaceUrl: null,
     current: false,
     preview: "stickyBar",
   },

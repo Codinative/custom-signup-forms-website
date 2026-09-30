@@ -82,3 +82,21 @@ Times are PKT (UTC+5), taken from `date`. **Wall-clock** is elapsed time. **Agen
 | CR-3t | Test CR-3: preview build vs the V2 artboards, overflow, audit, 1×/2×/3× variant check | 12:25 | 12:35 | 0:10 | – | main | Δh 0 on 7 of 8 artboards; mismatch home 0.17/0.17% · multi-storefront 0.21/0.51% · release notes 0.07/0.14% · apps 0.04% (phone +132 px = approved 40 px CTAs). Copy diff clean except the approved placeholder tokens. 0 overflow, audit 16/16. Retina loads the 2400 w hero and 1440 w features; 3× phones load 1080 w |
 | ⏸ | Waiting for your go-ahead to commit | 12:36 | 15:17 | – | – | – | Idle, not counted |
 | CR-3c | Commit v2 screenshots on feat/website-screenshots-v2; push it and feat/website-redesign (reviews commit) — your request | 15:17 | 15:18 | 0:01 | – | main | Commit timestamp in `git log` is the exact end |
+
+## Change requests (2026-09-30), branch fix/website-feedback (from origin/main after PR #3)
+
+| # | Item | Start | End | Wall | Agent-min | Who | Notes |
+|---|---|---|---|---|---|---|---|
+| CR-4a | logo-dark.png with the "Powered by CodiNative" line (for Firebase Storage) | 17:30 | 17:37 | 0:07 | – | main | Built from the app repo's navbar artwork (white line, 351×131, transparent) plus a literal variant with logo.png's navy badge; saved to `Custom Signup Forms/Brand assets/`. Local main was checked out and 6 behind origin/main, so the new branch starts from origin/main |
+| CR-4b | Website fixes: remove every "Open the app", 2 FAQ answers, apps-page CTAs, taller sticky header, no menu chevrons, site-wide hovers | 17:37 | 17:48 | 0:11 | – | main | signup.codinative.com has no DNS record. Custom Shipping Rules listing verified live (app 65724); Sticky Add to Cart shows "Coming soon". FAQ answers checked against the app (Script Manager install, create-account page) and plans. New client component: StickyHeader |
+| CR-4t | Test CR-4: preview build, overflow sweep, audit, scripted browser checks of every fix, header screenshots | 17:49 | 17:57 | 0:08 | – | main | Overflow 0 (16 routes × 15 widths), audit 16/16. Header 88/72 px, sticky/fixed, solid on scroll; anchors land below it; docs columns stick at 112 px, pricing switcher at 72 px. One polish: scrolled navy 0.92 → 0.96 |
+| CR-4c | Commit on fix/website-feedback, merge into main, push main (your request) | 18:24 | – | – | – | main | Merge commit timestamp in `git log` is the exact end |
+
+## Other deliverables (not the website)
+
+| # | Item | Start | End | Notes |
+|---|---|---|---|---|
+| M-1 | Marketplace slides, black + gold (5), then the BigCommerce logo in the sidebar | 2026-09-29 16:45 | 17:20 | Temp folder had been cleared, so only the committed website screenshots were available |
+| M-2 | Recapture: builder with the field-types panel, full Storefronts screen; update 2 slides | 17:29 | 17:36 | Private sandbox rebuilt from the capture agent's logged scripts; stopped afterwards |
+| M-3 | Blue edition of the slides (website brand) | 17:37 | 17:58 | Black + gold set re-rendered pixel-identical |
+| M-4 | App screens only, 3280 px (v3 folder) | 2026-09-30 14:58 | – | End not captured. Google Fonts was unreachable, so renders now use local copies of the site's fonts |

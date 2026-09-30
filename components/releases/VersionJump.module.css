@@ -40,3 +40,13 @@
   outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
 }
+
+/* Hover states (owner request, 2026-09-30) */
+.jump {
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.jump:hover {
+  border-color: var(--blue-600);
+  background: var(--blue-50);
+}

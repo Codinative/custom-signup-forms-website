@@ -43,7 +43,8 @@ export const pricingFaqs: Faq[] = [
 ];
 
 // Source: design/Main.dc.html (questions; Q1 answer). Q4 and Q5 answers: the current site's
-// approved copy (user-approved). Q6 reuses the pricing answer. Q2 and Q3 still need answers.
+// approved copy (user-approved). Q6 reuses the pricing answer. Q2 and Q3: written from the owner's
+// notes (2026-09-30), checked against the app (Script Manager install, create-account page) and plans.
 export const homeFaqs: Faq[] = [
   {
     q: "Is there really a free plan?",
@@ -51,11 +52,11 @@ export const homeFaqs: Faq[] = [
   },
   {
     q: "How does it replace the default BigCommerce signup form?",
-    a: null,
+    a: "The app adds a small script to your storefront through BigCommerce's Script Manager, so there are no theme edits. On the create-account page, that script swaps BigCommerce's default form for the one you built. By default every submission then waits in the app as a request, and only the applicants you approve become BigCommerce customers - so only people you authorize can sign in and buy.",
   },
   {
     q: "Can I run a different form on each storefront?",
-    a: null,
+    a: "Yes. With multi-storefront, each BigCommerce storefront can serve its own form, with its own emails and approval rules, and anything you don't override follows your defaults. Multi-storefront is part of the Pro plan (up to 3 storefronts) and Enterprise (4 or more).",
   },
   {
     q: "Do customers get an account immediately?",

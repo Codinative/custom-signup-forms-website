@@ -85,7 +85,7 @@ export function MobileMenu({ variant }: MobileMenuProps) {
       onClick={onSheetClick}
     >
       <div className={styles.sheetHeader}>
-        <Logo tone="light" height={44} className={styles.logo} eager />
+        <Logo tone="light" height={52} className={styles.logo} eager />
         <button type="button" className={styles.close} aria-label="Close menu" onClick={() => close(true)}>
           <Icon name="close" size={22} />
         </button>
@@ -94,18 +94,12 @@ export function MobileMenu({ variant }: MobileMenuProps) {
         {menuLinks.map((link) => (
           <Link key={link.label} href={link.href} className={`disp ${styles.item}`}>
             {link.label}
-            <span className={styles.chevron}>
-              <Icon name="chevronRight" size={20} />
-            </span>
           </Link>
         ))}
       </nav>
       <div className={styles.actions}>
         <Button href={menuCtas.install.href} variant="white" className={styles.cta}>
           {menuCtas.install.label}
-        </Button>
-        <Button href={menuCtas.app.href} variant="ghost" className={styles.cta}>
-          {menuCtas.app.label}
         </Button>
       </div>
     </div>

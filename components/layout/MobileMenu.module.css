@@ -22,13 +22,24 @@
   color: var(--ink);
 }
 
+.dark:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.light:hover {
+  border-color: var(--blue-600);
+  background: var(--blue-50);
+  color: var(--blue-700);
+}
+
 @media (max-width: 1023px) {
   .trigger {
     display: flex;
   }
 }
 
-/* Sheet from MobileMenu.dc.html. From 768 to 1023 its header lines up with the 80px page header. */
+/* Sheet from MobileMenu.dc.html. From 768 to 1023 its header lines up with the page header. */
 .sheet {
   position: fixed;
   inset: 0;
@@ -67,6 +78,11 @@
   cursor: pointer;
 }
 
+.close:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .nav {
   display: flex;
   flex: none;
@@ -74,9 +90,9 @@
   padding: 12px var(--pad-x-tablet);
 }
 
+/* Plain rows: the items have no children, so no chevrons (owner request, 2026-09-30) */
 .item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   height: 60px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -85,7 +101,7 @@
   font-weight: 600;
 }
 
-.chevron {
+.item:hover {
   color: var(--blue-300);
 }
 
@@ -108,7 +124,7 @@
   }
 
   .logo {
-    height: 36px;
+    height: 40px;
   }
 
   .nav {

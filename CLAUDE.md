@@ -43,6 +43,6 @@ App repo = facts source only, never edit: `/Users/macbook/Documents/Arham Asjid/
 
 ## Hard rules (details in `.claude/rules/`)
 - The design wins: copy, sizes, colours, spacing exactly as in `.dc.html`. No additions, removals or "improvements".
-- Every file ≤ 300 lines. Server Components by default; `'use client'` only for MobileMenu, FaqAccordion, PlanSwitcher, VersionJump, DocsSearch, DocsToc, HashRedirect.
+- Every file ≤ 300 lines. Server Components by default; `'use client'` only for MobileMenu, FaqAccordion, PlanSwitcher, VersionJump, DocsSearch, DocsToc, HashRedirect, StickyHeader.
 - Facts (prices, limits, links, API) only from DESIGN-SPEC.md or the app repo. Placeholders stay a visible `PlaceholderBox`; never invent ratings, counts, dates or quotes.
 - Never read `.env*` or secrets. Never `rm -rf`.
