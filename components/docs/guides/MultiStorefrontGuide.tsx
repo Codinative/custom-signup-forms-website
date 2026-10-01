@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Callout } from "@/components/docs/Callout";
 import { DefinitionRows, type DefinitionRow } from "@/components/docs/DefinitionRows";
+import { DocsFigure } from "@/components/docs/DocsFigure";
+import { FIGURES } from "@/components/docs/user-guide/guideData";
 import { ProseSection } from "@/components/docs/Prose";
 import { StepCards, type StepCard } from "@/components/docs/StepCards";
 import { PlaceholderBox } from "@/components/ui/PlaceholderBox";
@@ -69,6 +71,7 @@ export function MultiStorefrontGuide() {
           </>
         }
       >
+        <DocsFigure {...FIGURES.msfOff} caption="Storefronts, before multi-storefront is on: click Enable multi-storefront." />
         <p>
           The app checks your channel access with BigCommerce first. Once it’s on, you set up each storefront from the
           same screen.
@@ -85,12 +88,14 @@ export function MultiStorefrontGuide() {
           </>
         }
       >
+        <DocsFigure {...FIGURES.storefrontUk} caption="A storefront's page: its form, the Serving switch at the top right, and shortcuts to its requests, emails and approval settings." />
         <p>Every storefront picks from the same library of saved forms.</p>
         <Callout tone="note">
           A storefront can’t be switched on without a form. Until it has one, the app shows &quot;No form assigned yet —
           this storefront cannot be switched on until one is.&quot;
         </Callout>
         <h3>Assign one form to several storefronts</h3>
+        <DocsFigure {...FIGURES.storefronts} caption="Apply a form to several storefronts sits beside the storefront list." />
         <p>
           Use &quot;Apply a form to several storefronts&quot; to assign one form to up to 50 storefronts at once. It only
           assigns the form: each storefront keeps its own on/off switch.
@@ -136,6 +141,7 @@ export function MultiStorefrontGuide() {
           With a storefront selected, each setting shows Inherit or Override. Inherit keeps following your defaults,
           including later changes. Override gives that storefront its own value, and no other storefront changes.
         </p>
+        <DocsFigure {...FIGURES.override} caption="Editing one storefront: tick Override on a setting to give that storefront its own value." />
         <p>A storefront can override:</p>
         <ul>
           <li>Sender details (From Email, From Name, Reply-To, Store Display Name) and the SMTP account.</li>
@@ -152,7 +158,9 @@ export function MultiStorefrontGuide() {
       <ProseSection
         {...S("requests-by-storefront")}
         intro="Every signup records the storefront it came from. Filter the request queue and the Dashboard by storefront, or switch between storefronts from the bar at the top."
-      />
+      >
+        <DocsFigure {...FIGURES.switcher} caption="The storefront switcher, next to the logo." />
+      </ProseSection>
 
       <ProseSection
         {...S("turn-it-off")}

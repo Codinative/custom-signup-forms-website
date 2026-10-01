@@ -1,0 +1,26 @@
+/* Derived, not designed: app screenshots in the User guide (owner request, 2026-10-01).
+   The screenshot frame keeps its border and radius; the hero drop shadow is toned down for an article. */
+:where(.figure) {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 4px 0;
+}
+
+.frame {
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px -12px rgba(15, 23, 42, 0.18);
+}
+
+:where(.caption) {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* The frame links to the full-size capture */
+.zoom {
+  display: block;
+  border-radius: 16px;
+  cursor: zoom-in;
+}

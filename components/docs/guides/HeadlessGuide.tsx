@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Callout } from "@/components/docs/Callout";
+import { DocsFigure } from "@/components/docs/DocsFigure";
+import { FIGURES } from "@/components/docs/user-guide/guideData";
 import { ProseSection } from "@/components/docs/Prose";
 import { StepCards, type StepCard } from "@/components/docs/StepCards";
 import { CodeBlock, CodeHeader } from "@/components/ui/CodeBlock";
@@ -58,6 +60,7 @@ export function HeadlessGuide() {
         }
       >
         <CodeBlock header={<CodeHeader title="Embed snippet" lang="html" />} lines={SCRIPT_LINES} />
+        <DocsFigure {...FIGURES.storefront} caption="The headless storefront's page in the app: both snippets, ready to copy." />
         <p>
           Use your own tag, not this example. It identifies your store and the storefront the form belongs to. The tag
           is the same everywhere; only the place it goes changes.
