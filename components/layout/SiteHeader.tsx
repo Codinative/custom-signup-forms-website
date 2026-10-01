@@ -25,7 +25,7 @@ export function SiteHeader({ variant, active }: SiteHeaderProps) {
     <StickyHeader className={[styles.header, dark ? `${styles.dark} onDark` : styles.light].join(" ")}>
       <div className={styles.inner}>
         <Link href="/" aria-label={`${APP_NAME} home`} className={styles.logoLink}>
-          <Logo tone={dark ? "light" : "dark"} height={52} className={styles.logo} eager />
+          <Logo tone={dark ? "light" : "dark"} height={60} className={styles.logo} eager />
         </Link>
         <nav aria-label="Main" className={styles.nav}>
           {headerLinks.map((link) => (

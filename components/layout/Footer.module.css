@@ -33,10 +33,6 @@
   color: var(--faint);
 }
 
-.partner {
-  align-self: flex-start;
-}
-
 .column {
   display: flex;
   flex-direction: column;
@@ -52,9 +48,12 @@
   font-size: 14px;
 }
 
+/* Copyright left, partner badge right (owner request, 2026-10-01: replaces "Built for BigCommerce") */
 .bottom {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 24px;
   margin-top: 56px;
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);

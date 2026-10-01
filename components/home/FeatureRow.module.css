@@ -53,6 +53,64 @@
   flex: none;
 }
 
+/* Not available yet (owner request, 2026-10-01) */
+.soonIcon {
+  color: var(--faint);
+  flex: none;
+}
+
+.soon {
+  color: var(--muted);
+}
+
+.soonTag {
+  vertical-align: 1px;
+}
+
+/* Key capability box (owner request, 2026-10-01): leads the row's selling points, desktop and phone */
+.highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--blue-200);
+  border-radius: 14px;
+  background: var(--blue-50);
+}
+
+.highlightIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--blue-600);
+  color: #ffffff;
+}
+
+.highlightText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.highlightTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.highlightBody {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-body);
+}
+
 .link {
   display: inline-flex;
   align-items: center;
@@ -118,5 +176,15 @@
 
   .text .desc {
     font-size: 15px;
+  }
+
+  .highlight {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .highlightIcon {
+    width: 36px;
+    height: 36px;
   }
 }

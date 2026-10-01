@@ -20,8 +20,8 @@ export type GuideMeta = {
 export const GUIDES: Record<GuideSlug, GuideMeta> = {
   "multi-storefront": {
     description:
-      "Turn on multi-storefront, give each BigCommerce storefront its own signup form, emails and approval settings, and switch storefronts on or off.",
-    lede: "Give each BigCommerce storefront its own signup form, emails and approval settings, all from one app. Anything you don’t override keeps following your defaults.",
+      "Turn on multi-storefront, give each storefront its own signup form, emails and approval settings, and switch storefronts on or off.",
+    lede: "Give each storefront its own signup form, emails and approval settings, all from one app. Anything you don’t override keeps following your defaults.",
     plan: "Pro and Enterprise",
     toc: [
       { id: "before-you-start", label: "Before you start" },
@@ -48,7 +48,7 @@ export const GUIDES: Record<GuideSlug, GuideMeta> = {
   },
   headless: {
     description:
-      "Embed the signup form on a headless BigCommerce storefront, such as Catalyst, Next.js or Nuxt, with an empty container and one script tag.",
+      "Embed the signup form on a headless storefront, such as Catalyst, Next.js or Nuxt, with an empty container and one script tag.",
     lede: "Put your signup form on a storefront BigCommerce doesn’t render, such as Catalyst, Next.js or Nuxt. Your developer adds an empty container and one script tag.",
     plan: "Pro and Enterprise",
     toc: [

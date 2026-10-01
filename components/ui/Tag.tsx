@@ -13,7 +13,8 @@ export type TagTone =
   | "glass"
   | "glassSubtle"
   | "code"
-  | "navy";
+  | "navy"
+  | "soon";
 
 export type TagProps = {
   tone: TagTone;

@@ -19,6 +19,14 @@ export type Screenshot = {
   alt: string;
 };
 
+/** A desktop check line; `soon` marks something not available yet ("Coming soon" tag). */
+export type Check = string | { text: string; soon: true };
+
+/** A key capability called out in a box under the body, on desktop and phone. */
+export type Highlight = { icon: IconName; title: string; tag?: string; body: string };
+
+export const COMING_SOON = "Coming soon";
+
 export type Feature = {
   id: string;
   eyebrow: string;
@@ -26,8 +34,9 @@ export type Feature = {
   tag?: { desktop: string; phone: string };
   title: ResponsiveCopy;
   body: ResponsiveCopy;
+  highlight?: Highlight;
   /** Desktop only. */
-  checks: string[];
+  checks: Check[];
   /** Desktop only. */
   link?: { label: string; href: string };
   image: Screenshot;
@@ -66,22 +75,29 @@ export const FEATURES: Feature[] = [
       desktop: "Design the form you need, not the one BigCommerce ships.",
       phone: "Design the form you need.",
     },
+    // Owner (2026-10-01): fields are added with a click (not dragged in), and file uploads lead.
     body: {
       desktop:
-        "Drag fields into place, pair them into two columns, add headings and help text, and style it to match your store. Preview on desktop and mobile before it goes live.",
-      phone: "Drag fields into place, add conditional logic and file uploads, and preview on desktop and mobile.",
+        "Add each field with a click, reorder them and pair them into two columns, add headings and help text, and style it to match your store. Preview on desktop and mobile before it goes live.",
+      phone: "Add each field with a click, set conditional logic, and preview on desktop and mobile.",
+    },
+    highlight: {
+      icon: "upload",
+      title: "File uploads",
+      tag: "Paid plans",
+      body: "Applicants attach a trade licence, a tax certificate or any document you ask for - something BigCommerce's own signup form can't do.",
     },
     checks: [
       "Text, email, phone, number, dropdown, single and multiple choice, date, website, country and state",
-      "File uploads for trade licences and tax documents",
       "Conditional logic: show fields based on an answer",
       'An "Other" option with its own text box',
     ],
+    // 2× capture with the field-types panel open (same crop as the Marketplace screenshot)
     image: {
-      src: "/images/builder-v2.png",
-      width: 1800,
-      height: 1385,
-      alt: "Form builder with a live desktop preview of the Apply for a trade account form: name, business email, password, company, business type, VAT or tax ID and a trade licence upload",
+      src: "/images/builder-fields-v2.png",
+      width: 1440,
+      height: 1256,
+      alt: "Form builder with the field types to add on the left - account fields, text, email, phone, number, long text, dropdown, choices, country, state, date, file upload and website - and a live desktop preview of the Apply for a trade account form",
     },
     reverse: false,
   },
@@ -139,21 +155,22 @@ export const FEATURES: Feature[] = [
     },
     body: {
       desktop:
-        "Serve a different signup form on each BigCommerce storefront, with its own emails and approval rules, and see which storefront every request came from.",
+        "Serve a different signup form on each storefront, with its own emails and approval rules, and see which storefront every request came from.",
       phone: "A different form, emails and rules per storefront, plus an embed snippet for headless sites.",
     },
     checks: [
       "A different form, email set, cooldown and group rules per storefront",
       "Everything you do not override follows your defaults",
-      "Embed snippet for headless storefronts such as Catalyst or Next.js",
+      "Embed snippet for headless storefronts such as Catalyst, Next.js, Nuxt, React or Angular - any site that can add a script tag",
       "Filter the request queue by storefront",
+      { text: "API integration for headless storefronts that can't add a script", soon: true },
     ],
     link: { label: "Explore multi-storefront", href: "/multi-storefront/" },
     image: {
       src: "/images/storefronts-list-v2.png",
       width: 1400,
       height: 748,
-      alt: "Storefronts list showing the signup form each BigCommerce storefront serves, including a headless Catalyst storefront",
+      alt: "Storefronts list showing the signup form each storefront serves, including a headless Catalyst storefront",
     },
     reverse: true,
   },
@@ -169,7 +186,8 @@ export const STEPS: Step[] = [
   {
     label: "Step 2",
     title: "Build and switch on your form",
-    body: "Design it in the builder and activate it. The app adds it to your create-account page for you.",
+    // Owner (2026-10-01): mention headless set-up. Headless embed is Pro and Enterprise (featureMatrix).
+    body: "Design it in the builder and activate it. The app adds it to your create-account page for you. Headless storefront (Pro and Enterprise)? Paste one script tag where the form should appear.",
   },
   {
     label: "Step 3",

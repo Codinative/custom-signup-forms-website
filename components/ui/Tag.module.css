@@ -67,3 +67,9 @@
   background: var(--navy);
   color: #ffffff;
 }
+
+/* Not available yet (owner-approved 2026-10-01); same quiet slate as the apps-page "Coming soon" */
+:where(.soon) {
+  background: var(--row);
+  color: var(--muted);
+}

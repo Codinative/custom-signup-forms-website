@@ -1,0 +1,12 @@
+/* Official partner badge (owner-approved 2026-10-01): blue on light surfaces, the one-colour white
+   version on dark ones. Its "BigCommerce Partner" line reads clearly from about 56px tall in blue
+   (48px in white on navy). */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+}
+
+.badge img {
+  display: block;
+}

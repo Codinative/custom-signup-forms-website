@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { Callout } from "@/components/docs/Callout";
+import { DocsFigure } from "@/components/docs/DocsFigure";
 import { ProseSection } from "@/components/docs/Prose";
 import { StepCards, type StepCard } from "@/components/docs/StepCards";
+import { FIGURES } from "@/components/docs/user-guide/guideData";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { getDoc, type TocItem } from "@/lib/content/docsIndex";
@@ -12,30 +15,36 @@ const SECTIONS = {
   requirements: { id: "requirements", label: "Before you install" },
   permissions: { id: "permissions", label: "Permissions" },
   steps: { id: "steps", label: "Installation steps" },
-  script: { id: "script", label: "Installing the script" },
+  script: { id: "script", label: "The storefront script" },
   troubleshooting: { id: "troubleshooting", label: "Troubleshooting" },
 } satisfies Record<string, TocItem>;
 
 export const installationToc: TocItem[] = Object.values(SECTIONS);
 
 const REQUIREMENTS: StepCard[] = [
-  { title: "A BigCommerce store", text: "Any plan. Install from the App Marketplace or your control panel under Apps → My Apps." },
-  { title: "Access to Script Manager", text: "You'll add one storefront script to swap the default account page for your custom form. It lives under Storefront → Script Manager." },
-  { title: "Customer groups (optional)", text: "If you want approved applicants assigned to a group - e.g. Wholesale - create the group in BigCommerce first so you can select it." },
+  { title: "A BigCommerce store", text: "Install from the BigCommerce App Marketplace. The app adds the form to a standard (Stencil) storefront for you; a headless storefront takes a short embed snippet instead (Pro and Enterprise)." },
+  { title: "Customer groups (optional)", text: "If approved applicants should join a group, such as Wholesale, create the group in BigCommerce first so you can pick it in the app." },
+  { title: "An email (SMTP) account (optional)", text: "Customer emails (Standard plan and up) are sent through your own provider, such as Brevo, SendGrid or Gmail. Keep its SMTP details at hand." },
 ];
 
 const STEPS: StepCard[] = [
-  { title: "Install the app", text: "Add Custom Signup Forms from the BigCommerce App Marketplace, or from Apps → My Apps. Your 7-day free trial starts on install." },
-  { title: "Grant the requested permissions", text: "BigCommerce shows the permissions the app needs and asks you to confirm. Approve them to finish - you're returned to the app dashboard." },
-  { title: "Build your form", text: "Open the Form Builder, add and arrange your fields, set the layout and branding, and use Live Preview to check it. Save when you're happy." },
-  { title: "Generate & install the script", text: "The app generates a storefront script. Add it in Storefront → Script Manager (see below) so the form appears on your create-account page." },
-  { title: "Set up emails & approvals", text: "Customise your email templates, choose the customer group for approved accounts, and configure notifications and cooldowns in Settings." },
-  { title: "Verify on the storefront", text: "Visit your store's create-account page. You should see your custom form. Submit a test application and confirm it appears in the Requests dashboard." },
+  { title: "Install the app", text: "Open the Custom Signup Forms listing on the BigCommerce App Marketplace and click Install." },
+  { title: "Approve the permissions", text: "BigCommerce lists what the app needs (see Permissions) and asks you to confirm. The app then opens in your control panel." },
+  { title: "Choose a plan", text: "Start on Free, or pick a paid plan with a 7-day free trial. You can change plan later under Settings → Subscription." },
+  { title: "Build your form", text: "In Form Builder, click New Form, add the account fields (name, email, password) and your own fields, style it and click Save." },
+  { title: "Activate it", text: "In Form Builder → Forms, click Activate on the form. The app adds the storefront script for you: nothing to paste." },
+  { title: "Test on your storefront", text: "Open your store's create-account page, send a test application and find it under Requests. Then set up emails and approvals." },
 ];
 
-const userGuide = getDoc("user-guide");
+/** Step 4 screenshot (2× capture of the demo store; size in CSS px). Step 3 uses FIGURES.plans. */
+const FIELDS_FIGURE = { src: "/images/install-builder-fields.png", width: 324, height: 697, alt: "Form builder sidebar: Add account fields (name, email, password), the field types and Edit Theme", maxWidth: 324 };
 
-/** Installation guide body, kept verbatim from the previous site; rendered inside DocsArticleLayout. */
+const userGuide = getDoc("user-guide");
+const headless = getDoc("headless");
+const multiStorefront = getDoc("multi-storefront");
+const smtp = getDoc("email-smtp");
+
+/** Installation guide body (corrected 2026-10-01 against the app: the script is installed automatically); rendered inside DocsArticleLayout. */
 export function InstallationArticle() {
   return (
     <>
@@ -65,18 +74,20 @@ export function InstallationArticle() {
       <ProseSection
         id={SECTIONS.permissions.id}
         title={SECTIONS.permissions.label}
-        intro="On install the app requests only the scopes it needs to run the signup flow - nothing about your orders or payments:"
+        intro="BigCommerce shows the exact permissions on the install screen. The app uses them to:"
       >
         <ul>
-          <li><strong>Customers - modify</strong> - to create approved applicants as real BigCommerce customer accounts.</li>
-          <li><strong>Customer groups - read</strong> - to list your groups so you can assign approved customers to one.</li>
-          <li><strong>Content / Checkout scripts - modify</strong> - to install the storefront script that renders your form.</li>
+          <li><strong>Customers</strong> - create approved applicants as BigCommerce customers and list your customer groups.</li>
+          <li><strong>Content (scripts)</strong> - add and remove the storefront script that shows your form.</li>
+          <li><strong>Channel settings</strong> - list your storefronts, so multi-storefront can serve a different form on each.</li>
         </ul>
-        <Callout tone="note">The app never reads or writes orders or payment data.</Callout>
+        <Callout tone="note">The app never reads or writes your store&apos;s orders or payment data.</Callout>
       </ProseSection>
 
       <ProseSection id={SECTIONS.steps.id} title={SECTIONS.steps.label} intro="Six steps from install to a live form.">
         <StepCards steps={STEPS} hideOnPhone={false} />
+        <DocsFigure {...FIGURES.plans} caption="Step 3: the plan chooser opens the first time you use the app. Free needs no card; Standard and Pro start with a 7-day free trial." />
+        <DocsFigure {...FIELDS_FIGURE} caption="Step 4: start with Add account fields, then click each field type you need." />
         <div className={styles.actions}>
           <Button href={userGuide.href} variant="outline" size="sm" icon={userGuide.icon} iconSize={16}>
             Read the User guide
@@ -87,23 +98,46 @@ export function InstallationArticle() {
       <ProseSection
         id={SECTIONS.script.id}
         title={SECTIONS.script.label}
-        intro="Custom Signup Forms renders on the storefront through a single script you add in BigCommerce:"
+        intro="You don't add any code to a standard storefront. When you activate a form, the app installs one script through BigCommerce's Scripts API:"
       >
+        <DocsFigure {...FIGURES.forms} caption="Form Builder → Forms: activate a form and the app installs the script; the live form shows the Active badge." />
         <ul>
-          <li>Go to <strong>Storefront → Script Manager</strong> and click <strong>Create a Script</strong>.</li>
-          <li>Set <strong>Location</strong> to <strong>Footer</strong> and <strong>Pages</strong> to the <strong>Login</strong> / create-account page (or all pages).</li>
-          <li>Paste the script the app generated, then save.</li>
+          <li>It appears in <strong>Storefront → Script Manager</strong> as <strong>Custom Signup Form</strong>. Leave it there; the app keeps it up to date.</li>
+          <li>On your create-account page it replaces BigCommerce&apos;s form with yours and shows a thank-you message after the shopper submits.</li>
+          <li>Editing the active form needs no new script: shoppers get the new version the next time the page loads.</li>
+          <li><strong>Deactivate</strong> the form in the app to remove the script and bring back BigCommerce&apos;s own form.</li>
         </ul>
-        <p>On the create-account page the script replaces the default form with your custom one, handles validation and file uploads, and shows your thank-you message after submission. To remove it later, simply delete the script.</p>
+        <p>
+          With multi-storefront on, the app installs the script on each storefront you switch on (
+          <Link href={multiStorefront.href}>{multiStorefront.title}</Link>). A headless storefront needs the embed snippet
+          added by your developer (<Link href={headless.href}>{headless.title}</Link>).
+        </p>
       </ProseSection>
 
       <ProseSection id={SECTIONS.troubleshooting.id} title={SECTIONS.troubleshooting.label}>
         <h3>The default form still shows</h3>
-        <p>The script isn&apos;t loading on that page. Re-check that the script is enabled in <strong>Script Manager</strong>, that it targets the create-account / Login page, and that you saved the latest version generated by the app.</p>
+        <p>
+          Check that a form is active: <strong>Form Builder → Forms</strong> names the active form at the top right. With
+          multi-storefront on, open <strong>Storefronts</strong> and check that the storefront has a form and is switched to{" "}
+          <strong>Serving</strong>. On a headless storefront, both embed steps are needed. Then reload the create-account page.
+        </p>
         <h3>Submissions aren&apos;t appearing in Requests</h3>
-        <p>Make sure you installed the most recent generated script after your last save, and that your form is published. Then submit a fresh test application.</p>
+        <p>
+          Choose the <strong>All</strong> filter and, with multi-storefront on, <strong>All storefronts</strong> in the header.
+          Someone who already has a pending request or an account, or who was rejected within the cooldown period, can&apos;t
+          submit again with the same email. On the Free plan the form stops taking signups after 100 in a month.
+        </p>
         <h3>Approved customers aren&apos;t in the right group</h3>
-        <p>Open <strong>Settings</strong> and confirm the default customer group is set. Groups must exist in BigCommerce before they appear in the list.</p>
+        <p>
+          Pick the group in the <strong>Approve</strong> dialog, or set a rule under <strong>Settings → Customer Groups</strong>{" "}
+          (Standard plan and up; the Free plan assigns no group). Groups must exist in BigCommerce before they appear.
+        </p>
+        <h3>Applicants don&apos;t get emails</h3>
+        <p>
+          Customer emails need a paid plan, your SMTP details and <strong>Enable Customer Emails</strong> switched on under{" "}
+          <strong>Email → Email Settings</strong> (<Link href={smtp.href}>{smtp.title}</Link>), and the email&apos;s own
+          switch on under <strong>Settings → Email Sending</strong>.
+        </p>
         <Callout tone="note">
           Still stuck? Email <a href={LINKS.support}>{LINKS.email}</a> - we reply within one business day.
         </Callout>

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Callout } from "@/components/docs/Callout";
 import { DefinitionRows, type DefinitionRow } from "@/components/docs/DefinitionRows";
+import { DocsFigure } from "@/components/docs/DocsFigure";
+import { FIGURES } from "@/components/docs/user-guide/guideData";
 import { ProseSection } from "@/components/docs/Prose";
 import { StepCards, type StepCard } from "@/components/docs/StepCards";
 import { PlaceholderBox } from "@/components/ui/PlaceholderBox";
@@ -87,6 +89,7 @@ export function EmailSmtpGuide() {
           </>
         }
       >
+        <DocsFigure {...FIGURES.smtpEdit} caption="Email Settings after Edit Settings: sender details first, then your SMTP account." />
         <DefinitionRows rows={FIELDS} keyWidth={200} className={styles.stackedRows} />
         <p>Store Display Name is the only optional field.</p>
         <h3>If the app won’t save</h3>
@@ -108,11 +111,13 @@ export function EmailSmtpGuide() {
           </>
         }
       >
+        <DocsFigure {...FIGURES.sendTest} caption="Send Test Email: the email goes through your SMTP account." />
         <Callout tone="note">Saving your settings doesn’t test the connection. Send a test to check them.</Callout>
         <p>If the test fails, check the host, port, username and password with your provider, then try again.</p>
       </ProseSection>
 
       <ProseSection {...S("customer-emails")} intro="There are five. Edit their content in Email → Templates.">
+        <DocsFigure {...FIGURES.emails} caption="Email → Templates: the five emails, with a preview of the selected one." />
         <DefinitionRows rows={EMAILS} keyWidth={240} className={styles.stackedRows} />
         <p>
           Switch any of them off in Settings → Email Sending. The Approval Email can have a different version per
@@ -131,6 +136,7 @@ export function EmailSmtpGuide() {
         {...S("notifications")}
         intro="The app can email you when someone signs up. Set it up in Settings → Notifications."
       >
+        <DocsFigure {...FIGURES.settings} caption="Settings → Notifications." />
         <p>
           Notifications go to your account email. To use another address, turn on &quot;Use custom notification
           email&quot; and enter a &quot;Custom Notification Email&quot;. They’re sent by the app, not through your

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import { Tag } from "@/components/ui/Tag";
+import { PartnerBadge } from "@/components/ui/PartnerBadge";
 import { getDoc } from "@/lib/content/docsIndex";
 import { LINKS, VENDOR } from "@/lib/site";
 import styles from "./ContactCard.module.css";
@@ -47,9 +47,7 @@ export function ContactCard() {
           className={styles.badge}
           aria-label={`${VENDOR} - Certified BigCommerce Partner`}
         >
-          <Tag tone="navy" icon="shieldCheck" iconSize={15} className={styles.partner}>
-            Certified BigCommerce Partner
-          </Tag>
+          <PartnerBadge height={56} />
         </a>
       </div>
 

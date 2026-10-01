@@ -13,7 +13,7 @@ export function HowItWorks() {
             <h2 className={`disp ${styles.title}`}>Live in three steps.</h2>
           </div>
           <p className={`body ${styles.intro}`}>
-            No theme edits and no developer. The default BigCommerce form comes back the moment you switch yours off.
+            No theme edits and no developer on a standard storefront. The default BigCommerce form comes back the moment you switch yours off.
           </p>
         </div>
         <div className={styles.grid}>

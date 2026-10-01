@@ -5,6 +5,16 @@ export const VENDOR = "Codinative";
 /** Canonical public origin (no trailing slash) - used for metadata + structured data. */
 export const SITE_URL = "https://custom-signup-forms.codinative.com";
 
+/** Official "Certified BigCommerce Partner" badge (owner-supplied SVG, 161×52) and its one-colour
+ * white version for dark surfaces (same artwork, blue fill swapped for white). */
+export const PARTNER_BADGE = {
+  src: "/images/codinative-certified-bigcommerce-partner-badge.svg",
+  srcWhite: "/images/codinative-certified-bigcommerce-partner-badge-white.svg",
+  width: 161,
+  height: 52,
+  alt: "Codinative is a Certified BigCommerce Partner",
+};
+
 /** Links - update these once the listing + app URLs are final. */
 export const LINKS = {
   // BigCommerce marketplace listing (live).

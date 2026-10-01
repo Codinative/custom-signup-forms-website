@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Callout } from "@/components/docs/Callout";
 import { DefinitionRows, type DefinitionRow } from "@/components/docs/DefinitionRows";
+import { DocsFigure } from "@/components/docs/DocsFigure";
+import { FIGURES } from "@/components/docs/user-guide/guideData";
 import { ProseSection } from "@/components/docs/Prose";
 import { PLANS, type PlanId } from "@/lib/content/plans";
 import { LINKS } from "@/lib/site";
@@ -69,7 +71,7 @@ export function PlansBillingGuide() {
     <>
       <ProseSection
         {...S("the-plans")}
-        intro="Every plan includes the drag-and-drop form builder and the approval queue. Here’s what each one costs and allows:"
+        intro="Every plan includes the visual form builder and the approval queue. Here’s what each one costs and allows:"
       >
         <DefinitionRows rows={PLAN_ROWS} className={styles.stackedRows} />
         <p>
@@ -102,6 +104,7 @@ export function PlansBillingGuide() {
           </>
         }
       >
+        <DocsFigure {...FIGURES.plans} caption="The &quot;Choose your plan&quot; screen. Later you change plan from Settings → Subscription." />
         <p>
           To change it later, go to Settings → Subscription and click &quot;Upgrade&quot; (on Free) or &quot;Change
           plan&quot;.

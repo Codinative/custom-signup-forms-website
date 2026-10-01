@@ -65,6 +65,33 @@
   flex: none;
 }
 
+/* Smooth open/close (owner request, 2026-10-01): the panel's row eases between 0 and the answer's
+   height while the text fades. The global reduced-motion rule turns the transitions off. */
+:where(.panel) {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+:where(.panel[data-open]) {
+  grid-template-rows: 1fr;
+}
+
+:where(.panelInner) {
+  min-height: 0;
+  overflow: hidden;
+}
+
+:where(.panel .answer) {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+:where(.panel[data-open] .answer) {
+  opacity: 1;
+  transition-delay: 0.08s;
+}
+
 :where(.home .answer) {
   padding: 0 0 22px;
   max-width: 720px;

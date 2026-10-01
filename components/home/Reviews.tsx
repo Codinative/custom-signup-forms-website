@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon } from "@/components/ui/Icon";
 import { getReviewsContent, REVIEWS_COPY } from "@/lib/content/reviews";
@@ -31,7 +32,7 @@ export function Reviews() {
             </div>
             {rating ? <RatingSummary rating={rating} sample={sample} /> : null}
           </div>
-          <div className={styles.cards}>
+          <div className={styles.cards} style={{ "--review-cols": Math.min(reviews.length, 3) } as CSSProperties}>
             {reviews.map((review) => (
               <ReviewCard key={review.quote} review={review} sample={sample} />
             ))}

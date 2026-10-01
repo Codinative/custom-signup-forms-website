@@ -13,7 +13,8 @@ Status: **approved 2026-09-28 (defaults + Firebase Hosting).** Items marked ⏳ 
 | `/docs/api/` | ApiDocs / MobileApiDocs (the article template) | light, active Docs | A4 docs |
 | `/release-notes/` | ReleaseNotes / MobileReleaseNotes | light, active Release notes | A5 releases |
 | `/contact/`, `/privacy-policy/`, `/terms-of-service/` | kept content, restyled (page hero + prose) | light | A6 kept+guides |
-| `/docs/installation/`, `/docs/user-guide/` | kept content on the article template | light, active Docs | A6 kept+guides |
+| `/docs/installation/` | kept content on the article template | light, active Docs | A6 kept+guides |
+| `/docs/user-guide/` | rewritten 2026-10-01 (every app feature, 19 app screenshots `public/images/guide-*.png`) on the article template, `components/docs/user-guide/` | light, active Docs | owner request |
 | `/docs/multi-storefront/`, `/docs/plans-and-billing/`, `/docs/headless/`, `/docs/email-smtp/` | new guides on the article template, app-repo facts only | light, active Docs | A6 kept+guides |
 | `/docs/privacy-policy`, `/docs/terms-of-service` | 301 → main pages (firebase.json); route files removed | – | orchestrator |
 | 404 | shared header/footer + one line + home link | light | A6 |
@@ -43,6 +44,7 @@ Icon({ name, size = 24, strokeWidth = 2, className?, title? })   // alertTriangl
 Button({ href, children, variant: "primary"|"white"|"ghost"|"outline"|"violet", size?: "sm"|"md"|"lg" /*40|48|54*/, icon?, iconSize = 18, iconStrokeWidth = 2, className? })   // http → new tab; other heights via className
 Tag({ tone: "new"|"improved"|"fixed"|"security"|"blue"|"latest"|"white"|"glass"|"glassSubtle"|"code"|"navy", children, icon?, iconSize = 14, iconStrokeWidth = 2, as?, className? })
 PlaceholderBox({ children, as?: "span"|"div", className? })   // padding/size per use from the design
+PartnerBadge({ height, tone?: "blue"|"white", className? })   // official Certified BigCommerce Partner SVG; white = one-colour version for dark surfaces
 Eyebrow({ children, tone?: "blue"|"light"|"muted", as?: "p"|"span"|"div" /*span*/, className? })
 SectionHeading({ eyebrow?, title, body?, as?: "h1"|"h2", align?: "left"|"center", className?, titleClassName?, bodyClassName? })   // title gets .disp; split layouts render body themselves
 BrowserFrame({ src, width, height, alt, sizes, url?, barOnPhone = false, priority?, className?, imgClassName? })   // bar at ≥768 when url; radius 14 <768
@@ -57,6 +59,7 @@ Footer() · Logo({ tone: "light"|"dark", height, className?, eager? }) · HashRe
 DocsArticleLayout({ active: DocSlug, breadcrumb: Crumb[], title, titleTag?, lede, phoneLede?, phoneCrumb?, toc: TocItem[], children })   // renders <main id="main">
 ProseSection({ id?, title?, intro?, className?, children? }) · Callout({ tone?: "warning"|"note", className?, children })
 DefinitionRows({ rows: { key, value, phoneValue? }[], keyWidth?, className? }) · StepCards({ steps, hideOnPhone = true, className? })
+DocsFigure({ src, width, height, alt, caption?, maxWidth?, className? })   // app screenshot in an article: BrowserFrame (no bar) + figcaption; maxWidth keeps narrow dialog crops at their own size
 ```
 - Page shell: `<SiteHeader …/>` then `<main id="main">…</main>` (docs articles: DocsArticleLayout provides main) then `<Footer />`.
 - Dark hero (home, multi-storefront): starts at the top of the page and draws its own gradient; top padding = `calc(var(--header-h) + <design top padding>)`; add `className="onDark"` to dark sections.
@@ -69,7 +72,7 @@ DefinitionRows({ rows: { key, value, phoneValue? }[], keyWidth?, className? }) �
 - `apps.ts`: `APPS`, `APP_CARD_COPY`, `SIGNUP_SCREENSHOT`, `CHECKOUT_PREVIEW`, `STICKY_BAR_PREVIEW`.
 - `navigation.ts`: `headerLinks`, `headerCtas`, `menuLinks`, `menuCtas`, `footerColumns`, `phoneFooterLinks`, `footerCopy`.
 - `docsIndex.ts`: `docsGroups`, `docsEntries`, `docsSidebar`, `getDoc()`, `docBreadcrumb()`, `integrationBand`, `apiToc`.
-- `reviews.ts`: `REVIEWS` / `MARKETPLACE_RATING` (real Marketplace data, empty until filled), `SAMPLE_REVIEWS` / `SAMPLE_RATING` (shown only by `npm run dev` and `build:preview`), `getReviewsContent()`.
+- `reviews.ts`: `REVIEWS` / `MARKETPLACE_RATING` (real Marketplace data: 2 reviews, 5.0, as of 2026-10-01; titles and dates, no names), `SAMPLE_REVIEWS` / `SAMPLE_RATING` (shown only by `npm run dev` and `build:preview`), `getReviewsContent()`.
 - `routes.ts`: `ROUTES` (sitemap).
 
 ## 6. Link map (every design `href="#"`)

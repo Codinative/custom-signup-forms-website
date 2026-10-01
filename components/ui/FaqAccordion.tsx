@@ -14,32 +14,27 @@ export type FaqAccordionProps = {
   items: FaqItem[];
   /** home: Main.dc.html FAQ (17px, 20px icon, bordered list) · compact: MobilePricing.dc.html (15px, 18px icon) */
   variant: "home" | "compact";
-  /** Index of the item open on load (home: 0). Several items can be open at once. */
+  /** Index of the item open on load (home: 0). */
   defaultOpen?: number;
   className?: string;
 };
 
-/** WAI-ARIA accordion: h3 > button[aria-expanded][aria-controls] + region per answer. */
+/**
+ * WAI-ARIA accordion: h3 > button[aria-expanded][aria-controls] + region per answer.
+ * One answer is open at a time and answers ease open and closed (owner request, 2026-10-01).
+ * Closed answers stay in the page (for search engines) but are inert, so keyboards and screen
+ * readers skip them.
+ */
 export function FaqAccordion({ items, variant, defaultOpen, className }: FaqAccordionProps) {
   const baseId = useId();
-  const [open, setOpen] = useState<ReadonlySet<number>>(
-    () => new Set(defaultOpen === undefined ? [] : [defaultOpen]),
-  );
-
-  const toggle = (index: number) =>
-    setOpen((current) => {
-      const next = new Set(current);
-      if (next.has(index)) next.delete(index);
-      else next.add(index);
-      return next;
-    });
+  const [open, setOpen] = useState<number | null>(defaultOpen ?? null);
 
   const home = variant === "home";
 
   return (
     <div className={[styles[variant], className].filter(Boolean).join(" ")}>
       {items.map((item, index) => {
-        const isOpen = open.has(index);
+        const isOpen = open === index;
         const buttonId = `${baseId}-q${index}`;
         const panelId = `${baseId}-a${index}`;
         const icon = <Icon name={isOpen ? "minus" : "plus"} size={home ? 20 : 18} className={styles.icon} />;
@@ -52,21 +47,24 @@ export function FaqAccordion({ items, variant, defaultOpen, className }: FaqAcco
                 className={styles.trigger}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                onClick={() => toggle(index)}
+                onClick={() => setOpen(isOpen ? null : index)}
               >
                 <span className={styles.question}>{item.q}</span>
                 {home ? icon : <span className={styles.iconWrap}>{icon}</span>}
               </button>
             </h3>
-            <p
+            <div
               id={panelId}
               role="region"
               aria-labelledby={buttonId}
-              className={`body ${styles.answer}`}
-              hidden={!isOpen}
+              className={styles.panel}
+              data-open={isOpen ? "" : undefined}
+              inert={!isOpen}
             >
-              {item.a}
-            </p>
+              <div className={styles.panelInner}>
+                <p className={`body ${styles.answer}`}>{item.a}</p>
+              </div>
+            </div>
           </div>
         );
       })}
