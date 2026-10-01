@@ -59,7 +59,7 @@ export const FEATURE_GROUPS: FeatureGroup[] = [
     title: "Form builder",
     icon: "layout",
     rows: [
-      row("Drag-and-drop editor with live and full-page preview", true, true, true, true),
+      row("Visual editor with live and full-page preview", true, true, true, true),
       row("Ten field types, plus account fields (name, email, password)", true, true, true, true),
       row("Two-column pairing, heading and description blocks, styling", true, true, true, true),
       row("\"Other\" free-text choice on options", false, true, true, true),

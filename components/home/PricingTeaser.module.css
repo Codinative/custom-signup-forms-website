@@ -56,7 +56,9 @@
   border: 1px solid var(--line);
 }
 
+/* 2px border: 1px less padding keeps its title and CTA level with the other cards */
 .featured {
+  padding: 27px;
   border: 2px solid var(--blue-600);
 }
 
@@ -90,8 +92,10 @@
   min-height: 46px;
 }
 
+/* Owner request (2026-10-01): every CTA sits on the card bottom, so the four line up */
 .card .cta {
   width: 100%;
+  margin-top: auto;
 }
 
 .list {

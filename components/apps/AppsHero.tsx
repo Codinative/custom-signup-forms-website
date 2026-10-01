@@ -1,9 +1,8 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Tag } from "@/components/ui/Tag";
-import { footerCopy } from "@/lib/content/navigation";
+import { PartnerBadge } from "@/components/ui/PartnerBadge";
 import styles from "./AppsHero.module.css";
 
-/** /apps hero. Phone: shorter body copy and no partner tag. */
+/** /apps hero. Phone: shorter body copy and no partner badge. */
 export function AppsHero() {
   return (
     <section className={styles.hero}>
@@ -19,9 +18,7 @@ export function AppsHero() {
             Each installs from the marketplace, needs no theme edits, and is supported by the same team.
           </p>
         </div>
-        <Tag tone="navy" icon="shieldCheck" iconSize={15} className={`${styles.partner} onlyDesktop`}>
-          {footerCopy.partner}
-        </Tag>
+        <PartnerBadge height={64} className={`${styles.partner} onlyDesktop`} />
       </div>
     </section>
   );

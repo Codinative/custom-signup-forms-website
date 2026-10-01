@@ -17,7 +17,7 @@ export const HERO_SHOT: Screenshot = {
   src: "/images/storefronts-list-v2.png",
   width: 1400,
   height: 748,
-  alt: "Your storefronts screen listing each BigCommerce storefront, including a headless Catalyst storefront, with its serving status and assigned form",
+  alt: "Your storefronts screen listing each storefront, including a headless Catalyst storefront, with its serving status and assigned form",
 };
 
 // Source: design v2 shot-approve-v2.jpg ("One queue", desktop only) = public/images/approve-v2.png at 2×.

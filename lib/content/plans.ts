@@ -80,7 +80,7 @@ export const PLANS: Plan[] = [
     note: "No card required",
     lead: null,
     bullets: [
-      "Drag-and-drop form builder",
+      "Visual form builder",
       "Approval queue",
       "100 signups a month",
       "1 saved form",
@@ -98,8 +98,8 @@ export const PLANS: Plan[] = [
     period: "/ month",
     phoneTeaserPeriod: "/ mo",
     tagline: "The full workflow on a single storefront.",
-    teaserBlurb: "Unlimited signups, customer emails, customer groups and conditional logic.",
-    phoneTeaserBlurb: "Unlimited signups, emails, customer groups, conditional logic.",
+    teaserBlurb: "Unlimited forms and signups, customer emails, customer groups and conditional logic.",
+    phoneTeaserBlurb: "Unlimited forms and signups, emails, customer groups, conditional logic.",
     featured: false,
     cta: {
       label: "Start 7-day free trial",

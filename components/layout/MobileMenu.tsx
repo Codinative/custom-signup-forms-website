@@ -85,7 +85,7 @@ export function MobileMenu({ variant }: MobileMenuProps) {
       onClick={onSheetClick}
     >
       <div className={styles.sheetHeader}>
-        <Logo tone="light" height={52} className={styles.logo} eager />
+        <Logo tone="light" height={60} className={styles.logo} eager />
         <button type="button" className={styles.close} aria-label="Close menu" onClick={() => close(true)}>
           <Icon name="close" size={22} />
         </button>

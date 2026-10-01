@@ -53,14 +53,14 @@ export const RELEASES: Release[] = [
       src: "/images/storefronts-list-v2.png",
       width: 1400,
       height: 748,
-      alt: "Storefronts screen listing each BigCommerce storefront, including a headless Catalyst storefront, with its serving status and assigned form",
+      alt: "Storefronts screen listing each storefront, including a headless Catalyst storefront, with its serving status and assigned form",
       frameUrl: "store.mybigcommerce.com/manage/app/custom-signup-forms",
     },
     changes: [
       {
         type: "new",
         title: "Multi-storefront",
-        body: "Serve a different signup form on each BigCommerce storefront, with its own emails, notifications, cooldown and customer-group rules. Anything you do not override follows your defaults.",
+        body: "Serve a different signup form on each storefront, with its own emails, notifications, cooldown and customer-group rules. Anything you do not override follows your defaults.",
       },
       {
         type: "new",

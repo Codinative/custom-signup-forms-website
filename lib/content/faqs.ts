@@ -56,7 +56,7 @@ export const homeFaqs: Faq[] = [
   },
   {
     q: "Can I run a different form on each storefront?",
-    a: "Yes. With multi-storefront, each BigCommerce storefront can serve its own form, with its own emails and approval rules, and anything you don't override follows your defaults. Multi-storefront is part of the Pro plan (up to 3 storefronts) and Enterprise (4 or more).",
+    a: "Yes. With multi-storefront, each storefront can serve its own form, with its own emails and approval rules, and anything you don't override follows your defaults. Multi-storefront is part of the Pro plan (up to 3 storefronts) and Enterprise (4 or more).",
   },
   {
     q: "Do customers get an account immediately?",

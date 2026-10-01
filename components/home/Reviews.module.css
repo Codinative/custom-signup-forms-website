@@ -61,9 +61,10 @@
   color: var(--line-strong);
 }
 
+/* One column per review, up to three (--review-cols is set from the review count) */
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--review-cols, 3), minmax(0, 1fr));
   gap: 20px;
 }
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Tag } from "@/components/ui/Tag";
+import { PartnerBadge } from "@/components/ui/PartnerBadge";
 import { footerColumns, footerCopy, phoneFooterLinks, type NavLink } from "@/lib/content/navigation";
 import { Logo } from "./Logo";
 import styles from "./Footer.module.css";
@@ -26,11 +26,8 @@ export function Footer() {
       <div className={`${styles.desktop} onlyDesktop`}>
         <div className={styles.grid}>
           <div className={styles.brand}>
-            <Logo tone="light" height={48} className={styles.logo} />
+            <Logo tone="light" height={96} className={styles.logo} />
             <p className={styles.blurb}>{footerCopy.blurb}</p>
-            <Tag tone="glassSubtle" icon="shieldCheck" className={styles.partner}>
-              {footerCopy.partner}
-            </Tag>
           </div>
           {footerColumns.map((column) => (
             <div key={column.title} className={styles.column}>
@@ -43,11 +40,11 @@ export function Footer() {
         </div>
         <div className={styles.bottom}>
           <span>{footerCopy.copyright}</span>
-          <span>{footerCopy.builtFor}</span>
+          <PartnerBadge height={48} tone="white" />
         </div>
       </div>
       <div className={`${styles.phone} onlyPhone`}>
-        <Logo tone="light" height={38} className={styles.logo} />
+        <Logo tone="light" height={56} className={styles.logo} />
         <div className={styles.phoneLinks}>
           {phoneFooterLinks.map((link) => (
             <FooterLink key={link.label} link={link} />

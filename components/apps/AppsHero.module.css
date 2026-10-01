@@ -29,8 +29,6 @@
 /* Navy partner tag: 34px tall, 0 14px; never shrinks (its text would wrap) */
 .inner .partner {
   flex: none;
-  height: 34px;
-  padding: 0 14px;
 }
 
 @media (max-width: 1279px) {

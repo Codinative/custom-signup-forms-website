@@ -2,7 +2,8 @@
 .table {
   border: 1px solid var(--line);
   border-radius: 20px;
-  overflow: hidden;
+  /* clip (not hidden): rounds the corners without becoming a scroll box, so the head row can stick */
+  overflow: clip;
   /* the design's closing 18px spacer row */
   padding-bottom: 18px;
 }
@@ -15,7 +16,11 @@
   align-items: center;
 }
 
+/* Plan names stay pinned under the site header while the table scrolls (owner request, 2026-10-01) */
 .headRow {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 2;
   padding: 20px 24px;
   background: var(--surface);
   border-bottom: 1px solid var(--line);
@@ -81,13 +86,16 @@
   text-align: center;
 }
 
-/* 768–1279: keep the five columns readable and scroll inside this container */
+/* 768–1279: keep the five columns readable (min 800px). Only below 900px, where 800px no longer
+   fits, does the table scroll sideways inside this container; there the head row can't stick. */
 @media (max-width: 1279px) {
-  .scroller {
-    overflow-x: auto;
-  }
-
   .table {
     min-width: 800px;
+  }
+}
+
+@media (max-width: 899px) {
+  .scroller {
+    overflow-x: auto;
   }
 }

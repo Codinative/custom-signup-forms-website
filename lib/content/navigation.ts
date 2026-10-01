@@ -96,8 +96,6 @@ export const phoneFooterLinks: NavLink[] = [
 /** Footer brand column and bottom bar copy. */
 export const footerCopy = {
   blurb: "Custom signup forms and approvals for BigCommerce. One app for every storefront you run.",
-  partner: "BigCommerce certified partner",
   copyright: "© 2026 Codinative. All rights reserved.",
-  builtFor: "Built for BigCommerce",
   phoneCopyright: "© 2026 Codinative",
 };
