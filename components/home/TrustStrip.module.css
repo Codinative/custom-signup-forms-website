@@ -1,32 +1,54 @@
-/* Trust strip: Main.dc.html (4 items) and MobileHome.dc.html (2 items) */
+/* Trust strip under the customer logos. Redesigned on the owner's request (2026-10-02): less text, the
+   partner badge and the rating. */
 .strip {
   border-bottom: 1px solid var(--line);
   background: #ffffff;
 }
 
-/* Fits on one line at 1440; narrower screens wrap onto a centred second line */
 .inner {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 20px 56px;
+  gap: 24px 64px;
   max-width: 1440px;
   margin-inline: auto;
-  padding: 36px 64px;
+  padding: 28px 64px;
 }
 
-.item {
+.proof {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.divider {
+  width: 1px;
+  height: 40px;
+  background: var(--line);
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.score {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-2);
+  font-size: 18px;
+  color: var(--ink);
 }
 
-.icon {
-  color: var(--blue-600);
+.score strong {
+  font-weight: 700;
+}
+
+.caption {
+  font-size: 13px;
+  color: var(--muted);
 }
 
 .ph {
@@ -35,36 +57,36 @@
   font-weight: 600;
 }
 
-.itemPhone {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-2);
-}
-
-.phPhone {
-  padding: 6px 10px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
 @media (max-width: 1279px) {
   .inner {
-    padding: 36px var(--pad-x-tablet);
+    padding: 28px var(--pad-x-tablet);
   }
 }
 
-/* MobileHome: no background, items stretch to the row height */
 @media (max-width: 767px) {
   .strip {
     background: none;
   }
 
   .inner {
-    align-items: stretch;
-    gap: 10px;
+    gap: 20px;
     padding: 20px;
+  }
+
+  .proof {
+    gap: 16px;
+  }
+
+  .divider {
+    height: 32px;
+  }
+
+  .score {
+    font-size: 16px;
+    gap: 8px;
+  }
+
+  .caption {
+    font-size: 12px;
   }
 }
