@@ -103,11 +103,10 @@ export const REVIEWS_COPY = {
   },
   /** Attribution for a published review that shows no reviewer name. */
   marketplaceReview: "App Marketplace review",
-  /** Trust strip under the hero (real rating only). */
-  trustRating: {
-    desktop: (average: number, count: number) =>
-      `${average.toFixed(1)} from ${count} reviews on the BigCommerce Marketplace`,
-    phone: (average: number) => `${average.toFixed(1)} on the Marketplace`,
+  /** Trust strip under the hero (real rating only): the score sits beside the stars, this caption under them. */
+  trustCaption: {
+    desktop: (count: number) => `${count} reviews · BigCommerce Marketplace`,
+    phone: (count: number) => `${count} Marketplace reviews`,
   },
   link: {
     desktop: "Read all reviews on the BigCommerce Marketplace",

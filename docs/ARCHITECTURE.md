@@ -59,7 +59,7 @@ Footer() · Logo({ tone: "light"|"dark", height, className?, eager? }) · HashRe
 DocsArticleLayout({ active: DocSlug, breadcrumb: Crumb[], title, titleTag?, lede, phoneLede?, phoneCrumb?, toc: TocItem[], children })   // renders <main id="main">
 ProseSection({ id?, title?, intro?, className?, children? }) · Callout({ tone?: "warning"|"note", className?, children })
 DefinitionRows({ rows: { key, value, phoneValue? }[], keyWidth?, className? }) · StepCards({ steps, hideOnPhone = true, className? })
-DocsFigure({ src, width, height, alt, caption?, maxWidth?, className? })   // app screenshot in an article: BrowserFrame (no bar) + figcaption; maxWidth keeps narrow dialog crops at their own size
+DocsFigure({ src, width, height, alt, caption?, maxWidth?, className? })   // app screenshot in an article: BrowserFrame (no bar) + figcaption; maxWidth keeps narrow dialog crops at their own size; click opens a full-size viewer on the same page (HTML popover, no script; Close, Escape or a click outside closes it)
 ```
 - Page shell: `<SiteHeader …/>` then `<main id="main">…</main>` (docs articles: DocsArticleLayout provides main) then `<Footer />`.
 - Dark hero (home, multi-storefront): starts at the top of the page and draws its own gradient; top padding = `calc(var(--header-h) + <design top padding>)`; add `className="onDark"` to dark sections.

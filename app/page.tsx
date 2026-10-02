@@ -1,4 +1,5 @@
 import { CtaBand } from "@/components/home/CtaBand";
+import { Customers } from "@/components/home/Customers";
 import { Features } from "@/components/home/Features";
 import { HomeFaq } from "@/components/home/HomeFaq";
 import { HomeHero } from "@/components/home/HomeHero";
@@ -41,6 +42,7 @@ export default function HomePage() {
       <SiteHeader variant="dark" />
       <main id="main">
         <HomeHero />
+        <Customers />
         <TrustStrip />
         <Features />
         <HowItWorks />
