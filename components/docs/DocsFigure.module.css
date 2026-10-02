@@ -18,9 +18,65 @@
   text-wrap: pretty;
 }
 
-/* The frame links to the full-size capture */
+/* Click to enlarge (owner request, 2026-10-02): the frame is a button that opens the viewer below */
 .zoom {
   display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
   border-radius: 16px;
+  background: none;
+  font: inherit;
+  text-align: left;
   cursor: zoom-in;
+}
+
+/* Full-size viewer: an HTML popover in the top layer, over a dimmed page. A click on the dimmed area,
+   Escape or Close dismisses it; tall screenshots scroll inside it. */
+/* Centred in the window; max-height keeps at least 72px above it, clear of the Close button */
+.viewer {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: #ffffff;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 144px);
+  overflow: auto;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.45);
+}
+
+.viewer::backdrop {
+  background: rgba(15, 23, 42, 0.82);
+}
+
+.viewerImg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.3);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.close:hover {
+  background: var(--row);
 }
