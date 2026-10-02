@@ -15,7 +15,10 @@ const paths = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // `trailingSlash: true` in next.config.ts means every page is served at
+  // "/path/" (and its canonical URL is emitted that way), so the sitemap
+  // must list the same trailing-slash URLs.
   return paths.map((path) => ({
-    url: path === "/" ? `${BASE_URL}/` : `${BASE_URL}${path}`,
+    url: `${BASE_URL}${path.endsWith("/") ? path : `${path}/`}`,
   }));
 }

@@ -42,14 +42,22 @@ lib/site.ts                Single source of truth for copy + links
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # production build
+npm run build    # static export -> writes the finished site to ./out
+npm start        # preview the exported site from ./out
 npm run lint
 ```
 
 ## Deploy
 
-Deploy to Vercel as a separate project and point `custom-signup-forms.codinative.com`
-at it. No environment variables are required.
+The site is a fully static export (`output: 'export'` in [`next.config.ts`](next.config.ts)).
+`npm run build` writes the finished site to **`out/`** - plain HTML, CSS, JS and assets with
+no Node server, so any static host can serve it. `out/` is git-ignored; build it in CI or
+locally before deploying.
+
+Production hosting is **Firebase Hosting**: point the Hosting `public` directory at `out`
+and deploy with `firebase deploy --only hosting`, then point `custom-signup-forms.codinative.com`
+at the Hosting site. Pages are exported as `route/index.html` (`trailingSlash: true`), so
+canonical URLs end with a slash, e.g. `/docs/`. No environment variables are required.
 
 ## Editing copy & links
 
