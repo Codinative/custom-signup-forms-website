@@ -45,7 +45,7 @@ h1{margin-top:18px;font-family:Poppins,sans-serif;font-weight:700;letter-spacing
 <img src="${logo}" alt="">
 <div class="eyebrow">${escape(eyebrow)}</div>
 <h1 style="font-size:${title.length > 70 ? 50 : title.length > 45 ? 58 : 66}px">${escape(title)}</h1>
-<div class="foot"><span>custom-signup-forms.codinative.com</span><span>BigCommerce app by Codinative</span></div>
+<div class="foot"><span>customsignupforms.codinative.com</span><span>BigCommerce app by Codinative</span></div>
 </div></body></html>`;
 
 const browser = await chromium.launch();
