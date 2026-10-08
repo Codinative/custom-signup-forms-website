@@ -1,6 +1,6 @@
 # Custom Signup Forms — marketing website
 
-Static marketing + docs site for **custom-signup-forms.codinative.com** (BigCommerce app by Codinative).
+Static marketing + docs site for **customsignupforms.codinative.com** (BigCommerce app by Codinative).
 App repo = facts source only, never edit: `/Users/macbook/Documents/Arham Asjid/apps/Custom Signup Forms/Code/custom-signup-forms`
 
 ## Stack
