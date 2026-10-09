@@ -1,0 +1,53 @@
+/* ReleaseNotes.dc.html change row; phone values from MobileReleaseNotes.dc.html */
+.row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--row);
+}
+
+.tag {
+  justify-self: start;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Desktop body is the global .body (15px); the phone paragraph is not .body, see below */
+@media (max-width: 767px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 0;
+  }
+
+  .tag {
+    align-self: flex-start;
+  }
+
+  .text {
+    gap: 6px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  /* Compound with .body so it wins whatever order the stylesheets load in */
+  .bodyText:global(.body) {
+    font-size: 14px;
+    line-height: 1.55;
+    text-wrap: wrap;
+  }
+}

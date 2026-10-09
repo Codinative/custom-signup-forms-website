@@ -1,0 +1,64 @@
+/* Rating summary card: Main.dc.html Reviews header; phone values from MobileHome.dc.html */
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.value {
+  font-size: 56px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.caption {
+  font-size: 13px;
+  color: var(--line-strong);
+}
+
+.captionPhone {
+  font-size: 12px;
+  color: var(--line-strong);
+}
+
+/* .ph pill from the design (PlaceholderBox supplies the dashed amber look) */
+.tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .summary {
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    margin-bottom: 4px;
+  }
+
+  .value {
+    font-size: 40px;
+  }
+
+  .meta {
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 9px;
+  }
+}

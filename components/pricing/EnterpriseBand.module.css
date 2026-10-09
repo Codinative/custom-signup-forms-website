@@ -1,0 +1,123 @@
+/* Pricing.dc.html Enterprise band (margin 96px 64px → wrapper padding, centred at 1440);
+   phone values from MobilePricing.dc.html */
+.wrap {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 96px 64px;
+}
+
+.band {
+  border-radius: 28px;
+  padding: 64px 72px;
+  background: var(--navy);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+}
+
+.intro {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.iconBox {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.icon {
+  color: var(--blue-300);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 640px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--line-strong);
+}
+
+.phoneBody {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--line-strong);
+}
+
+/* Compound selector: beats Button's own height whatever the stylesheet order */
+.band .cta {
+  height: 52px;
+}
+
+@media (max-width: 1279px) {
+  .wrap {
+    padding: 96px var(--pad-x-tablet);
+  }
+}
+
+/* Below 1024 the button no longer fits beside the text: put it underneath */
+@media (max-width: 1023px) {
+  .band {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .wrap {
+    padding: 0 20px 40px;
+  }
+
+  .band {
+    align-items: stretch;
+    gap: 12px;
+    padding: 28px 22px;
+    border-radius: 20px;
+  }
+
+  .intro {
+    display: block;
+  }
+
+  .iconBox {
+    display: none;
+  }
+
+  .text {
+    gap: 12px;
+    max-width: none;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  /* No icon on the phone; the label may wrap below ~340px instead of overflowing the band */
+  .band .cta {
+    height: 50px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .band .cta svg {
+    display: none;
+  }
+}

@@ -1,0 +1,11 @@
+/* ApiDocs.dc.html "Before you start" heading block (h2 .disp 26/700 + .body, gap 8) */
+.headingBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.h2 {
+  font-size: 26px;
+  font-weight: 700;
+}

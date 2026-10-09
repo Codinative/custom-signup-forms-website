@@ -1,0 +1,56 @@
+/* ApiDocs.dc.html "Before you start" rows. :where() (zero specificity) lets a page class override them. */
+:where(.rows) {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+:where(.row) {
+  display: grid;
+  grid-template-columns: var(--key-w, 120px) minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 18px;
+}
+
+:where(.row + .row) {
+  border-top: 1px solid var(--row);
+}
+
+:where(.key) {
+  font-weight: 600;
+  color: var(--blue-700);
+}
+
+:where(.value) {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* MobileApiDocs.dc.html: one bordered card per row */
+@media (max-width: 767px) {
+  :where(.rows) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  /* 48px as designed; a longer key widens its own card's column instead of overflowing */
+  :where(.row) {
+    grid-template-columns: minmax(48px, max-content) minmax(0, 1fr);
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+
+  :where(.value) {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}

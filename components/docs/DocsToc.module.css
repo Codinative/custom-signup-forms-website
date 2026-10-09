@@ -1,0 +1,27 @@
+/* ApiDocs.dc.html right rail: links in a column with gap 4. The phone panel reuses them. */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.link:hover {
+  color: var(--blue-700);
+}
+
+.active {
+  background: var(--blue-50);
+  color: var(--blue-700);
+  font-weight: 600;
+}

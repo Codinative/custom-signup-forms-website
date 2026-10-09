@@ -1,0 +1,19 @@
+/* Base rules use :where() (zero specificity) so any class a page passes in overrides them,
+   whatever order the stylesheets load in. */
+:where(.root) {
+  display: flex;
+  flex-direction: column;
+}
+
+:where(.center) {
+  align-items: center;
+  text-align: center;
+}
+
+/* Same values as the global .body utility, at zero specificity so `lede` or a page class wins */
+:where(.body) {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-body);
+  text-wrap: pretty;
+}

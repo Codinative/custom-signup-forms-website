@@ -1,0 +1,27 @@
+/* Apps.dc.html card grid (phone: MobileApps.dc.html) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 120px 96px;
+  list-style: none;
+}
+
+@media (max-width: 1279px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0 var(--pad-x-tablet) 96px;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 0 20px 40px;
+  }
+}

@@ -1,0 +1,37 @@
+/* ApiDocs.dc.html left <aside>: column with gap 6, eyebrow, then links */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav .label {
+  padding: 0 12px 8px;
+  color: var(--muted);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: block;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: var(--text-body);
+  font-weight: 400;
+}
+
+.link:hover {
+  color: var(--blue-700);
+}
+
+.active {
+  color: var(--blue-700);
+  font-weight: 600;
+}

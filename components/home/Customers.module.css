@@ -1,0 +1,92 @@
+/* Customer logo band (owner request, 2026-10-02): continues the hero's bottom colour, like ripeseed.io's
+   logo row. Logos are muted grey until hovered; then they show their own white and gold with a glow. */
+.band {
+  background: var(--blue-950);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 64px 64px 72px;
+}
+
+.label {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px 120px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+}
+
+.logo {
+  display: block;
+  width: auto;
+  height: var(--logo-h, 56px);
+  filter: grayscale(1);
+  opacity: 0.45;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.item:hover .logo {
+  filter: grayscale(0) drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+  opacity: 1;
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Touch screens have no hover: show the logos in colour */
+@media (hover: none) {
+  .logo {
+    filter: none;
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 1279px) {
+  .inner {
+    padding: 56px var(--pad-x-tablet) 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    gap: 24px;
+    padding: 40px 20px 48px;
+  }
+
+  .logos {
+    gap: 32px 56px;
+  }
+
+  .logo {
+    height: calc(var(--logo-h, 56px) * 0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    transition: none;
+  }
+
+  .item:hover .logo {
+    transform: none;
+  }
+}

@@ -1,0 +1,50 @@
+/* Not designed. Left-aligned hero from ReleaseNotes.dc.html (padding 80 120 24, copy column max-width 760, gap 16)
+   with the Apps.dc.html gradient; phone values from MobileApps.dc.html (36 20 24, gap 14, h1 32/1.12, .body). */
+.hero {
+  background: linear-gradient(180deg, var(--blue-50) 0%, #ffffff 100%);
+}
+
+.inner {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 80px 120px 24px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.title {
+  font-size: 56px;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+@media (max-width: 1279px) {
+  .inner {
+    padding: 80px var(--pad-x-tablet) 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding: 36px 20px 24px;
+  }
+
+  .copy {
+    gap: 14px;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 1.12;
+  }
+
+  /* .body on phone: 15px, same line-height and colour as .lede */
+  .copy .lede {
+    font-size: 15px;
+  }
+}

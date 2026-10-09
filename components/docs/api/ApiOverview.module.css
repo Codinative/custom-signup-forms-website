@@ -1,0 +1,6 @@
+/* Out of flow, so the article's flex gap ignores it; its static position is the top of the
+   article column, above the breadcrumb (desktop) or the plan tag (phone). */
+.anchor {
+  position: absolute;
+  scroll-margin-top: 24px;
+}

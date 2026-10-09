@@ -1,0 +1,81 @@
+/* Closing CTA band: Main.dc.html section 9 (inset 0 64 96) and MobileHome.dc.html section 6 */
+.band {
+  /* 64px side margins at 1440; above that the band stays 1312 wide, centred like the 1440 artboard */
+  margin: 0 max(64px, calc((100% - 1312px) / 2)) 96px;
+  border-radius: 28px;
+  padding: 80px;
+  background: linear-gradient(180deg, var(--blue-800) 0%, var(--blue-900) 100%);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 640px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.sub {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--blue-100);
+}
+
+.subPhone {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--blue-100);
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+}
+
+/* Text and buttons no longer fit side by side: stack them, buttons under the text */
+@media (max-width: 1279px) {
+  .band {
+    margin: 0 var(--pad-x-tablet) 96px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 767px) {
+  .band {
+    margin: 0 20px 40px;
+    border-radius: 22px;
+    padding: 36px 24px;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .text {
+    max-width: none;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions .install {
+    height: 50px;
+    padding: 0 22px;
+    font-size: 15px;
+  }
+}

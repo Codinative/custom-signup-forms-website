@@ -1,0 +1,160 @@
+/* MultiStorefront.dc.html "Per storefront" (phone: MobileMultiStorefront.dc.html list rows) */
+.section {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.inner {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 110px 96px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  margin-bottom: 44px;
+}
+
+.heading {
+  gap: 14px;
+  max-width: 680px;
+}
+
+.title {
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.intro {
+  max-width: 420px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--blue-50);
+  color: var(--blue-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+@media (max-width: 1279px) {
+  .inner {
+    padding: 110px var(--pad-x-tablet);
+  }
+}
+
+/* Below 1024: intro under the heading, cards in 2 columns (3 rows, no orphan) */
+@media (max-width: 1023px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Phone: no intro; each card is a row (icon left, Inter 15/700 title, 14/1.5 text) */
+@media (max-width: 767px) {
+  .section {
+    border-bottom: 0;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 44px 20px;
+  }
+
+  .head {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .icon {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .text {
+    gap: 4px;
+  }
+
+  .text .cardTitle {
+    font-family: var(--font-body);
+    font-size: 15px;
+    letter-spacing: normal;
+    text-wrap: wrap;
+  }
+
+  .text .cardBody {
+    font-size: 14px;
+    line-height: 1.5;
+    text-wrap: wrap;
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "additionalDirectories": [
+      "/Users/macbook/Documents/Arham Asjid/apps/Custom Signup Forms/Code/website-redesign-handoff",
+      "/Users/macbook/Documents/Arham Asjid/apps/Custom Signup Forms/Code/custom-signup-forms"
+    ],
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run lint)",
+      "Bash(npm run build)",
+      "Bash(npm run serve)",
+      "Bash(npm run test:*)",
+      "Bash(node scripts/*)",
+      "Bash(npx tsc:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(rg:*)",
+      "Bash(date:*)",
+      "Bash(sips:*)"
+    ],
+    "ask": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(npx firebase-tools deploy:*)",
+      "Bash(firebase deploy:*)",
+      "Bash(npm run deploy:live)",
+      "Bash(npx --yes firebase-tools@15.31.0 deploy:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(//Users/macbook/Documents/Arham Asjid/apps/Custom Signup Forms/Code/custom-signup-forms/.env*)",
+      "Edit(//Users/macbook/Documents/Arham Asjid/apps/Custom Signup Forms/Code/custom-signup-forms/**)",
+      "Write(//Users/macbook/Documents/Arham Asjid/apps/Custom Signup Forms/Code/custom-signup-forms/**)",
+      "Edit(//Users/macbook/Documents/Arham Asjid/apps/Custom Signup Forms/Code/website-redesign-handoff/**)",
+      "Write(//Users/macbook/Documents/Arham Asjid/apps/Custom Signup Forms/Code/website-redesign-handoff/**)",
+      "Bash(rm -rf:*)"
+    ]
+  }
+}

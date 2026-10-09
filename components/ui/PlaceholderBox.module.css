@@ -1,0 +1,7 @@
+/* .ph from the design's shared stylesheet */
+:where(.ph) {
+  border: 1.5px dashed #d97706;
+  background: #fffbeb;
+  color: #92400e;
+  border-radius: 10px;
+}

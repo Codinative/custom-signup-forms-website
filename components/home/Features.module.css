@@ -1,0 +1,47 @@
+/* "What you get": Main.dc.html section 3; MobileHome.dc.html section 3 (h2 only, no eyebrow) */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 120px 120px 40px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.title {
+  font-size: 48px;
+  line-height: 1.1;
+  font-weight: 700;
+  max-width: 820px;
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding: 120px var(--pad-x-tablet) 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    gap: 56px;
+    padding: 56px 20px;
+  }
+
+  .head {
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 1.15;
+  }
+}

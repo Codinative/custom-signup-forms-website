@@ -1,0 +1,99 @@
+/* MultiStorefront.dc.html hero (phone: MobileMultiStorefront.dc.html). No grid overlay, as designed.
+   The design's 80px header sits inside this section, so the top padding adds --header-h. */
+.hero {
+  background: linear-gradient(180deg, var(--blue-800) 0%, var(--blue-900) 60%, var(--blue-950) 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 64px;
+  align-items: center;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: calc(var(--header-h) + 80px) 96px 96px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.tag {
+  align-self: flex-start;
+}
+
+.title {
+  font-size: 58px;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.sub {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--blue-100);
+  text-wrap: pretty;
+}
+
+/* Phone copy (shown below 768 only) */
+.subPhone {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--blue-100);
+}
+
+.ctas {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+@media (max-width: 1279px) {
+  .inner {
+    padding: calc(var(--header-h) + 80px) var(--pad-x-tablet) 96px;
+  }
+}
+
+/* Below 1024 the copy stacks over the screenshot */
+@media (max-width: 1023px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: calc(var(--header-h) + 32px) 20px 32px;
+  }
+
+  .copy {
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  /* Full-width stacked buttons, 52px tall */
+  .ctas {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 0;
+  }
+
+  .ctas .cta {
+    height: 52px;
+  }
+
+  .shot {
+    margin-top: 12px;
+  }
+}

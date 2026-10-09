@@ -1,0 +1,47 @@
+/* ApiDocs.dc.html three numbered cards. :where() (zero specificity) lets a page class override them. */
+:where(.steps) {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:where(.card) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+
+:where(.num) {
+  font-size: 12px;
+  color: var(--blue-600);
+  font-weight: 600;
+}
+
+:where(.title) {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+:where(.text) {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+@media (max-width: 767px) {
+  /* MobileApiDocs.dc.html has no step cards */
+  .hideOnPhone {
+    display: none;
+  }
+
+  /* Not designed: one column when a guide keeps its steps on phone */
+  :where(.stackOnPhone) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

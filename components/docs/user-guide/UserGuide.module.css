@@ -1,0 +1,21 @@
+/* Derived, not designed: User guide extras (owner request, 2026-10-01), built from the prose tokens. */
+
+/* h3 with a plan tag beside it */
+.titleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+}
+
+/* "Where to find it" line under a heading, like a breadcrumb of app labels */
+.path {
+  align-self: flex-start;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+}

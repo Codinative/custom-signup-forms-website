@@ -1,0 +1,5 @@
+/* Height comes from the height attribute (or a caller class); width follows the image ratio */
+.logo {
+  display: block;
+  width: auto;
+}

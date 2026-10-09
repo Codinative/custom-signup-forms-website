@@ -1,0 +1,30 @@
+/* Star rows of the Reviews band: Main.dc.html (cards 18px gap 3, summary 20px gap 4)
+   and MobileHome.dc.html (16px gap 3 everywhere). Desktop sizes come from the svg attributes. */
+.stars {
+  display: flex;
+  gap: 3px;
+}
+
+.summary {
+  gap: 4px;
+}
+
+.on {
+  fill: #fbbf24;
+}
+
+.off {
+  fill: rgba(255, 255, 255, 0.22);
+}
+
+@media (max-width: 767px) {
+  .summary {
+    gap: 3px;
+  }
+
+  .on,
+  .off {
+    width: 16px;
+    height: 16px;
+  }
+}

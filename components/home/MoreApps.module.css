@@ -1,0 +1,151 @@
+/* "More from Codinative": Main.dc.html section 8 and MobileHome.dc.html section 5 */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 120px 96px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.all {
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  flex: 1;
+}
+
+.iconBox {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--navy);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.name {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--text-body);
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.arrow {
+  color: var(--blue-600);
+}
+
+.allPhone {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.all:hover,
+.card:hover,
+.allPhone:hover {
+  color: var(--blue-700);
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding: 0 var(--pad-x-tablet) 96px;
+  }
+}
+
+/* MobileHome: eyebrow, two compact cards and the text link, gap 12 */
+@media (max-width: 767px) {
+  .section {
+    gap: 12px;
+    padding: 0 20px 40px;
+  }
+
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card {
+    gap: 12px;
+    padding: 14px;
+    border-radius: 14px;
+    flex: initial;
+  }
+
+  .iconBox {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .iconBox svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cardText {
+    gap: 2px;
+    flex: initial;
+  }
+
+  .name {
+    font-size: 15px;
+  }
+}

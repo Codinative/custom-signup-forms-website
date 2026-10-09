@@ -29,3 +29,12 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# visual / audit test output
+/test-results/
+
+# generated image variants (scripts/images/optimize.mjs)
+/public/images/_v/
+
+# firebase deploy cache
+/.firebase/

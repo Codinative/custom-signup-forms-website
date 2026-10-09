@@ -1,0 +1,99 @@
+/* MultiStorefront.dc.html "Headless storefronts" (phone: MobileMultiStorefront.dc.html) */
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 72px;
+  align-items: center;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 110px 96px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.title {
+  font-size: 40px;
+  line-height: 1.12;
+  font-weight: 700;
+}
+
+.copy .lead {
+  font-size: 16px;
+}
+
+.links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.link:hover {
+  color: var(--blue-700);
+}
+
+/* CodeBlock overrides (its base rules are zero-specificity): the snippet panel look */
+.code {
+  border-radius: 18px;
+  padding: 28px 28px 30px;
+  box-shadow: 0 30px 60px -30px rgba(15, 23, 42, 0.5);
+}
+
+.pre {
+  padding: 0;
+  font-size: 13.5px;
+  line-height: 1.75;
+  word-break: break-all;
+}
+
+@media (max-width: 1279px) {
+  .section {
+    padding: 110px var(--pad-x-tablet);
+  }
+}
+
+/* Below 1024 the copy stacks over the snippet */
+@media (max-width: 1023px) {
+  .section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 44px 20px;
+  }
+
+  .copy {
+    gap: 14px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .code {
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: none;
+  }
+
+  .pre {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+}

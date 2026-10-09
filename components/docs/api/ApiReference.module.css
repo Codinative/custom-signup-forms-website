@@ -1,0 +1,61 @@
+/* ApiDocs.dc.html "File uploads" and "Errors" (section gaps 12 and 6) */
+.fileUploads {
+  gap: 12px;
+}
+
+.errors {
+  gap: 6px;
+}
+
+.headingBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.h2 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.rows {
+  margin: 10px 0 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--row);
+}
+
+.code {
+  font-weight: 600;
+  color: #b91c1c;
+}
+
+.text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* MobileApiDocs.dc.html: h2 22, then the rows 4px apart */
+@media (max-width: 767px) {
+  .errors {
+    gap: 4px;
+  }
+
+  .h2 {
+    font-size: 22px;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 0;
+  }
+}
