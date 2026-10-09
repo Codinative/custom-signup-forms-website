@@ -33,8 +33,9 @@ export type DocsGroup = {
 
 export type Crumb = { label: string; href?: string };
 
-/** desktopOnly: the section is hidden below 768px, so the phone "On this page" list skips it. */
-export type TocItem = { id: string; label: string; desktopOnly?: boolean };
+/** desktopOnly: the section is hidden below 768px, so the phone "On this page" list skips it.
+ * sub: listed indented under the item before it (a sub-section). */
+export type TocItem = { id: string; label: string; desktopOnly?: boolean; sub?: boolean };
 
 /** Docs home groups and cards (Docs.dc.html / MobileDocs.dc.html). */
 export const docsGroups: DocsGroup[] = [

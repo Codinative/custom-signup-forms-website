@@ -100,7 +100,7 @@ export function DocsToc({ items, variant = "rail" }: DocsTocProps) {
             <li key={item.id} className={item.desktopOnly ? "onlyDesktop" : undefined}>
               <a
                 href={`#${item.id}`}
-                className={current ? `${styles.link} ${styles.active}` : styles.link}
+                className={[styles.link, item.sub ? styles.sub : undefined, current ? styles.active : undefined].filter(Boolean).join(" ")}
                 aria-current={current ? "true" : undefined}
                 onClick={onNavigate(item.id)}
               >
