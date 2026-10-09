@@ -70,7 +70,7 @@ DocsFigure({ src, width, height, alt, caption?, maxWidth?, className? })   // ap
 - `faqs.ts`: `Faq { q, a: string | null }`, `homeFaqs` (6), `pricingFaqs` (5), `answeredFaqs()` for FAQPage JSON-LD.
 - `releases.ts`: `RELEASES` (6, newest first), `CHANGE_LABELS`, `RELEASE_COPY`, `releaseAnchor()`, `formatReleaseDate()`.
 - `apps.ts`: `APPS`, `APP_CARD_COPY`, `SIGNUP_SCREENSHOT`, `CHECKOUT_PREVIEW`, `STICKY_BAR_PREVIEW`.
-- `navigation.ts`: `headerLinks`, `headerCtas`, `menuLinks`, `menuCtas`, `footerColumns`, `phoneFooterLinks`, `footerCopy`.
+- `navigation.ts`: `headerLinks`, `headerCtas`, `menuLinks`, `menuCtas`, `footerColumns` (desktop and phone footer), `footerCopy`.
 - `docsIndex.ts`: `docsGroups`, `docsEntries`, `docsSidebar`, `getDoc()`, `docBreadcrumb()`, `integrationBand`, `apiToc`.
 - `reviews.ts`: `REVIEWS` / `MARKETPLACE_RATING` (real Marketplace data: 2 reviews, 5.0, as of 2026-10-01; titles and dates, no names), `SAMPLE_REVIEWS` / `SAMPLE_RATING` (shown only by `npm run dev` and `build:preview`), `getReviewsContent()`.
 - `routes.ts`: `ROUTES` (sitemap).

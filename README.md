@@ -9,17 +9,17 @@ site (`output: 'export'`) and hosted on **Firebase Hosting** (GCP). No database,
 
 ## Live site & links
 
-🌐 **Live site:** https://custom-signup-forms.codinative.com/
+🌐 **Live site:** https://customsignupforms.codinative.com/
 
 | Page | Link |
 |------|------|
-| Home (marketing) | https://custom-signup-forms.codinative.com/ |
-| Pricing | https://custom-signup-forms.codinative.com/pricing/ |
-| Multi-storefront | https://custom-signup-forms.codinative.com/multi-storefront/ |
-| Documentation home | https://custom-signup-forms.codinative.com/docs/ |
-| API integration | https://custom-signup-forms.codinative.com/docs/api/ |
-| Release notes | https://custom-signup-forms.codinative.com/release-notes/ |
-| More apps | https://custom-signup-forms.codinative.com/apps/ |
+| Home (marketing) | https://customsignupforms.codinative.com/ |
+| Pricing | https://customsignupforms.codinative.com/pricing/ |
+| Multi-storefront | https://customsignupforms.codinative.com/multi-storefront/ |
+| Documentation home | https://customsignupforms.codinative.com/docs/ |
+| API integration | https://customsignupforms.codinative.com/docs/api/ |
+| Release notes | https://customsignupforms.codinative.com/release-notes/ |
+| More apps | https://customsignupforms.codinative.com/apps/ |
 | Codinative | https://codinative.com/ |
 
 ## Structure
@@ -64,7 +64,7 @@ npm run deploy:preview     # build + deploy to a 7-day preview channel URL
 npm run deploy:live        # build + deploy to the live site
 ```
 
-Custom domain: Firebase console → Hosting → Add custom domain → `custom-signup-forms.codinative.com`,
+Custom domain: Firebase console → Hosting → Add custom domain → `customsignupforms.codinative.com`,
 then create the DNS records it shows. Submit `/sitemap.xml` in Google Search Console after going live.
 
 ## Editing copy & links

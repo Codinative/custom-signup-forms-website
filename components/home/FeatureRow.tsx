@@ -67,7 +67,7 @@ function shotRatio({ width, height }: Screenshot) {
 export function FeatureRow({ feature }: FeatureRowProps) {
   const { eyebrow, tag, title, body, highlight, checks, link, image, reverse } = feature;
   return (
-    <div className={[styles.row, reverse ? styles.reverse : undefined].filter(Boolean).join(" ")}>
+    <div className={[styles.row, reverse ? styles.reverse : undefined].filter(Boolean).join(" ")} data-reveal>
       <div className={styles.text}>
         <div className={styles.labels}>
           <Eyebrow>{eyebrow}</Eyebrow>

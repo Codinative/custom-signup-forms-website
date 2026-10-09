@@ -47,7 +47,7 @@ export const RELEASE_COPY = {
 export const RELEASES: Release[] = [
   {
     version: "2.0.0",
-    date: null,
+    date: "2026-10-08",
     title: "Multi-storefront, four plans and a Free plan",
     screenshot: {
       src: "/images/storefronts-list-v2.png",

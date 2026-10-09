@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { chromium } from "playwright";
 
 const BASE = process.env.BASE_URL ?? "http://localhost:4173";
-const ORIGIN = "https://custom-signup-forms.codinative.com";
+const ORIGIN = "https://customsignupforms.codinative.com";
 const sitemap = readFileSync("out/sitemap.xml", "utf8");
 const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(ORIGIN, "") || "/");
 

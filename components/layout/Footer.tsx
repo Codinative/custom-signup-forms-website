@@ -1,25 +1,14 @@
-import Link from "next/link";
 import { PartnerBadge } from "@/components/ui/PartnerBadge";
-import { footerColumns, footerCopy, phoneFooterLinks, type NavLink } from "@/lib/content/navigation";
+import { footerColumns, footerCopy } from "@/lib/content/navigation";
+import { FooterAccordion } from "./FooterAccordion";
+import { FooterLink } from "./FooterLink";
 import { Logo } from "./Logo";
 import styles from "./Footer.module.css";
 
-function FooterLink({ link }: { link: NavLink }) {
-  if (/^https?:/.test(link.href)) {
-    return (
-      <a href={link.href} className={styles.link} target="_blank" rel="noopener">
-        {link.label}
-      </a>
-    );
-  }
-  return (
-    <Link href={link.href} className={styles.link}>
-      {link.label}
-    </Link>
-  );
-}
-
-/** Site footer: desktop 5-column block (≥768) and phone 2-column block (<768). */
+/**
+ * Site footer: desktop 5-column block (≥768) and phone block (<768) with the same link groups as
+ * an accordion (one open at a time, eased like the FAQ) and the partner badge centred (owner request, 2026-10-08/09).
+ */
 export function Footer() {
   return (
     <footer className={`${styles.footer} onDark`}>
@@ -33,7 +22,7 @@ export function Footer() {
             <div key={column.title} className={styles.column}>
               <h2 className={`eyebrow ${styles.heading}`}>{column.title}</h2>
               {column.links.map((link) => (
-                <FooterLink key={link.label} link={link} />
+                <FooterLink key={link.label} link={link} className={styles.link} />
               ))}
             </div>
           ))}
@@ -45,12 +34,11 @@ export function Footer() {
       </div>
       <div className={`${styles.phone} onlyPhone`}>
         <Logo tone="light" height={56} className={styles.logo} />
-        <div className={styles.phoneLinks}>
-          {phoneFooterLinks.map((link) => (
-            <FooterLink key={link.label} link={link} />
-          ))}
+        <FooterAccordion groups={footerColumns} linkClassName={styles.link} />
+        <div className={styles.phoneBottom}>
+          <PartnerBadge height={44} tone="white" />
+          <span className={styles.phoneCopy}>{footerCopy.copyright}</span>
         </div>
-        <span className={styles.phoneCopy}>{footerCopy.phoneCopyright}</span>
       </div>
     </footer>
   );

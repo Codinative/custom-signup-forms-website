@@ -19,7 +19,7 @@ const SHOT_SIZES =
 /** Main.dc.html / MobileHome.dc.html hero. Sits under the absolutely positioned dark SiteHeader. */
 export function HomeHero() {
   return (
-    <section className={`${styles.hero} onDark`}>
+    <section className={`${styles.hero} onDark`} data-hero>
       <div className={styles.grid} aria-hidden="true" />
       <div className={styles.inner}>
         <div className={styles.content}>
