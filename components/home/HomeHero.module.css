@@ -182,3 +182,53 @@
   border-color: rgba(255, 255, 255, 0.32);
   color: #ffffff;
 }
+
+/* Page load (owner request, 2026-10-09): the pill, title, text, buttons and checks fade up one after another,
+   then the screenshot rises into place (transform only, so the image counts as painted straight away). */
+/* Local copies of the global keyframes (CSS Modules scope keyframe names) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(32px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content > * {
+    animation: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .content > :nth-child(2) {
+    animation-delay: 0.08s;
+  }
+
+  .content > :nth-child(3),
+  .content > :nth-child(4) {
+    animation-delay: 0.16s;
+  }
+
+  .content > :nth-child(5) {
+    animation-delay: 0.24s;
+  }
+
+  .content > :nth-child(n + 6) {
+    animation-delay: 0.32s;
+  }
+
+  .shot {
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s both;
+  }
+}

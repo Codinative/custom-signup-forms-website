@@ -180,3 +180,52 @@ h4 {
 .skipLink:focus {
   top: 16px;
 }
+
+/* Motion (owner request, 2026-10-09): content fades up on page load and as each section scrolls in.
+   Pure CSS: section reveals use scroll-driven animations where the browser supports them and simply
+   show the content elsewhere. Everything is off for people who prefer reduced motion. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(32px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Page load: the first section's content (every page except the homepage hero, which staggers its own) */
+  main > section:first-child:not([data-hero]) > *:not([aria-hidden="true"]) {
+    animation: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  /* Section load: each later section's content (and each [data-reveal] block, such as a feature row) rises in as it enters the screen */
+  @supports (animation-timeline: view()) {
+    main > section:not(:first-child) > *,
+    [data-reveal] {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
