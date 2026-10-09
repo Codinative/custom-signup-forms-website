@@ -80,22 +80,8 @@ export const footerColumns: FooterColumn[] = [
   },
 ];
 
-/** Phone footer 2-column link grid (9), labels as in the phone design. */
-export const phoneFooterLinks: NavLink[] = [
-  { label: "Features", href: "/#features" },
-  { label: "Multi-storefront", href: "/multi-storefront/" },
-  { label: "Pricing", href: "/pricing/" },
-  { label: "Release notes", href: "/release-notes/" },
-  { label: "Docs", href: "/docs/" },
-  { label: "More apps", href: "/apps/" },
-  { label: "Contact", href: "/contact/" },
-  { label: "Privacy", href: "/privacy-policy/" },
-  { label: "Terms", href: "/terms-of-service/" },
-];
-
 /** Footer brand column and bottom bar copy. */
 export const footerCopy = {
   blurb: "Custom signup forms and approvals for BigCommerce. One app for every storefront you run.",
   copyright: "© 2026 Codinative. All rights reserved.",
-  phoneCopyright: "© 2026 Codinative",
 };

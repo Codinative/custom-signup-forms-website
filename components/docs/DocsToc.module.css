@@ -25,3 +25,12 @@
   color: var(--blue-700);
   font-weight: 600;
 }
+
+/* Sub-sections sit indented under their section, with a guide line (owner request, 2026-10-09) */
+.sub {
+  margin-left: 12px;
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+}
