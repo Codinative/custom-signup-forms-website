@@ -83,8 +83,8 @@ export function MultiStorefrontGuide() {
         intro={
           <>
             In the Storefronts list, click &quot;Set up&quot; next to a storefront under &quot;Not set up yet&quot;, or
-            open one you’ve set up before. Under &quot;Signup form&quot;, choose a form from &quot;Select a form…&quot;
-            and click &quot;Assign&quot;.
+            open one you’ve set up before. Under &quot;Signup form&quot;, open the &quot;Select a form…&quot; menu, pick
+            your form and click &quot;Assign&quot;.
           </>
         }
       >
@@ -138,8 +138,9 @@ export function MultiStorefrontGuide() {
         }
       >
         <p>
-          With a storefront selected, each setting shows Inherit or Override. Inherit keeps following your defaults,
-          including later changes. Override gives that storefront its own value, and no other storefront changes.
+          With a storefront selected, each setting has an &quot;Override&quot; checkbox. Leave it unticked and the
+          storefront keeps following your defaults, including later changes. Tick it to give that storefront its own
+          value; no other storefront changes.
         </p>
         <DocsFigure {...FIGURES.override} caption="Editing one storefront: tick Override on a setting to give that storefront its own value." />
         <p>A storefront can override:</p>
@@ -166,11 +167,16 @@ export function MultiStorefrontGuide() {
         {...S("turn-it-off")}
         intro={
           <>
-            Click &quot;Turn off&quot; on the Multi-storefront card and confirm. Every storefront except your default
-            stops serving a form right away, and their storefront scripts are removed.
+            Click “Turn off” on the Multi-storefront card and confirm. Every storefront except your default stops
+            serving a form right away, and the scripts we installed on them are removed.
           </>
         }
       >
+        <p>
+          Headless storefronts work slightly differently, because you pasted their snippet into your site yourself. We
+          can’t remove it, but it stops showing a form and leaves its spot on the page empty. Remove the snippet from
+          your site if you no longer need it, or keep it: it works again as soon as you turn that storefront back on.
+        </p>
         <p>
           Their form assignments are kept, but each storefront comes back switched off, so you turn them on again
           yourself.
