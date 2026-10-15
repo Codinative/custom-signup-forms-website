@@ -11,7 +11,7 @@ import { CONTAINER_LINES, HTML_LINES, NEXT_LINES, NUXT_LINES, SCRIPT_LINES } fro
 import styles from "./Guides.module.css";
 
 const STEPS: StepCard[] = [
-  { title: "Add the container", text: "Replace your signup form with an empty div." },
+  { title: "Add the container", text: "Replace your signup form with the empty div we provide." },
   { title: "Load the script", text: "Copy your storefront’s snippet into the page." },
   { title: "Switch it on", text: "Turn the storefront on in the app." },
 ];
@@ -28,13 +28,12 @@ export function HeadlessGuide() {
         intro={
           <>
             Headless embeds are on the Pro and Enterprise plans, with multi-storefront turned on. See the{" "}
-            <Link href="/docs/multi-storefront/">Multi-storefront guide</Link>.
+            <Link href="/docs/multi-storefront/">Multi-storefront Guide</Link>.
           </>
         }
       >
         <p>
-          They’re for storefront channels BigCommerce doesn’t render with Stencil, such as Catalyst, Next.js, Nuxt or a
-          custom site. On the Storefronts screen these are marked &quot;Headless&quot;.
+          They’re for storefront channels BigCommerce doesn’t render with Stencil, such as Catalyst, Next.js, Nuxt, React, Angular or any other web framework. On the Storefronts screen these are marked &quot;Headless&quot;.
         </p>
       </ProseSection>
 
@@ -54,8 +53,9 @@ export function HeadlessGuide() {
         {...S("load-the-script")}
         intro={
           <>
-            Copy your storefront’s script tag from Storefronts: open the storefront, find &quot;Embed snippet&quot; and
-            click &quot;Copy snippet&quot;. It looks like this:
+            In the app, go to <strong>Storefronts</strong> and click your headless storefront. On its page, find the{" "}
+            <strong>Embed snippet</strong> card and click <strong>Copy snippet</strong> under{" "}
+            <strong>2. Load this script on that page</strong>. It looks like this:
           </>
         }
       >
@@ -116,7 +116,7 @@ export function HeadlessGuide() {
         intro={
           <>
             The embed needs a web page with an element on it, so it can’t render inside a native mobile app. For native
-            apps, kiosks or your own backend, use the <Link href="/docs/api/">API integration</Link>.
+            apps, kiosks or your own backend, an API integration is coming soon.
           </>
         }
       />

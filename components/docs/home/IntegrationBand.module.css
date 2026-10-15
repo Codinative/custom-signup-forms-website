@@ -130,3 +130,11 @@
 .phoneCard:hover {
   background: rgba(255, 255, 255, 0.1);
 }
+
+/* A card whose doc isn't published yet: muted text instead of a link */
+.soon {
+  margin-top: auto;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}

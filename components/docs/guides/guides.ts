@@ -48,8 +48,8 @@ export const GUIDES: Record<GuideSlug, GuideMeta> = {
   },
   headless: {
     description:
-      "Embed the signup form on a headless storefront, such as Catalyst, Next.js or Nuxt, with an empty container and one script tag.",
-    lede: "Put your signup form on a storefront BigCommerce doesn’t render, such as Catalyst, Next.js or Nuxt. Your developer adds an empty container and one script tag.",
+      "Embed the signup form on a headless storefront, such as Catalyst, Next.js, Nuxt, React, Angular or any other web framework, with an empty container and one script tag.",
+    lede: "Put your signup form on a storefront BigCommerce doesn’t render, such as Catalyst, Next.js, Nuxt, React, Angular or any other web framework. Your developer adds an empty container and one script tag.",
     plan: "Pro and Enterprise",
     toc: [
       { id: "before-you-start", label: "Before you start" },

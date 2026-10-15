@@ -51,7 +51,7 @@ export function GuideStorefronts() {
         <li><strong>Remove configuration</strong> - clears the storefront&apos;s form, overrides and script (switch it off first).</li>
       </ul>
       <p>
-        A headless storefront (Catalyst, Next.js, Nuxt and the like) gets an <strong>Embed snippet</strong> instead of an
+        A headless storefront (Catalyst, Next.js, Nuxt, React, Angular or any other web framework) gets an <strong>Embed snippet</strong> instead of an
         automatic script: an empty container to place where the signup form goes, and a script tag to load on that page.
         Your developer adds both; see <Link href={headlessGuide.href}>{headlessGuide.title}</Link>. The{" "}
         <Link href={multiGuide.href}>{multiGuide.title}</Link> covers the setup in more depth.

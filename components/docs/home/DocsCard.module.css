@@ -68,3 +68,17 @@
 .card:hover .title {
   color: var(--blue-700);
 }
+
+/* A doc that isn't published yet: not a link, so no hover lift and no pointer */
+.unpublished,
+.unpublished:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--line);
+  cursor: default;
+}
+
+.unpublished .title,
+.unpublished:hover .title {
+  color: var(--ink);
+}

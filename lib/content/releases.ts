@@ -70,7 +70,7 @@ export const RELEASES: Release[] = [
       {
         type: "new",
         title: "Headless embed",
-        body: "A signed embed snippet for Catalyst, Next.js and other headless storefronts.",
+        body: "A signed embed snippet for headless storefronts built with Catalyst, Next.js, Nuxt, React, Angular or any other web framework.",
       },
       {
         type: "new",
