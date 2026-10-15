@@ -35,3 +35,12 @@
   color: var(--blue-700);
   font-weight: 600;
 }
+
+/* "Soon" pill beside docs for features that aren't available yet */
+.soon {
+  height: 18px;
+  margin-left: 6px;
+  padding: 0 7px;
+  font-size: 10px;
+  vertical-align: 1px;
+}

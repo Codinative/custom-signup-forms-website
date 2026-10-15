@@ -54,11 +54,11 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Docs",
     links: [
-      { label: "Installation guide", href: "/docs/installation/" },
-      { label: "User guide", href: "/docs/user-guide/" },
-      { label: "Multi-storefront guide", href: "/docs/multi-storefront/" },
+      { label: "Installation Guide", href: "/docs/installation/" },
+      { label: "User Guide", href: "/docs/user-guide/" },
+      { label: "Multi-storefront Guide", href: "/docs/multi-storefront/" },
       { label: "Headless and API", href: "/docs/headless/" },
-      { label: "Plans and billing", href: "/docs/plans-and-billing/" },
+      { label: "Plans and Billing", href: "/docs/plans-and-billing/" },
     ],
   },
   {

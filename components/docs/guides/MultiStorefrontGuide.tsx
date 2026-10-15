@@ -27,7 +27,7 @@ const CHANNEL_TYPES: DefinitionRow[] = [
     value: (
       <>
         Marked &quot;Headless&quot;. Your developer swaps your signup form for an empty container and loads the script.
-        See <Link href="/docs/headless/">Headless storefronts</Link>.
+        See <Link href="/docs/headless/">Headless Storefronts</Link>.
       </>
     ),
   },
@@ -102,7 +102,7 @@ export function MultiStorefrontGuide() {
         </p>
         <p>
           Headless storefronts also need the embed snippet on your site. See{" "}
-          <Link href="/docs/headless/">Headless storefronts</Link>.
+          <Link href="/docs/headless/">Headless Storefronts</Link>.
         </p>
       </ProseSection>
 
@@ -184,7 +184,7 @@ export function MultiStorefrontGuide() {
         <p>
           If you move to a plan without multi-storefront, it switches off when the change takes effect. Other
           storefronts stop serving, their forms and settings are kept, and all signup requests go into one queue with
-          your default settings. See <Link href="/docs/plans-and-billing/">Plans and billing</Link>.
+          your default settings. See <Link href="/docs/plans-and-billing/">Plans and Billing</Link>.
         </p>
       </ProseSection>
     </>

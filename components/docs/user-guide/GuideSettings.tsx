@@ -11,7 +11,7 @@ const plansGuide = getDoc("plans-and-billing");
 const RESOURCES: Array<{ slug: DocSlug; text: string }> = [
   { slug: "installation", text: "install the app and put your first form live" },
   { slug: "multi-storefront", text: "a different form and settings per storefront" },
-  { slug: "headless", text: "add the form to a Catalyst, Next.js or other headless storefront" },
+  { slug: "headless", text: "add the form to a headless storefront built with Catalyst, Next.js, Nuxt, React, Angular or any other web framework" },
   { slug: "email-smtp", text: "SMTP values for common email providers" },
   { slug: "plans-and-billing", text: "what each plan includes, trials and changing plans" },
 ];
@@ -60,7 +60,7 @@ export function GuideSettings() {
           Your plan, its price and renewal date, and this month&apos;s usage: storefronts, signups and saved forms. Use{" "}
           <strong>Upgrade</strong> or <strong>Change plan</strong> to switch plans, and <strong>Manage billing</strong> for
           invoices and your payment method. Upgrades apply straight away; downgrades at the end of the billing period. More
-          in <Link href={plansGuide.href}>Plans and billing</Link>.
+          in <Link href={plansGuide.href}>Plans and Billing</Link>.
         </p>
       </ProseSection>
 

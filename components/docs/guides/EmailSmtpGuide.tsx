@@ -157,7 +157,7 @@ export function EmailSmtpGuide() {
         <p>
           A storefront that overrides only its sender details still sends through your global SMTP account, so a new
           password there keeps working for it. See the{" "}
-          <Link href="/docs/multi-storefront/">Multi-storefront guide</Link>.
+          <Link href="/docs/multi-storefront/">Multi-storefront Guide</Link>.
         </p>
       </ProseSection>
     </>

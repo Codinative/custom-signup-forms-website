@@ -10,7 +10,8 @@ export type DocSlug =
   | "api"
   | "email-smtp";
 
-export type DocsTag = "Updated" | "New";
+/** "Coming soon": documented but not available yet (API, owner 2026-10-15). */
+export type DocsTag = "Updated" | "New" | "Coming soon";
 
 export type DocsEntry = {
   slug: DocSlug | "release-notes" | "privacy";
@@ -23,6 +24,9 @@ export type DocsEntry = {
   inSidebar: boolean;
   /** Left-nav label when it differs from the title. */
   sidebarLabel?: string;
+  /** Listed on the docs home as "Coming soon" but not published: the card is not a link, and the doc is
+   * left out of the sidebar and search. */
+  unpublished?: boolean;
 };
 
 export type DocsGroup = {
@@ -46,7 +50,7 @@ export const docsGroups: DocsGroup[] = [
       {
         slug: "installation",
         href: "/docs/installation/",
-        title: "Installation guide",
+        title: "Installation Guide",
         description: "Requirements, permissions and the steps from install to a live form.",
         icon: "book",
         tag: "Updated",
@@ -55,7 +59,7 @@ export const docsGroups: DocsGroup[] = [
       {
         slug: "user-guide",
         href: "/docs/user-guide/",
-        title: "User guide",
+        title: "User Guide",
         description: "The builder, approvals, emails, customer groups and settings, with screenshots.",
         icon: "file",
         tag: "Updated",
@@ -64,7 +68,7 @@ export const docsGroups: DocsGroup[] = [
       {
         slug: "plans-and-billing",
         href: "/docs/plans-and-billing/",
-        title: "Plans and billing",
+        title: "Plans and Billing",
         description: "What each plan includes, trials, changing plans and what happens if a payment fails.",
         icon: "creditCard",
         tag: "New",
@@ -79,7 +83,7 @@ export const docsGroups: DocsGroup[] = [
       {
         slug: "multi-storefront",
         href: "/docs/multi-storefront/",
-        title: "Multi-storefront guide",
+        title: "Multi-storefront Guide",
         description: "Turn it on, set up a storefront, override settings, switch it on.",
         icon: "store",
         tag: "New",
@@ -88,20 +92,23 @@ export const docsGroups: DocsGroup[] = [
       {
         slug: "headless",
         href: "/docs/headless/",
-        title: "Headless storefronts",
-        description: "Embed the form in Catalyst, Next.js, Nuxt or any web storefront with two lines.",
+        title: "Headless Storefronts",
+        description: "Embed the form in Catalyst, Next.js, Nuxt, React, Angular or any other web framework with two lines.",
         icon: "code",
         tag: "Updated",
         inSidebar: true,
       },
+      // API Integration is not published until the feature ships (owner, 2026-10-15): its page lives in
+      // app/docs/_api (a private folder, so no route); the docs home shows its card as "Coming soon".
       {
         slug: "api",
         href: "/docs/api/",
-        title: "API integration",
+        title: "API Integration",
         description: "Native mobile apps, kiosks and your own backend: fetch the form and submit signups over HTTPS.",
         icon: "api",
-        tag: "New",
-        inSidebar: true,
+        tag: "Coming soon",
+        inSidebar: false,
+        unpublished: true,
       },
     ],
   },
@@ -112,7 +119,7 @@ export const docsGroups: DocsGroup[] = [
       {
         slug: "email-smtp",
         href: "/docs/email-smtp/",
-        title: "Email and SMTP setup",
+        title: "Email and SMTP Setup",
         description: "Connect your mail provider and send a test.",
         icon: "mail",
         inSidebar: true,
@@ -167,7 +174,8 @@ export type IntegrationCard = {
   linkLabel: string;
   /** Phone link text, arrow as a character. */
   phoneLinkLabel: string;
-  href: string;
+  /** Omitted while the doc isn't published: the card shows "Coming soon" instead of a link. */
+  href?: string;
 };
 
 /** Docs home "Where does your signup happen?" band. The heading is desktop only. */
@@ -179,25 +187,24 @@ export const integrationBand: { eyebrow: string; title: string; cards: Integrati
       icon: "store",
       title: "BigCommerce Stencil storefront",
       description: "Nothing to add. The app installs the form on your create-account page.",
-      linkLabel: "Installation guide",
-      phoneLinkLabel: "Installation guide →",
+      linkLabel: "Installation Guide",
+      phoneLinkLabel: "Installation Guide →",
       href: "/docs/installation/",
     },
     {
       icon: "globe",
       title: "Headless web storefront",
-      description: "Catalyst, Next.js, Nuxt, a custom site: paste the embed snippet.",
-      linkLabel: "Headless storefronts",
-      phoneLinkLabel: "Headless storefronts →",
+      description: "Catalyst, Next.js, Nuxt, React, Angular or any other web framework: paste the embed snippet.",
+      linkLabel: "Headless Storefronts",
+      phoneLinkLabel: "Headless Storefronts →",
       href: "/docs/headless/",
     },
     {
       icon: "smartphone",
       title: "Native app, kiosk or backend",
-      description: "No web page to render into: call the API and draw the form yourself.",
-      linkLabel: "API integration",
-      phoneLinkLabel: "API integration →",
-      href: "/docs/api/",
+      description: "Coming soon. No web page to render into: call the API and draw the form yourself.",
+      linkLabel: "Coming soon",
+      phoneLinkLabel: "Coming soon",
     },
   ],
 };

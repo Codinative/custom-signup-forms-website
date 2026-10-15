@@ -5,7 +5,7 @@ import type { DocsEntry, DocsTag } from "@/lib/content/docsIndex";
 import styles from "./DocsCard.module.css";
 
 /** Updated = #dbeafe/#1e40af, New = #dcfce7/#166534 (Docs.dc.html). */
-const TAG_TONE: Record<DocsTag, TagTone> = { Updated: "improved", New: "new" };
+const TAG_TONE: Record<DocsTag, TagTone> = { Updated: "improved", New: "new", "Coming soon": "soon" };
 
 export type DocsCardProps = {
   entry: DocsEntry;
@@ -13,10 +13,12 @@ export type DocsCardProps = {
   className?: string;
 };
 
-/** One docs index card (Docs.dc.html / MobileDocs.dc.html): the whole card is the link. */
+/** One docs index card (Docs.dc.html / MobileDocs.dc.html): the whole card is the link, except for a doc that
+ * isn't published yet, which is a plain, muted card with its "Coming soon" tag. */
 export function DocsCard({ entry, className }: DocsCardProps) {
-  return (
-    <Link href={entry.href} className={[styles.card, className].filter(Boolean).join(" ")}>
+  const classes = [styles.card, entry.unpublished ? styles.unpublished : undefined, className].filter(Boolean).join(" ");
+  const content = (
+    <>
       <span className={styles.icon}>
         <Icon name={entry.icon} size={21} strokeWidth={1.9} />
       </span>
@@ -33,6 +35,12 @@ export function DocsCard({ entry, className }: DocsCardProps) {
         </span>{" "}
         <span className={styles.text}>{entry.description}</span>
       </span>
+    </>
+  );
+  if (entry.unpublished) return <div className={classes}>{content}</div>;
+  return (
+    <Link href={entry.href} className={classes}>
+      {content}
     </Link>
   );
 }

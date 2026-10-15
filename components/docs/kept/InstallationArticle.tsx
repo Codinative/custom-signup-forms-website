@@ -22,7 +22,7 @@ const SECTIONS = {
 export const installationToc: TocItem[] = Object.values(SECTIONS);
 
 const REQUIREMENTS: StepCard[] = [
-  { title: "A BigCommerce store", text: "And a login that can install apps. On a standard (Stencil) storefront you add no code: the app puts the form on your create-account page when you activate it. A headless storefront (Catalyst, Next.js and the like) needs a short embed snippet from your developer and the Pro or Enterprise plan." },
+  { title: "A BigCommerce store", text: "And a login that can install apps. On a standard (Stencil) storefront you add no code: the app puts the form on your create-account page when you activate it. A headless storefront (Catalyst, Next.js, Nuxt, React, Angular or any other web framework) needs a short embed snippet from your developer and the Pro or Enterprise plan." },
   { title: "Customer groups (optional)", text: "If approved applicants should join a group, such as Wholesale, create the group in BigCommerce first so you can pick it in the app." },
   { title: "An email (SMTP) account (optional)", text: "Customer emails (Standard plan and up) are sent through your own provider, such as Brevo, SendGrid or Gmail. Keep its SMTP details at hand." },
 ];
