@@ -16,7 +16,6 @@ const PAGES = [
   { path: "/docs/plans-and-billing/", eyebrow: "Docs · Plans and billing", title: "What each plan includes, trials, changing plans and what happens if a payment fails." },
   { path: "/docs/multi-storefront/", eyebrow: "Docs · Multi-storefront guide", title: "Turn it on, set up a storefront, override settings, switch it on." },
   { path: "/docs/headless/", eyebrow: "Docs · Headless storefronts", title: "Embed the form in Catalyst, Next.js, Nuxt or any web storefront with two lines." },
-  { path: "/docs/api/", eyebrow: "Docs · API integration", title: "Native mobile apps, kiosks and your own backend: fetch the form and submit signups over HTTPS." },
   { path: "/docs/email-smtp/", eyebrow: "Docs · Email and SMTP setup", title: "Connect your mail provider and send a test." },
   { path: "/release-notes/", eyebrow: "Release notes", title: "What's new in Custom Signup Forms." },
   { path: "/apps/", eyebrow: "More apps", title: "Apps for BigCommerce, built by one certified partner." },

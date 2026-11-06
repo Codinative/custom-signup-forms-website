@@ -15,7 +15,6 @@ export const ROUTES: SiteRoute[] = [
   { path: "/docs/plans-and-billing/", priority: 0.6, changeFrequency: "monthly" },
   { path: "/docs/multi-storefront/", priority: 0.6, changeFrequency: "monthly" },
   { path: "/docs/headless/", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/docs/api/", priority: 0.6, changeFrequency: "monthly" },
   { path: "/docs/email-smtp/", priority: 0.6, changeFrequency: "monthly" },
   { path: "/release-notes/", priority: 0.6, changeFrequency: "weekly" },
   { path: "/apps/", priority: 0.5, changeFrequency: "monthly" },

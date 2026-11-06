@@ -19,16 +19,20 @@ export function IntegrationBand() {
         </div>
         <div className={styles.grid}>
           {cards.map((card) => (
-            <div key={card.href} className={styles.card}>
+            <div key={card.title} className={styles.card}>
               <span className={styles.icon}>
                 <Icon name={card.icon} size={24} strokeWidth={1.8} />
               </span>
               <span className={styles.cardTitle}>{card.title}</span>
               <p className={styles.text}>{card.description}</p>
-              <Link href={card.href} className={styles.link}>
-                {card.linkLabel}
-                <Icon name="arrowRight" size={15} />
-              </Link>
+              {card.href ? (
+                <Link href={card.href} className={styles.link}>
+                  {card.linkLabel}
+                  <Icon name="arrowRight" size={15} />
+                </Link>
+              ) : (
+                <span className={styles.soon}>{card.linkLabel}</span>
+              )}
             </div>
           ))}
         </div>
@@ -37,15 +41,27 @@ export function IntegrationBand() {
       <div className={`${styles.phonePanel} onlyPhone`}>
         <Eyebrow tone="light">{eyebrow}</Eyebrow>
         {cards.map((card) => (
-          <Link key={card.href} href={card.href} className={styles.phoneCard}>
-            <span className={styles.phoneIcon}>
-              <Icon name={card.icon} size={22} strokeWidth={1.8} />
-            </span>
-            <span className={styles.phoneText}>
-              <span className={styles.phoneTitle}>{card.title}</span>{" "}
-              <span className={styles.phoneLink}>{card.phoneLinkLabel}</span>
-            </span>
-          </Link>
+          card.href ? (
+            <Link key={card.title} href={card.href} className={styles.phoneCard}>
+              <span className={styles.phoneIcon}>
+                <Icon name={card.icon} size={22} strokeWidth={1.8} />
+              </span>
+              <span className={styles.phoneText}>
+                <span className={styles.phoneTitle}>{card.title}</span>{" "}
+                <span className={styles.phoneLink}>{card.phoneLinkLabel}</span>
+              </span>
+            </Link>
+          ) : (
+            <div key={card.title} className={styles.phoneCard}>
+              <span className={styles.phoneIcon}>
+                <Icon name={card.icon} size={22} strokeWidth={1.8} />
+              </span>
+              <span className={styles.phoneText}>
+                <span className={styles.phoneTitle}>{card.title}</span>{" "}
+                <span className={styles.phoneLink}>{card.phoneLinkLabel}</span>
+              </span>
+              </div>
+          )
         ))}
       </div>
     </section>

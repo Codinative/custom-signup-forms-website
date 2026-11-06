@@ -5,7 +5,7 @@ import styles from "./DocsHero.module.css";
 
 /** Docs.dc.html hero (centred) · MobileDocs.dc.html hero (left-aligned, no lede). */
 export function DocsHero() {
-  const entries = docsEntries.map(({ href, title, description }) => ({ href, title, description }));
+  const entries = docsEntries.filter((entry) => !entry.unpublished).map(({ href, title, description }) => ({ href, title, description }));
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>

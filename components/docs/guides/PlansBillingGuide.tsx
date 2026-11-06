@@ -34,7 +34,7 @@ const PLAN_LIMITS: Record<PlanId, string> = {
 
 const PLAN_ROWS: DefinitionRow[] = (["free", "standard", "pro", "enterprise"] as const).map((id) => ({
   key: planOf(id).name,
-  value: `${priceOf(id)}. ${PLAN_LIMITS[id]}`,
+  value: `${priceOf(id)} · ${PLAN_LIMITS[id]}`,
 }));
 
 // App repo: lib/stripe-checkout.ts decidePlanChange, components/pricing/PricingPage.tsx confirmContent
@@ -111,7 +111,7 @@ export function PlansBillingGuide() {
         </p>
         <DefinitionRows rows={CHANGE_ROWS} className={styles.stackedRows} />
         <p>
-          &quot;Manage billing&quot; in Settings → Subscription opens the Stripe billing portal, where you can update
+          &quot;Manage billing&quot; in Settings → Subscription opens the secure billing portal, where you can update
           your card, see invoices and cancel.
         </p>
         <h3>Moving to a plan with fewer storefronts</h3>
@@ -131,7 +131,7 @@ export function PlansBillingGuide() {
           new signups right now. Please contact the store owner.&quot; Upgrading removes the cap straight away.
         </Callout>
         <p>
-          Free can’t save a form that uses conditional logic, an &quot;Other&quot; choice or a file upload field.
+          Free can’t save a form that uses conditional logic, an &quot;Other&quot; choice or a <strong>file upload</strong> field.
           Remove them, or upgrade to keep them.
         </p>
         <p>

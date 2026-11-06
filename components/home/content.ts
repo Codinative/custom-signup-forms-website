@@ -161,7 +161,7 @@ export const FEATURES: Feature[] = [
     checks: [
       "A different form, email set, cooldown and group rules per storefront",
       "Everything you do not override follows your defaults",
-      "Embed snippet for headless storefronts such as Catalyst, Next.js, Nuxt, React or Angular - any site that can add a script tag",
+      "Embed snippet for headless storefronts such as Catalyst, Next.js, Nuxt, React, Angular or any other web framework",
       "Filter the request queue by storefront",
       { text: "API integration for headless storefronts that can't add a script", soon: true },
     ],

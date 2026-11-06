@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Tag } from "@/components/ui/Tag";
 import { docsSidebar, type DocSlug } from "@/lib/content/docsIndex";
 import styles from "./DocsSidebar.module.css";
 
@@ -28,6 +29,12 @@ export function DocsSidebar({ active, className }: DocsSidebarProps) {
                   aria-current={current ? "page" : undefined}
                 >
                   {entry.sidebarLabel ?? entry.title}
+                  {entry.tag === "Coming soon" ? (
+                    <>
+                      {" "}
+                      <Tag tone="soon" className={styles.soon}>Soon</Tag>
+                    </>
+                  ) : null}
                 </Link>
               </li>
             );

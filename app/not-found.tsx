@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <>
+    <div className={styles.page}>
       <SiteHeader variant="light" />
-      <main id="main">
+      <main id="main" className={styles.main}>
         <section className={styles.hero}>
           <p className="eyebrow">404</p>
           <h1 className={`disp ${styles.title}`}>Page not found.</h1>
@@ -24,6 +24,6 @@ export default function NotFound() {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
