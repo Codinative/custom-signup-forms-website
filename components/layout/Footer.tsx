@@ -1,43 +1,82 @@
+import Link from "next/link";
 import { PartnerBadge } from "@/components/ui/PartnerBadge";
-import { footerColumns, footerCopy } from "@/lib/content/navigation";
-import { FooterAccordion } from "./FooterAccordion";
+import { footerAlsoFrom, footerColumns, footerCopy } from "@/lib/content/navigation";
+import { LINKS } from "@/lib/site";
+import { AiCompare } from "./AiCompare";
 import { FooterLink } from "./FooterLink";
 import { Logo } from "./Logo";
 import styles from "./Footer.module.css";
 
 /**
- * Site footer: desktop 5-column block (≥768) and phone block (<768) with the same link groups as
- * an accordion (one open at a time, eased like the FAQ) and the partner badge centred (owner request, 2026-10-08/09).
+ * Site footer (owner request, 2026-11-06: same layout as the Snapback footer): a light card on a dark
+ * band holding the brand, link columns, contact row and small print, then the AI comparison and the logo.
+ * One layout at every width. The partner badge and copyright have no Snapback equivalent and are kept from the old footer.
  */
 export function Footer() {
   return (
-    <footer className={`${styles.footer} onDark`}>
-      <div className={`${styles.desktop} onlyDesktop`}>
-        <div className={styles.grid}>
-          <div className={styles.brand}>
-            <Logo tone="light" height={96} className={styles.logo} />
-            <p className={styles.blurb}>{footerCopy.blurb}</p>
-          </div>
-          {footerColumns.map((column) => (
-            <div key={column.title} className={styles.column}>
-              <h2 className={`eyebrow ${styles.heading}`}>{column.title}</h2>
-              {column.links.map((link) => (
-                <FooterLink key={link.label} link={link} className={styles.link} />
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <nav className={styles.alsoFrom} aria-label={footerAlsoFrom.title}>
+            <p className={styles.heading}>{footerAlsoFrom.title}</p>
+            <ul className={styles.alsoFromList}>
+              {footerAlsoFrom.products.map((product) => (
+                <li key={product.name}>
+                  <a href={product.href} className={styles.alsoFromName} target="_blank" rel="noopener">
+                    {product.name}
+                  </a>
+                  <p className={styles.alsoFromText}>{product.description}</p>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className={styles.top}>
+            <div className={styles.brand}>
+              <Logo tone="dark" height={72} className={styles.logo} />
+              <p className={styles.blurb}>{footerCopy.blurb}</p>
+              <PartnerBadge height={56} className={styles.badge} />
+            </div>
+            <div className={styles.columns}>
+              {footerColumns.map((column) => (
+                <nav key={column.title} aria-label={column.title}>
+                  <p className={styles.heading}>{column.title}</p>
+                  <ul className={styles.links}>
+                    {column.links.map((link) => (
+                      <li key={link.label}>
+                        <FooterLink link={link} className={styles.link} />
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
               ))}
             </div>
-          ))}
-        </div>
-        <div className={styles.bottom}>
-          <span>{footerCopy.copyright}</span>
-          <PartnerBadge height={48} tone="white" />
+          </div>
+
+          <div className={styles.contact}>
+            <h2 className={`disp ${styles.contactTitle}`}>
+              <span>{footerCopy.contactQuestion}</span>
+              <span>{footerCopy.contactAnswer}</span>
+            </h2>
+            <div className={styles.buttons}>
+              <Link href="/contact/" className={styles.primary}>
+                {footerCopy.contactCta}
+              </Link>
+              <a href={`mailto:${LINKS.email}`} className={styles.outline}>
+                {LINKS.email}
+              </a>
+            </div>
+          </div>
+
+          <p className={styles.small}>{footerCopy.disclaimer}</p>
+          <p className={styles.copyright}>{footerCopy.copyright}</p>
         </div>
       </div>
-      <div className={`${styles.phone} onlyPhone`}>
-        <Logo tone="light" height={56} className={styles.logo} />
-        <FooterAccordion groups={footerColumns} linkClassName={styles.link} />
-        <div className={styles.phoneBottom}>
-          <PartnerBadge height={44} tone="white" />
-          <span className={styles.phoneCopy}>{footerCopy.copyright}</span>
+
+      <div className={`${styles.closing} onDark`}>
+        <AiCompare />
+        <div className={styles.closingMark}>
+          <Logo tone="light" height={150} className={styles.closingLogo} />
         </div>
       </div>
     </footer>

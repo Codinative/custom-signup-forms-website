@@ -1,0 +1,68 @@
+/* Values from the Snapback footer's Compare block; colours are this site's tokens */
+.compare {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--line-strong);
+}
+
+.sub {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--line-strong);
+}
+
+.link:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.mark {
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .sub {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 639px) {
+  .list {
+    gap: 12px;
+  }
+}

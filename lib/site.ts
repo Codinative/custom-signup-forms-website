@@ -27,4 +27,5 @@ export const LINKS = {
   shippingRules: "https://custom-shipping-rules.codinative.com/",
   shippingRulesListing: "https://www.bigcommerce.com/apps/custom-shipping-rules-by-codinative/",
   stickyCart: "https://sticky-add-to-cart.codinative.com/",
+  softbox: "https://softbox.codinative.com/",
 };

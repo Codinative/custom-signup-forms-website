@@ -1,109 +1,249 @@
-/* Footer from Main.dc.html (desktop) and MobileHome.dc.html (phone); identical on every page */
+/* Footer: spacing, radii, type scale and hover states from the Snapback footer (its breakpoints:
+   640, 768, 1024); colours and fonts are this site's tokens, the band gradient is Snapback's. */
 .footer {
-  background: var(--navy);
+  margin-top: 96px;
+  padding-top: 40px;
+  background: linear-gradient(to bottom, #0a1211 0%, #0f1b1a 26%, #13211f 100%);
+  color: var(--faint);
+  line-height: 1.5;
 }
 
-.desktop {
-  max-width: 1440px;
+.container {
+  max-width: 1152px;
   margin-inline: auto;
-  padding: 64px 64px 40px;
-  color: var(--line-strong);
+  padding-inline: 24px;
 }
 
-.grid {
+.card {
+  padding: 64px;
+  border-radius: 48px;
+  background: #ffffff;
+  color: var(--muted);
+}
+
+.alsoFrom {
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+
+.alsoFromList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alsoFromName {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.alsoFromName:hover {
+  color: var(--blue-700);
+}
+
+.alsoFromText {
+  max-width: 720px;
+  margin-top: 4px;
+  line-height: 1.625;
+}
+
+.top {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr 2.3fr;
+  gap: 64px;
 }
 
 .brand {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  max-width: 384px;
 }
 
+/* The logo image has empty space around it; pull it back so the mark lines up with the text below */
 .logo {
-  align-self: flex-start;
+  display: block;
+  margin: -10px 0 -6px -16px;
 }
 
 .blurb {
-  max-width: 300px;
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--faint);
+  margin-top: 20px;
+  line-height: 1.625;
 }
 
-.column {
+.badge {
+  margin-top: 24px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 32px;
+}
+
+.heading {
+  color: var(--ink);
+}
+
+.links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-
-.column .heading {
-  color: var(--blue-300);
+  gap: 14px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .link {
-  color: var(--line-strong);
-  font-size: 14px;
+  color: var(--muted);
 }
 
-/* Copyright left, partner badge right (owner request, 2026-10-01: replaces "Built for BigCommerce") */
-.bottom {
-  display: flex;
-  justify-content: space-between;
+.link:hover {
+  color: var(--ink);
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   gap: 24px;
   margin-top: 56px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 13px;
-  color: var(--muted);
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
 }
 
-.phone {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 36px 20px;
+.contactTitle {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 36px;
+  color: var(--ink);
 }
 
-.phoneBottom {
+/* Two deliberate lines: the question, then the answer */
+.contactTitle span {
+  display: block;
+}
+
+.buttons {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.primary,
+.outline {
+  display: inline-flex;
   align-items: center;
-  gap: 14px;
-  padding-top: 8px;
-  text-align: center;
+  height: 44px;
+  padding-inline: 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.phoneCopy {
+.primary {
+  background: var(--blue-600);
+  color: #ffffff;
+}
+
+.primary:hover {
+  background: var(--ink);
+}
+
+.outline {
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.outline:hover {
+  border-color: var(--muted);
+}
+
+.small,
+.copyright {
   font-size: 12px;
-  color: var(--muted);
+  line-height: 1.625;
 }
 
-/* Tablet: brand on its own row, then the four link columns */
-@media (max-width: 1279px) {
-  .desktop {
-    padding: 64px var(--pad-x-tablet) 40px;
-  }
+.small {
+  margin-top: 40px;
+}
 
-  .grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+.copyright {
+  margin-top: 8px;
+}
 
-  .brand {
-    grid-column: 1 / -1;
-  }
+.closing {
+  padding: 128px 32px 80px;
+}
+
+.closingMark {
+  display: flex;
+  justify-content: center;
+  margin-top: 128px;
+}
+
+.closingLogo {
+  display: block;
+  height: 150px;
 }
 
 @media (max-width: 1023px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .card {
+    padding: 56px;
+  }
+
+  .top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
   }
 }
 
-/* Hover states (owner request, 2026-09-30) */
-.link:hover {
-  color: #ffffff;
+@media (max-width: 767px) {
+  .footer {
+    padding-top: 32px;
+  }
+
+  .container {
+    padding-inline: 16px;
+  }
+
+  .card {
+    padding: 32px;
+    border-radius: 32px;
+  }
+
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contactTitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .buttons {
+    justify-content: flex-start;
+  }
+
+  .closing {
+    padding: 96px 20px 64px;
+  }
+
+  .closingMark {
+    margin-top: 96px;
+  }
+
+  .closingLogo {
+    height: 108px;
+  }
+}
+
+@media (max-width: 639px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

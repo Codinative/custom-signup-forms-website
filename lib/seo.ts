@@ -40,6 +40,7 @@ export const organizationLd = {
   url: LINKS.vendor,
   email: LINKS.email,
   logo: `${SITE_URL}/images/app-icon.png`,
+  sameAs: [LINKS.softbox],
 };
 
 export const websiteLd = {

@@ -40,7 +40,7 @@ export const menuCtas: { install: NavLink } = {
   install: { label: "Install free on BigCommerce", href: LINKS.marketplace },
 };
 
-/** Desktop footer link columns (4). */
+/** Footer link columns (4). */
 export const footerColumns: FooterColumn[] = [
   {
     title: "Product",
@@ -73,15 +73,33 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "More Codinative apps",
     links: [
-      { label: "Custom Shipping Rules", href: LINKS.shippingRules },
-      { label: "Sticky Add to Cart", href: LINKS.stickyCart },
+      // Listing, not the site: both sister-app sites returned Vercel 402 DEPLOYMENT_DISABLED on 2026-11-06, and Sticky Add to Cart has no listing yet.
+      { label: "Custom Shipping Rules", href: LINKS.shippingRulesListing },
       { label: "All apps", href: "/apps/" },
     ],
   },
 ];
 
-/** Footer brand column and bottom bar copy. */
+/** Footer "Also from Codinative" row: sibling products, factual descriptions only. */
+export const footerAlsoFrom = {
+  title: "Also from Codinative",
+  products: [
+    {
+      name: "Softbox by Codinative",
+      href: LINKS.softbox,
+      description:
+        "AI product photography for BigCommerce and Shopify stores: fits a merchant's own product photos onto a reusable generated model and publishes them back to their product listings.",
+    },
+  ],
+};
+
+/** Footer brand column, contact row and small print copy. */
 export const footerCopy = {
   blurb: "Custom signup forms and approvals for BigCommerce. One app for every storefront you run.",
+  contactQuestion: "Stuck on a form?",
+  contactAnswer: "Talk to us.",
+  contactCta: "Contact us",
+  disclaimer:
+    "Custom Signup Forms is built by Codinative. What each plan includes is listed in full on the Pricing page. Other names and marks are the property of their owners.",
   copyright: "© 2026 Codinative. All rights reserved.",
 };
