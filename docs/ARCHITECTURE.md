@@ -23,7 +23,7 @@ Status: **approved 2026-09-28 (defaults + Firebase Hosting).** Items marked ⏳ 
 ```
 app/                     routes; layout.tsx (fonts, skip link, JSON-LD org/site), globals.css, sitemap.ts, robots.ts, icon.png, apple-icon.png
 components/ui/           Icon, Button, Tag, Eyebrow, SectionHeading, PlaceholderBox, BrowserFrame, CodeBlock, FaqAccordion, FaqStatic, JsonLd
-components/layout/       SiteHeader, MobileMenu (client), Footer, HashRedirect (client)
+components/layout/       SiteHeader, MobileMenu (client), Footer, AiCompare, AiMarks, HashRedirect (client)
 components/docs/         DocsArticleLayout, DocsSidebar, DocsToc (client scrollspy), DocsPhoneBar, Prose, DocsCard, DocsSearch (client), …
 components/{home,pricing,multi-storefront,apps,releases,legal}/   page sections
 lib/content/             plans, featureMatrix, faqs, releases, docsIndex, apps, navigation, routes
@@ -70,13 +70,14 @@ DocsFigure({ src, width, height, alt, caption?, maxWidth?, className? })   // ap
 - `faqs.ts`: `Faq { q, a: string | null }`, `homeFaqs` (6), `pricingFaqs` (5), `answeredFaqs()` for FAQPage JSON-LD.
 - `releases.ts`: `RELEASES` (6, newest first), `CHANGE_LABELS`, `RELEASE_COPY`, `releaseAnchor()`, `formatReleaseDate()`.
 - `apps.ts`: `APPS`, `APP_CARD_COPY`, `SIGNUP_SCREENSHOT`, `CHECKOUT_PREVIEW`, `STICKY_BAR_PREVIEW`.
-- `navigation.ts`: `headerLinks`, `headerCtas`, `menuLinks`, `menuCtas`, `footerColumns` (desktop and phone footer), `footerCopy`.
+- `navigation.ts`: `headerLinks`, `headerCtas`, `menuLinks`, `menuCtas`, `footerColumns`, `footerAlsoFrom`, `footerCopy`.
+- `aiCompare.ts`: `AI_COMPARE_PROMPT`, `AI_ASSISTANTS` (footer AI comparison; every claim comes from a page of this site).
 - `docsIndex.ts`: `docsGroups`, `docsEntries`, `docsSidebar`, `getDoc()`, `docBreadcrumb()`, `integrationBand`, `apiToc`.
 - `reviews.ts`: `REVIEWS` / `MARKETPLACE_RATING` (real Marketplace data: 2 reviews, 5.0, as of 2026-10-01; titles and dates, no names), `SAMPLE_REVIEWS` / `SAMPLE_RATING` (shown only by `npm run dev` and `build:preview`), `getReviewsContent()`.
 - `routes.ts`: `ROUTES` (sitemap).
 
 ## 6. Link map (every design `href="#"`)
-Logo → `/` · Features → `/#features` · Multi-storefront, Explore multi-storefront → `/multi-storefront/` · Pricing, See pricing → `/pricing/` · Compare every feature → `/pricing/#compare` · Docs, Read the docs → `/docs/` · Release notes → `/release-notes/` · hero "New" pill → `/release-notes/#v2-0-0` · More apps, All apps, See all apps → `/apps/` · Contact, Contact us, Contact support, Talk to Codinative → `/contact/` · Codinative → `https://codinative.com/` · Install free / Install / Start 7-day (free) trial / Try free / Start a 7-day Pro trial / Get it on BigCommerce (this app) → marketplace listing · footer "Headless and API" → `/docs/headless/` ⏳ · Privacy, terms and data → `/privacy-policy/` · Custom Shipping Rules / Sticky Add to Cart → their sites; "Get it on BigCommerce": Custom Shipping Rules → its marketplace listing, Sticky Add to Cart → "Coming soon" (not listed yet). No "Open the app" anywhere (owner decision 2026-09-30) · docs cards → their routes · email → `mailto:info@codinative.com`.
+Logo → `/` · Features → `/#features` · Multi-storefront, Explore multi-storefront → `/multi-storefront/` · Pricing, See pricing → `/pricing/` · Compare every feature → `/pricing/#compare` · Docs, Read the docs → `/docs/` · Release notes → `/release-notes/` · hero "New" pill → `/release-notes/#v2-0-0` · More apps, All apps, See all apps → `/apps/` · Contact, Contact us, Contact support, Talk to Codinative → `/contact/` · Codinative → `https://codinative.com/` · Install free / Install / Start 7-day (free) trial / Try free / Start a 7-day Pro trial / Get it on BigCommerce (this app) → marketplace listing · footer "Headless and API" → `/docs/headless/` ⏳ · Privacy, terms and data → `/privacy-policy/` · Custom Shipping Rules / Sticky Add to Cart → their sites (footer: Custom Shipping Rules → its marketplace listing, Sticky Add to Cart left out, while both sites are down); "Get it on BigCommerce": Custom Shipping Rules → its marketplace listing, Sticky Add to Cart → "Coming soon" (not listed yet). No "Open the app" anywhere (owner decision 2026-09-30) · docs cards → their routes · footer "Also from Codinative": Softbox by Codinative → `https://softbox.codinative.com/` · email → `mailto:info@codinative.com`.
 
 ## 7. Decisions (defaults)
 1. Plain CSS kept: tokens and utilities in `globals.css`, component CSS Modules. The old 575-line `globals.css` is replaced.
