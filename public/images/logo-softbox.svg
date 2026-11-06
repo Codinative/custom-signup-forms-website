@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Softbox">
+  <title>Softbox</title>
+  <!-- The wordmark's glyph from components/chrome.tsx, with the palette's own values in
+       place of currentColor: petrol box, khaki softbox inside it. -->
+  <rect width="32" height="32" rx="7" fill="#0b3f3a"/>
+  <rect x="11" y="11" width="10" height="10" rx="2.5" fill="#e3de9f"/>
+</svg>

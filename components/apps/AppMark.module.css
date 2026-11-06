@@ -1,0 +1,10 @@
+/* The tile's radius clips the logo, so it matches the other apps' tiles */
+.withLogo {
+  overflow: hidden;
+}
+
+.withLogo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AppMark } from "@/components/apps/AppMark";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon } from "@/components/ui/Icon";
 import { APPS } from "@/lib/content/apps";
@@ -22,9 +23,7 @@ export function MoreApps() {
       <div className={styles.cards}>
         {OTHER_APPS.map((app) => (
           <a key={app.id} href={app.siteUrl} target="_blank" rel="noopener" className={styles.card}>
-            <div className={styles.iconBox}>
-              <Icon name={app.icon} size={22} strokeWidth={1.9} />
-            </div>
+            <AppMark app={app} className={styles.iconBox} />
             <div className={styles.cardText}>
               <span className={styles.name}>{app.name}</span>
               <span className={`${styles.desc} onlyDesktop`}>{app.description}</span>

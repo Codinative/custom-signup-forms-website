@@ -87,8 +87,16 @@ export const footerAlsoFrom = {
     {
       name: "Softbox by Codinative",
       href: LINKS.softbox,
+      logo: LINKS.softboxLogo,
       description:
         "AI product photography for BigCommerce and Shopify stores: fits a merchant's own product photos onto a reusable generated model and publishes them back to their product listings.",
+    },
+    {
+      name: "Snapback",
+      href: LINKS.snapback,
+      logo: LINKS.snapbackLogo,
+      description:
+        "Backups and point-in-time restore for BigCommerce: records your catalogue as you work and puts any piece of it back, from one product to the entire store, exactly as it was at any moment in the last year.",
     },
   ],
 };

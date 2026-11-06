@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PartnerBadge } from "@/components/ui/PartnerBadge";
 import { footerAlsoFrom, footerColumns, footerCopy } from "@/lib/content/navigation";
@@ -10,7 +11,7 @@ import styles from "./Footer.module.css";
 /**
  * Site footer (owner request, 2026-11-06: same layout as the Snapback footer): a light card on a dark
  * band holding the brand, link columns, contact row and small print, then the AI comparison and the logo.
- * One layout at every width. The partner badge and copyright have no Snapback equivalent and are kept from the old footer.
+ * One layout at every width. The AI comparison waits behind the card and is uncovered as the card scrolls up (owner request). The partner badge and copyright have no Snapback equivalent and are kept from the old footer.
  */
 export function Footer() {
   return (
@@ -21,11 +22,14 @@ export function Footer() {
             <p className={styles.heading}>{footerAlsoFrom.title}</p>
             <ul className={styles.alsoFromList}>
               {footerAlsoFrom.products.map((product) => (
-                <li key={product.name}>
-                  <a href={product.href} className={styles.alsoFromName} target="_blank" rel="noopener">
-                    {product.name}
-                  </a>
-                  <p className={styles.alsoFromText}>{product.description}</p>
+                <li key={product.name} className={styles.alsoFromItem}>
+                  <Image src={product.logo} alt="" width={32} height={32} unoptimized className={styles.alsoFromLogo} />
+                  <div>
+                    <a href={product.href} className={styles.alsoFromName} target="_blank" rel="noopener">
+                      {product.name}
+                    </a>
+                    <p className={styles.alsoFromText}>{product.description}</p>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -73,11 +77,12 @@ export function Footer() {
         </div>
       </div>
 
-      <div className={`${styles.closing} onDark`}>
+      {/* Direct child of the footer: sticky can then hold it behind the card until the card scrolls off it */}
+      <div className={`${styles.reveal} onDark`}>
         <AiCompare />
-        <div className={styles.closingMark}>
-          <Logo tone="light" height={150} className={styles.closingLogo} />
-        </div>
+      </div>
+      <div className={styles.closingMark}>
+        <Logo tone="light" height={150} className={styles.closingLogo} />
       </div>
     </footer>
   );

@@ -28,4 +28,8 @@ export const LINKS = {
   shippingRulesListing: "https://www.bigcommerce.com/apps/custom-shipping-rules-by-codinative/",
   stickyCart: "https://sticky-add-to-cart.codinative.com/",
   softbox: "https://softbox.codinative.com/",
+  snapback: "https://snapback.codinative.com/",
+  // Copied unchanged from each site's app/icon.svg.
+  softboxLogo: "/images/logo-softbox.svg",
+  snapbackLogo: "/images/logo-snapback.svg",
 };

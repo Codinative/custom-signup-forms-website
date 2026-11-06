@@ -2,7 +2,8 @@ import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Tag } from "@/components/ui/Tag";
-import { APP_CARD_COPY, SIGNUP_SCREENSHOT, type AppEntry } from "@/lib/content/apps";
+import { APP_CARD_COPY, SIGNUP_SCREENSHOT, SNAPBACK_SCREENSHOT, SOFTBOX_SCREENSHOT, type AppEntry } from "@/lib/content/apps";
+import { AppMark } from "./AppMark";
 import { CheckoutMock } from "./CheckoutMock";
 import { StickyBarMock } from "./StickyBarMock";
 import styles from "./AppCard.module.css";
@@ -11,14 +12,23 @@ export type AppCardProps = {
   app: AppEntry;
 };
 
+const SHOT_SIZES =
+  "(max-width: 767px) calc(100vw - 88px), (max-width: 1279px) calc(50vw - 110px), (max-width: 1439px) calc(33.3vw - 156px), 324px";
+
 function Preview({ preview }: { preview: AppEntry["preview"] }) {
   if (preview === "checkout") return <CheckoutMock />;
   if (preview === "stickyBar") return <StickyBarMock />;
+  if (preview === "snapbackScreenshot") {
+    return <BrowserFrame {...SNAPBACK_SCREENSHOT} sizes={SHOT_SIZES} className={styles.shot} />;
+  }
+  if (preview === "softboxScreenshot") {
+    return <BrowserFrame {...SOFTBOX_SCREENSHOT} sizes={SHOT_SIZES} className={styles.shot} />;
+  }
   return (
     <BrowserFrame
       {...SIGNUP_SCREENSHOT}
       priority
-      sizes="(max-width: 767px) calc(100vw - 88px), (max-width: 1279px) calc(50vw - 110px), (max-width: 1439px) calc(33.3vw - 156px), 324px"
+      sizes={SHOT_SIZES}
       className={styles.shot}
     />
   );
@@ -31,9 +41,7 @@ export function AppCard({ app }: AppCardProps) {
       <Preview preview={app.preview} />
       <div className={styles.body}>
         <div className={styles.identity}>
-          <span className={styles.appIcon}>
-            <Icon name={app.icon} size={22} strokeWidth={1.9} />
-          </span>
+          <AppMark app={app} className={styles.appIcon} />
           <div className={styles.names}>
             <h2 className={`disp ${styles.name}`}>{app.name}</h2>
             <span className={styles.tagline}>{app.tagline}</span>
@@ -63,7 +71,7 @@ export function AppCard({ app }: AppCardProps) {
               {APP_CARD_COPY.marketplaceLabel}
               <span className="srOnly">: {app.name}</span>
             </Button>
-          ) : (
+          ) : app.noMarketplace ? null : (
             <span className={`${styles.cta} ${styles.soon}`}>
               {APP_CARD_COPY.comingSoonLabel}
               <span className="srOnly"> to the BigCommerce marketplace: {app.name}</span>

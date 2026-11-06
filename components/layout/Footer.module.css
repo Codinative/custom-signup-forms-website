@@ -1,15 +1,18 @@
 /* Footer: spacing, radii, type scale and hover states from the Snapback footer (its breakpoints:
-   640, 768, 1024); colours and fonts are this site's tokens, the band gradient is Snapback's. */
+   640, 768, 1024); colours and fonts are this site's tokens. */
 .footer {
   margin-top: 96px;
   padding-top: 40px;
-  background: linear-gradient(to bottom, #0a1211 0%, #0f1b1a 26%, #13211f 100%);
+  background: var(--navy);
   color: var(--faint);
   line-height: 1.5;
 }
 
+/* Above .reveal, so the card covers it. Wider than Snapback's 1152px (owner request). */
 .container {
-  max-width: 1152px;
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
   margin-inline: auto;
   padding-inline: 24px;
 }
@@ -34,6 +37,16 @@
   margin: 24px 0 0;
   padding: 0;
   list-style: none;
+}
+
+.alsoFromItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.alsoFromLogo {
+  flex: none;
 }
 
 .alsoFromName {
@@ -176,14 +189,22 @@
   margin-top: 8px;
 }
 
-.closing {
-  padding: 128px 32px 80px;
+/* Sticks to the bottom of the screen behind the card until it reaches its own place in the footer */
+.reveal {
+  position: sticky;
+  bottom: 0;
+  padding: 128px 32px 64px;
+}
+
+/* Keyboard focus must not land on a link hidden behind the card */
+.reveal:focus-within {
+  position: static;
 }
 
 .closingMark {
   display: flex;
   justify-content: center;
-  margin-top: 128px;
+  padding: 64px 32px 80px;
 }
 
 .closingLogo {
@@ -229,12 +250,12 @@
     justify-content: flex-start;
   }
 
-  .closing {
-    padding: 96px 20px 64px;
+  .reveal {
+    padding: 96px 20px 48px;
   }
 
   .closingMark {
-    margin-top: 96px;
+    padding: 48px 20px 64px;
   }
 
   .closingLogo {
